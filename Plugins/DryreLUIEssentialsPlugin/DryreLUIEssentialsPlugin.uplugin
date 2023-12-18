@@ -1,0 +1,26 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.0.0.1",
+	"FriendlyName": "DryreL UI Essentials",
+	"Description": "Create a more advanced User Interface (UI) in Unreal Engine",
+	"Category": "DryreL Design",
+	"CreatedBy": "DryreL",
+	"CreatedByURL": "https://linktr.ee/dryrel",
+	"DocsURL": "https://github.com/DryreL/DryreLUIEssentials",
+	"MarketplaceURL": "",
+	"SupportURL": "https://github.com/DryreL/DryreLUIEssentials/issues",
+	"EngineVersion": "5.3",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "DryreLUIEssentialsPlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"WhitelistPlatforms": [
+				"Win64"
+			]
+		}
+	]
+}
