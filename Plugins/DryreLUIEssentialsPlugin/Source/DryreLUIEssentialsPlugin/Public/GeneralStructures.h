@@ -3,7 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Windows/WindowsHWrapper.h"
 #include "GenericPlatform/GenericPlatformDriver.h"
+
+#include <stdlib.h>
+#include <stddef.h>
+#include "HAL/Platform.h"
+
 #include "GeneralStructures.generated.h"
 
 /**
@@ -41,6 +47,16 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
 		FString ProviderName;
 	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		int32 AvailableVRAM;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		int32 CurrentVRAM;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		int32 TotalVRAM;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		int32 ReservedCurrentVRAM;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		int32 ReservedAvailableVRAM;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
 		FString InternalDriverVersion;
 	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
 		FString UserDriverVersion;
@@ -55,16 +71,16 @@ struct DRYRELUIESSENTIALSPLUGIN_API FMemInfo
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(BlueprintReadOnly, Category = "Memory Info")
-	int32 TotalMemoryInGb;
-	UPROPERTY(BlueprintReadOnly, Category = "Memory Info")
-	int64 PhysicalMemoryAvailableInBytes;
-	UPROPERTY(BlueprintReadOnly, Category = "Memory Info")
-	int64 VirtualMemoryAvailableInBytes;
-	UPROPERTY(BlueprintReadOnly, Category = "Memory Info")
-	int64 PhysicalMemoryUsedInBytes;
-	UPROPERTY(BlueprintReadOnly, Category = "Memory Info")
-	int64 VirtualMemoryUsedInBytes;
+	UPROPERTY(BlueprintReadOnly, Category = "Memory RAM Info")
+	int32 TotalMemoryInGB;
+	UPROPERTY(BlueprintReadOnly, Category = "Memory RAM Info")
+	int32 PhysicalMemoryAvailableInMB;
+	UPROPERTY(BlueprintReadOnly, Category = "Memory RAM Info")
+	int32 VirtualMemoryAvailableInMB;
+	UPROPERTY(BlueprintReadOnly, Category = "Memory RAM Info")
+	int32 PhysicalMemoryUsedInMB;
+	UPROPERTY(BlueprintReadOnly, Category = "Memory RAM Info")
+	int32 VirtualMemoryUsedInMB;
 };
 
 USTRUCT(BlueprintType)

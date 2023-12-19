@@ -11,6 +11,7 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 		PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...
+				"Runtime/RHI",
 			}
 			);
 				
@@ -41,6 +42,13 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
+
+			if ((Target.IsInPlatformGroup(UnrealPlatformGroup.Windows)))
+			{
+			// Uses DXGI to query GPU hardware
+			// This is what will allow us to get GPU usage statistics at runtime
+			PublicSystemLibraries.Add("DXGI.lib");
+			}
 		
 		
 		DynamicallyLoadedModuleNames.AddRange(

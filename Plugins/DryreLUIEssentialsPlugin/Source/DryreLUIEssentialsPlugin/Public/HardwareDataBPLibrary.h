@@ -4,6 +4,28 @@
 
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "GeneralStructures.h"
+#include "Windows/WindowsHWrapper.h"
+
+#include "HAL/Platform.h"
+#include <stdlib.h>
+#include <stddef.h>
+
+#if PLATFORM_WINDOWS
+
+THIRD_PARTY_INCLUDES_START
+#include "Windows/AllowWindowsPlatformTypes.h"
+#include "Windows/PreWindowsApi.h"
+#include "dxgi1_4.h"
+#include "Windows/PostWindowsApi.h"
+#include "Windows/HideWindowsPlatformTypes.h"
+#include <mmdeviceapi.h>
+#include <endpointvolume.h>
+#include <Shlwapi.h>
+THIRD_PARTY_INCLUDES_END
+
+#endif
+
+
 #include "HardwareDataBPLibrary.generated.h"
 
 UCLASS()
@@ -44,5 +66,4 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
 	static FDeviceInfo GetDeviceInformation();
-	
 };

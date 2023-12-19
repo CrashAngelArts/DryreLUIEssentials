@@ -7,15 +7,7 @@
 #include "GenericPlatform/GenericPlatformMemory.h"
 #include "GenericPlatform/GenericPlatformDriver.h"
 #include "Framework/Application/SlateApplication.h"
-#if PLATFORM_WINDOWS
-#include "Windows/AllowWindowsPlatformTypes.h"
 
-#include <mmdeviceapi.h>
-#include <endpointvolume.h>
-#include <Shlwapi.h>
-
-#include "Windows/HideWindowsPlatformTypes.h"
-#endif
 #include "Kismet/GameplayStatics.h"
 
 UHardwareDataBPLibrary::UHardwareDataBPLibrary(const FObjectInitializer& ObjectInitializer)
@@ -32,6 +24,7 @@ bool UHardwareDataBPLibrary::IsWindowsPlatform()
 FCPUInfo UHardwareDataBPLibrary::GetCPUInformation()
 {
 	FCPUInfo CPUInformation;
+
 	if(IsWindowsPlatform())
 	{
 		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get CPU Informations."));
@@ -70,11 +63,32 @@ float UHardwareDataBPLibrary::GetCPUUsage()
 FGPUInfo UHardwareDataBPLibrary::GetGPUInformation()
 {
 	FGPUInfo GPUInformation;
+	int convertToMB = 1000 * 1000;
+
+	IDXGIFactory4* pFactory;
+	CreateDXGIFactory1(__uuidof(IDXGIFactory4), (void**)&pFactory);
+
+	IDXGIAdapter3* adapter;
+	pFactory->EnumAdapters(0, reinterpret_cast<IDXGIAdapter**>(&adapter));
+
+	DXGI_QUERY_VIDEO_MEMORY_INFO videoMemoryInfo;
+	adapter->QueryVideoMemoryInfo(0, DXGI_MEMORY_SEGMENT_GROUP_LOCAL, &videoMemoryInfo);
+
+	int32 currentVRAM = videoMemoryInfo.CurrentUsage / convertToMB;
+	int32 totalVRAM = videoMemoryInfo.Budget / convertToMB;
+	int32 reservedCurrentVRAM = videoMemoryInfo.CurrentReservation / convertToMB;
+	int32 reservedAvailableVRAM = videoMemoryInfo.AvailableForReservation / convertToMB;
+	
 	if(IsWindowsPlatform())
 	{
 		GPUInformation.PrimaryGPUBrand = FWindowsPlatformMisc::GetPrimaryGPUBrand();
 		GPUInformation.DeviceDescription = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).DeviceDescription;
 		GPUInformation.ProviderName = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).ProviderName;
+		GPUInformation.AvailableVRAM = ((totalVRAM)-(currentVRAM));
+		GPUInformation.CurrentVRAM = currentVRAM;
+		GPUInformation.TotalVRAM = totalVRAM;
+		GPUInformation.ReservedCurrentVRAM = reservedCurrentVRAM;
+		GPUInformation.ReservedAvailableVRAM = reservedAvailableVRAM;
 		GPUInformation.InternalDriverVersion = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).InternalDriverVersion;
 		GPUInformation.UserDriverVersion = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).UserDriverVersion;
 		GPUInformation.DriverDate = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).DriverDate;
@@ -97,21 +111,23 @@ FGPUInfo UHardwareDataBPLibrary::GetGPUInformation()
 FMemInfo UHardwareDataBPLibrary::GetMemoryInformation()
 {
 	FMemInfo MemoryInformation;
+	int32 convertToMB = 1000 * 1000;
+	
 	if(IsWindowsPlatform())
 	{
-		MemoryInformation.TotalMemoryInGb = FWindowsPlatformMemory::GetPhysicalGBRam();
-		MemoryInformation.PhysicalMemoryAvailableInBytes = FWindowsPlatformMemory::GetStats().AvailablePhysical;
-		MemoryInformation.VirtualMemoryAvailableInBytes = FWindowsPlatformMemory::GetStats().AvailableVirtual;
-		MemoryInformation.PhysicalMemoryUsedInBytes = FWindowsPlatformMemory::GetStats().UsedPhysical;
-		MemoryInformation.VirtualMemoryUsedInBytes = FWindowsPlatformMemory::GetStats().UsedVirtual;
+		MemoryInformation.TotalMemoryInGB = FWindowsPlatformMemory::GetPhysicalGBRam();
+		MemoryInformation.PhysicalMemoryAvailableInMB = FWindowsPlatformMemory::GetStats().AvailablePhysical / convertToMB;
+		MemoryInformation.VirtualMemoryAvailableInMB = FWindowsPlatformMemory::GetStats().AvailableVirtual / convertToMB;
+		MemoryInformation.PhysicalMemoryUsedInMB = FWindowsPlatformMemory::GetStats().UsedPhysical / convertToMB;
+		MemoryInformation.VirtualMemoryUsedInMB = FWindowsPlatformMemory::GetStats().UsedVirtual / convertToMB;
 	}
 	else
 	{
-		MemoryInformation.TotalMemoryInGb = FGenericPlatformMemory::GetPhysicalGBRam();
-		MemoryInformation.PhysicalMemoryAvailableInBytes = FGenericPlatformMemory::GetStats().AvailablePhysical;
-		MemoryInformation.VirtualMemoryAvailableInBytes = FGenericPlatformMemory::GetStats().AvailableVirtual;
-		MemoryInformation.PhysicalMemoryUsedInBytes = FGenericPlatformMemory::GetStats().UsedPhysical;
-		MemoryInformation.VirtualMemoryUsedInBytes = FGenericPlatformMemory::GetStats().UsedVirtual;
+		MemoryInformation.TotalMemoryInGB = FGenericPlatformMemory::GetPhysicalGBRam();
+		MemoryInformation.PhysicalMemoryAvailableInMB = FGenericPlatformMemory::GetStats().AvailablePhysical / convertToMB;
+		MemoryInformation.VirtualMemoryAvailableInMB = FGenericPlatformMemory::GetStats().AvailableVirtual / convertToMB;
+		MemoryInformation.PhysicalMemoryUsedInMB = FGenericPlatformMemory::GetStats().UsedPhysical / convertToMB;
+		MemoryInformation.VirtualMemoryUsedInMB = FGenericPlatformMemory::GetStats().UsedVirtual / convertToMB;
 	}
 	return MemoryInformation;
 }

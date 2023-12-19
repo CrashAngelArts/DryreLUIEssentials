@@ -2,8 +2,6 @@
 
 #include "HardwareData.h"
 
-
-
 #define LOCTEXT_NAMESPACE "FDryreLUIEssentialsPluginModule"
 
 void FDryreLUIEssentialsPluginModule::StartupModule()
