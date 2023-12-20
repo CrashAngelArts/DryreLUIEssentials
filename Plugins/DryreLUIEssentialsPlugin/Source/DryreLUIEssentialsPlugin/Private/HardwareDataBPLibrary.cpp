@@ -8,6 +8,7 @@
 #include "GenericPlatform/GenericPlatformMemory.h"
 #include "GenericPlatform/GenericPlatformDriver.h"
 #include "Framework/Application/SlateApplication.h"
+#include "GameFramework/GameUserSettings.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -420,20 +421,13 @@ FDeviceInfo UHardwareDataBPLibrary::GetDeviceInformation()
 	return DeviceInformation;
 }
 
-FDisplayInfo UHardwareDataBPLibrary::GetMonitorInformation()
+FMonitorsInfo UHardwareDataBPLibrary::GetMonitorInformation()
 {
-	FDisplayInfo MonitorInformation;
+	FMonitorsInfo MonitorInformation;
 	
-	if(IsWindowsPlatform())
-	{
-		//MonitorInformation.GetDisplayCount = displayCount;
-		//MonitorInformation.GetAllDisplays = AllDisplays;
-	}
-	else
-	{
-		//MonitorInformation.GetDisplayCount = displayCount;
-		//MonitorInformation.GetAllDisplays = AllDisplays;
-	}
+		MonitorInformation.GetDisplayCount = GetDisplayCount();
+		MonitorInformation.GetAllDisplays = GetAllDisplays();
+	
 	return MonitorInformation;
 }
 
@@ -453,8 +447,14 @@ bool UHardwareDataBPLibrary::SetActiveDisplay(int32 DisplayIndex)
 
 	if (GEngine && GEngine->GameViewport)
 	{
+		// Display Switching
 		TSharedPtr<SWindow> GWindow = GEngine->GameViewport->GetWindow();
 		GWindow->MoveWindowTo(WindowPosition);
+
+		// Switching resolution
+		UGameUserSettings* UserSettings = GEngine->GameUserSettings;
+		UserSettings->SetScreenResolution((FIntPoint(TargetMonitor.NativeWidth, TargetMonitor.NativeHeight)));
+		UserSettings->ApplyResolutionSettings((false);
 	}
 	
 	return true;
@@ -464,13 +464,21 @@ int UHardwareDataBPLibrary::GetDisplayCount()
 {
 	FDisplayMetrics Displays;
 	FDisplayMetrics::RebuildDisplayMetrics(Displays);
-
 	return Displays.MonitorInfo.Num();
 }
 
-int UHardwareDataBPLibrary::GetAllDisplays()
+TArray<FDisplayInfo> UHardwareDataBPLibrary::GetAllDisplays()
 {
+	TArray<FDisplayInfo> AllDisplays;
+	AllDisplays.Reset();
+
 	FDisplayMetrics Displays;
 	FDisplayMetrics::RebuildDisplayMetrics(Displays);
-	
+
+	for (const FMonitorInfo& Monitor : Displays.MonitorInfo)
+	{
+		AllDisplays.Add(FDisplayInfo(Monitor.Name, Monitor.ID, Monitor.NativeWidth, Monitor.NativeHeight, 
+		Monitor.MaxResolution, Monitor.bIsPrimary, Monitor.DPI));
+	}
+	return AllDisplays;
 }

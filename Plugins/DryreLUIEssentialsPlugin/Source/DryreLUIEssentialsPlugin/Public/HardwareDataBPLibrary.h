@@ -114,7 +114,7 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 	static FDeviceInfo GetDeviceInformation();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static FDisplayInfo GetMonitorInformation();
+	static FMonitorsInfo GetMonitorInformation();
 	
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static bool SetActiveDisplay(int32 DisplayIndex);
@@ -123,5 +123,5 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 	static int GetDisplayCount();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetAllDisplays();
+	static TArray<FDisplayInfo> GetAllDisplays();
 };

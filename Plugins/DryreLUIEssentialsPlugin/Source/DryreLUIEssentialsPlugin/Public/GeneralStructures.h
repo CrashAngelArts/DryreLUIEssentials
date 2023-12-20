@@ -168,8 +168,7 @@ struct DRYRELUIESSENTIALSPLUGIN_API FDisplayInfo
 	}
 	
 	// Custom constructor
-	FDisplayInfo(const FString& InName, const FString& InID, int32 InNativeWith, int32 InNativeWidth, const FIntPoint& InMaxResolution, bool InIsPrimary, int32 InDPI)
-		:
+	FDisplayInfo(const FString& InName, const FString& InID, int32 InNativeWith, int32 InNativeWidth, const FIntPoint& InMaxResolution, bool InIsPrimary, int32 InDPI):
 	Name(InName),
 	ID(InID),
 	NativeWidth(InNativeWith),
@@ -179,4 +178,16 @@ struct DRYRELUIESSENTIALSPLUGIN_API FDisplayInfo
 	DPI(InDPI)
 	{
 	}
+};
+
+USTRUCT(BlueprintType)
+struct DRYRELUIESSENTIALSPLUGIN_API FMonitorsInfo
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	int GetDisplayCount;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	TArray<FDisplayInfo> GetAllDisplays;
 };
