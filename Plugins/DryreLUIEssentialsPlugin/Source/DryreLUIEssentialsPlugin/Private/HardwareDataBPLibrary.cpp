@@ -139,7 +139,10 @@ FOSInfo UHardwareDataBPLibrary::GetOSInfo()
 	{
 		OSInformation.ComputerName = FWindowsPlatformProcess::ComputerName();
 		OSInformation.Username = FWindowsPlatformProcess::UserName();
-		OSInformation.Is64Bit = FGenericPlatformMisc::Is64bitOperatingSystem();
+		OSInformation.LaptopBatteryLevel = FWindowsPlatformMisc::GetBatteryLevel();
+		OSInformation.Is64Bit = FWindowsPlatformMisc::Is64bitOperatingSystem();
+		OSInformation.IsDesktopTouchScreen = FWindowsPlatformMisc::DesktopTouchScreen();
+		OSInformation.IsHDRUsedByDefault = FWindowsPlatformMisc::UseHDRByDefault();
 		OSInformation.IsGamepadConnected = IsGamepadConnected();
 		OSInformation.IsMouseConnected = IsMouseConnected();
 		OSInformation.IsCapsLockActive = IsCapslockActive();
@@ -148,7 +151,10 @@ FOSInfo UHardwareDataBPLibrary::GetOSInfo()
 	{
 		OSInformation.ComputerName = FGenericPlatformProcess::ComputerName();
 		OSInformation.Username = FGenericPlatformProcess::UserName();
+		OSInformation.LaptopBatteryLevel = FGenericPlatformMisc::GetBatteryLevel();
 		OSInformation.Is64Bit = FGenericPlatformMisc::Is64bitOperatingSystem();
+		OSInformation.IsDesktopTouchScreen = FGenericPlatformMisc::DesktopTouchScreen();
+		OSInformation.IsHDRUsedByDefault = FGenericPlatformMisc::UseHDRByDefault();
 		OSInformation.IsGamepadConnected = IsGamepadConnected();
 		OSInformation.IsMouseConnected = IsMouseConnected();
 		OSInformation.IsCapsLockActive = IsCapslockActive();
