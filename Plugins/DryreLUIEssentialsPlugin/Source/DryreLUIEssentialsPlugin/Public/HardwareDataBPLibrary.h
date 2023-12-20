@@ -37,33 +37,33 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION()
 	static bool IsWindowsPlatform();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FCPUInfo GetCPUInformation();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static float GetCPUUsage();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FGPUInfo GetGPUInformation();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FMemInfo GetMemoryInformation();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FOSInfo GetOSInfo();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsGamepadConnected();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsMouseConnected();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsCapslockActive();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FProcessInfo GetProcessInformation();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "DryreL Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FDeviceInfo GetDeviceInformation();
 };

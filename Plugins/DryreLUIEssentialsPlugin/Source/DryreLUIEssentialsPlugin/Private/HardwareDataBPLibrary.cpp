@@ -139,6 +139,7 @@ FOSInfo UHardwareDataBPLibrary::GetOSInfo()
 	{
 		OSInformation.ComputerName = FWindowsPlatformProcess::ComputerName();
 		OSInformation.Username = FWindowsPlatformProcess::UserName();
+		OSInformation.Is64Bit = FGenericPlatformMisc::Is64bitOperatingSystem();
 		OSInformation.IsGamepadConnected = IsGamepadConnected();
 		OSInformation.IsMouseConnected = IsMouseConnected();
 		OSInformation.IsCapsLockActive = IsCapslockActive();
@@ -147,6 +148,7 @@ FOSInfo UHardwareDataBPLibrary::GetOSInfo()
 	{
 		OSInformation.ComputerName = FGenericPlatformProcess::ComputerName();
 		OSInformation.Username = FGenericPlatformProcess::UserName();
+		OSInformation.Is64Bit = FGenericPlatformMisc::Is64bitOperatingSystem();
 		OSInformation.IsGamepadConnected = IsGamepadConnected();
 		OSInformation.IsMouseConnected = IsMouseConnected();
 		OSInformation.IsCapsLockActive = IsCapslockActive();

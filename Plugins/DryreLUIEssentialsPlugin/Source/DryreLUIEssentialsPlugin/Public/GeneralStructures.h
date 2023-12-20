@@ -93,6 +93,8 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
 	FString Username;
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
+	bool Is64Bit;
+	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
 	bool IsGamepadConnected;
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
 	bool IsMouseConnected;
