@@ -74,7 +74,7 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 	static bool IsCapslockActive();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool IsRunningOnLaptopBattery()();
+	static bool IsRunningOnLaptopBattery();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetMaxRefreshRate();
