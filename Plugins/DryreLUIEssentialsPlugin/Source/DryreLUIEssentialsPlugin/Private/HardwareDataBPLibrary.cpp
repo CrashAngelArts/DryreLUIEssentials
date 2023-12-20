@@ -2,6 +2,7 @@
 
 #include "HardwareDataBPLibrary.h"
 
+#include "GenericPlatform/GenericApplication.h"
 #include "GenericPlatform/GenericPlatformMisc.h"
 #include "GenericPlatform/GenericPlatformTime.h"
 #include "GenericPlatform/GenericPlatformMemory.h"
@@ -417,4 +418,59 @@ FDeviceInfo UHardwareDataBPLibrary::GetDeviceInformation()
 		DeviceInformation.DeviceVolume = FGenericPlatformMisc::GetDeviceVolume();		
 	}
 	return DeviceInformation;
+}
+
+FDisplayInfo UHardwareDataBPLibrary::GetMonitorInformation()
+{
+	FDisplayInfo MonitorInformation;
+	
+	if(IsWindowsPlatform())
+	{
+		//MonitorInformation.GetDisplayCount = displayCount;
+		//MonitorInformation.GetAllDisplays = AllDisplays;
+	}
+	else
+	{
+		//MonitorInformation.GetDisplayCount = displayCount;
+		//MonitorInformation.GetAllDisplays = AllDisplays;
+	}
+	return MonitorInformation;
+}
+
+bool UHardwareDataBPLibrary::SetActiveDisplay(int32 DisplayIndex)
+{
+	FDisplayMetrics Displays;
+	FDisplayMetrics::RebuildDisplayMetrics(Displays);
+
+	if(DisplayIndex > Displays.MonitorInfo.Num())
+	{
+		// Non existing display
+		return false;
+	}
+
+	const FMonitorInfo TargetMonitor = Displays.MonitorInfo[DisplayIndex];
+	FVector2D WindowPosition(static_cast<float>(TargetMonitor.WorkArea.Left), static_cast<float>(TargetMonitor.WorkArea.Top));
+
+	if (GEngine && GEngine->GameViewport)
+	{
+		TSharedPtr<SWindow> GWindow = GEngine->GameViewport->GetWindow();
+		GWindow->MoveWindowTo(WindowPosition);
+	}
+	
+	return true;
+}
+
+int UHardwareDataBPLibrary::GetDisplayCount()
+{
+	FDisplayMetrics Displays;
+	FDisplayMetrics::RebuildDisplayMetrics(Displays);
+
+	return Displays.MonitorInfo.Num();
+}
+
+int UHardwareDataBPLibrary::GetAllDisplays()
+{
+	FDisplayMetrics Displays;
+	FDisplayMetrics::RebuildDisplayMetrics(Displays);
+	
 }

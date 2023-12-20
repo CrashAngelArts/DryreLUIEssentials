@@ -127,3 +127,56 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Device Info")
 	float DeviceVolume;
 };
+
+USTRUCT(BlueprintType)
+struct DRYRELUIESSENTIALSPLUGIN_API FDisplayInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	FString Name;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	FString ID;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	int32 NativeWidth = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	int32 NativeHeight = 0;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	FIntPoint MaxResolution = FIntPoint(ForceInitToZero);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	bool bIsPrimary = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	int32 DPI = 0;
+
+	// Default constructor
+	FDisplayInfo()
+	{
+		Name = FString("");
+		ID = FString("");
+		NativeWidth = 0;
+		NativeHeight = 0;
+		MaxResolution = FIntPoint(ForceInitToZero);
+		bIsPrimary = false;
+		DPI = 0;
+		
+	}
+	
+	// Custom constructor
+	FDisplayInfo(const FString& InName, const FString& InID, int32 InNativeWith, int32 InNativeWidth, const FIntPoint& InMaxResolution, bool InIsPrimary, int32 InDPI)
+		:
+	Name(InName),
+	ID(InID),
+	NativeWidth(InNativeWith),
+	NativeHeight(InNativeWidth),
+	MaxResolution(InMaxResolution),
+	bIsPrimary(InIsPrimary),
+	DPI(InDPI)
+	{
+	}
+};

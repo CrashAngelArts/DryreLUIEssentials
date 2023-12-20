@@ -39,6 +39,7 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"ApplicationCore", // Required for monitor settings, FDisplayMetrics
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

@@ -32,7 +32,6 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 	
-	
 	UFUNCTION()
 	static bool IsWindowsPlatform();
 
@@ -113,4 +112,16 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FDeviceInfo GetDeviceInformation();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FDisplayInfo GetMonitorInformation();
+	
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static bool SetActiveDisplay(int32 DisplayIndex);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetDisplayCount();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetAllDisplays();
 };
