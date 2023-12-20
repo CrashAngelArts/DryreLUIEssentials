@@ -111,23 +111,23 @@ FGPUInfo UHardwareDataBPLibrary::GetGPUInformation()
 FMemInfo UHardwareDataBPLibrary::GetMemoryInformation()
 {
 	FMemInfo MemoryInformation;
-	int32 convertToMB = 1000 * 1000;
+	int32 convertByteToMB = 1000 * 1000;
 	
 	if(IsWindowsPlatform())
 	{
-		MemoryInformation.TotalMemoryInGB = FWindowsPlatformMemory::GetPhysicalGBRam();
-		MemoryInformation.PhysicalMemoryAvailableInMB = FWindowsPlatformMemory::GetStats().AvailablePhysical / convertToMB;
-		MemoryInformation.VirtualMemoryAvailableInMB = FWindowsPlatformMemory::GetStats().AvailableVirtual / convertToMB;
-		MemoryInformation.PhysicalMemoryUsedInMB = FWindowsPlatformMemory::GetStats().UsedPhysical / convertToMB;
-		MemoryInformation.VirtualMemoryUsedInMB = FWindowsPlatformMemory::GetStats().UsedVirtual / convertToMB;
+		MemoryInformation.TotalPhysicalMemoryInGB = FWindowsPlatformMemory::GetPhysicalGBRam();
+		MemoryInformation.PhysicalMemoryAvailableInMB = FWindowsPlatformMemory::GetStats().AvailablePhysical / convertByteToMB;
+		MemoryInformation.VirtualMemoryAvailableInMB = FWindowsPlatformMemory::GetStats().AvailableVirtual / convertByteToMB;
+		MemoryInformation.PhysicalMemoryUsedInMB = FWindowsPlatformMemory::GetStats().UsedPhysical / convertByteToMB;
+		MemoryInformation.VirtualMemoryUsedInMB = FWindowsPlatformMemory::GetStats().UsedVirtual / convertByteToMB;
 	}
 	else
 	{
-		MemoryInformation.TotalMemoryInGB = FGenericPlatformMemory::GetPhysicalGBRam();
-		MemoryInformation.PhysicalMemoryAvailableInMB = FGenericPlatformMemory::GetStats().AvailablePhysical / convertToMB;
-		MemoryInformation.VirtualMemoryAvailableInMB = FGenericPlatformMemory::GetStats().AvailableVirtual / convertToMB;
-		MemoryInformation.PhysicalMemoryUsedInMB = FGenericPlatformMemory::GetStats().UsedPhysical / convertToMB;
-		MemoryInformation.VirtualMemoryUsedInMB = FGenericPlatformMemory::GetStats().UsedVirtual / convertToMB;
+		MemoryInformation.TotalPhysicalMemoryInGB = FGenericPlatformMemory::GetPhysicalGBRam() / 1000;
+		MemoryInformation.PhysicalMemoryAvailableInMB = FGenericPlatformMemory::GetStats().AvailablePhysical / convertByteToMB;
+		MemoryInformation.VirtualMemoryAvailableInMB = FGenericPlatformMemory::GetStats().AvailableVirtual / convertByteToMB;
+		MemoryInformation.PhysicalMemoryUsedInMB = FGenericPlatformMemory::GetStats().UsedPhysical / convertByteToMB;
+		MemoryInformation.VirtualMemoryUsedInMB = FGenericPlatformMemory::GetStats().UsedVirtual / convertByteToMB;
 	}
 	return MemoryInformation;
 }
@@ -140,7 +140,7 @@ FOSInfo UHardwareDataBPLibrary::GetOSInfo()
 		OSInformation.ComputerName = FWindowsPlatformProcess::ComputerName();
 		OSInformation.Username = FWindowsPlatformProcess::UserName();
 		OSInformation.LaptopBatteryLevel = FWindowsPlatformMisc::GetBatteryLevel();
-		OSInformation.Is64Bit = FWindowsPlatformMisc::Is64bitOperatingSystem();
+		OSInformation.IsOperatingSystem64Bit = FWindowsPlatformMisc::Is64bitOperatingSystem();
 		OSInformation.IsDesktopTouchScreen = FWindowsPlatformMisc::DesktopTouchScreen();
 		OSInformation.IsHDRUsedByDefault = FWindowsPlatformMisc::UseHDRByDefault();
 		OSInformation.IsGamepadConnected = IsGamepadConnected();
@@ -152,7 +152,7 @@ FOSInfo UHardwareDataBPLibrary::GetOSInfo()
 		OSInformation.ComputerName = FGenericPlatformProcess::ComputerName();
 		OSInformation.Username = FGenericPlatformProcess::UserName();
 		OSInformation.LaptopBatteryLevel = FGenericPlatformMisc::GetBatteryLevel();
-		OSInformation.Is64Bit = FGenericPlatformMisc::Is64bitOperatingSystem();
+		OSInformation.IsOperatingSystem64Bit = FGenericPlatformMisc::Is64bitOperatingSystem();
 		OSInformation.IsDesktopTouchScreen = FGenericPlatformMisc::DesktopTouchScreen();
 		OSInformation.IsHDRUsedByDefault = FGenericPlatformMisc::UseHDRByDefault();
 		OSInformation.IsGamepadConnected = IsGamepadConnected();
@@ -160,6 +160,68 @@ FOSInfo UHardwareDataBPLibrary::GetOSInfo()
 		OSInformation.IsCapsLockActive = IsCapslockActive();
 	}
 	return OSInformation;
+}
+
+int UHardwareDataBPLibrary::GetLaptopBatteryLevel()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::GetBatteryLevel();
+	}
+	else
+	{
+		return FGenericPlatformMisc::GetBatteryLevel();
+	}
+}
+
+FString UHardwareDataBPLibrary::GetOperatingSystemBit()
+{
+	if(IsWindowsPlatform())
+	{
+		if(FWindowsPlatformMisc::Is64bitOperatingSystem())
+		{
+			return ("64-bit");
+		}
+		else
+		{
+			return ("32-bit");
+		}
+	}
+	else
+	{
+		if(FGenericPlatformMisc::Is64bitOperatingSystem())
+		{
+			return ("64-bit");
+		}
+		else
+		{
+			return ("32-bit");
+		}
+	}
+}
+
+bool UHardwareDataBPLibrary::IsOperatingSystem64Bit()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::Is64bitOperatingSystem();
+	}
+	else
+	{
+		return FGenericPlatformMisc::Is64bitOperatingSystem();
+	}
+}
+
+bool UHardwareDataBPLibrary::IsTouchscreenSupported()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::DesktopTouchScreen();
+	}
+	else
+	{
+		return FGenericPlatformMisc::DesktopTouchScreen();
+	}
 }
 
 bool UHardwareDataBPLibrary::IsGamepadConnected()

@@ -53,6 +53,18 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 	static FOSInfo GetOSInfo();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetLaptopBatteryLevel();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FString GetOperatingSystemBit();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool IsOperatingSystem64Bit();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool IsTouchscreenSupported();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsGamepadConnected();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")

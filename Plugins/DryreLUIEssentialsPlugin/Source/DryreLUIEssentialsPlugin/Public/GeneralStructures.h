@@ -72,7 +72,7 @@ struct DRYRELUIESSENTIALSPLUGIN_API FMemInfo
 	GENERATED_BODY()
 public:
 	UPROPERTY(BlueprintReadOnly, Category = "Memory RAM Info")
-	int32 TotalMemoryInGB;
+	int32 TotalPhysicalMemoryInGB;
 	UPROPERTY(BlueprintReadOnly, Category = "Memory RAM Info")
 	int32 PhysicalMemoryAvailableInMB;
 	UPROPERTY(BlueprintReadOnly, Category = "Memory RAM Info")
@@ -95,7 +95,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
 	int LaptopBatteryLevel;
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
-	bool Is64Bit;
+	bool IsOperatingSystem64Bit;
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
 	bool IsDesktopTouchScreen;
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
