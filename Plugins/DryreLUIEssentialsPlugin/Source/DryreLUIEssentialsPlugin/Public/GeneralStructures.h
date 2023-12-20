@@ -114,7 +114,7 @@ struct DRYRELUIESSENTIALSPLUGIN_API FProcessInfo
 	GENERATED_BODY()
 public:
 	UPROPERTY(BlueprintReadOnly, Category = "Process Info")
-	int32 ProcessId;
+	int32 ProcessID;
 	UPROPERTY(BlueprintReadOnly, Category = "Process Info")
 	FString ApplicationName;
 	UPROPERTY(BlueprintReadOnly, Category = "Process Info")

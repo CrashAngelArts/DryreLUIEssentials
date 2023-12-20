@@ -254,18 +254,54 @@ bool UHardwareDataBPLibrary::IsCapslockActive()
 	return false;
 }
 
+int UHardwareDataBPLibrary::GetMaxRefreshRate()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::GetMaxRefreshRate();
+	}
+	else
+	{
+		return FGenericPlatformMisc::GetMaxRefreshRate();
+	}
+}
+
+FString UHardwareDataBPLibrary::GetOSVersion()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::GetOSVersion();
+	}
+	else
+	{
+		return FGenericPlatformMisc::GetOSVersion();
+	}
+}
+
+bool UHardwareDataBPLibrary::IsRunningOnLaptopBattery()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::IsRunningOnBattery();
+	}
+	else
+	{
+		return FGenericPlatformMisc::IsRunningOnBattery();
+	}
+}
+
 FProcessInfo UHardwareDataBPLibrary::GetProcessInformation()
 {
 	FProcessInfo ProcessInformation;
 	if (IsWindowsPlatform())
 	{
-		ProcessInformation.ProcessId = FWindowsPlatformProcess::GetCurrentProcessId();
+		ProcessInformation.ProcessID = FWindowsPlatformProcess::GetCurrentProcessId();
 		ProcessInformation.ApplicationName = FWindowsPlatformProcess::GetApplicationName(FWindowsPlatformProcess::GetCurrentProcessId());
 		ProcessInformation.IsFirstInstance = FWindowsPlatformProcess::IsFirstInstance();
 	}
 	else
 	{
-		ProcessInformation.ProcessId = FGenericPlatformProcess::GetCurrentProcessId();
+		ProcessInformation.ProcessID = FGenericPlatformProcess::GetCurrentProcessId();
 		ProcessInformation.ApplicationName = FGenericPlatformProcess::GetApplicationName(FGenericPlatformProcess::GetCurrentProcessId());
 		ProcessInformation.IsFirstInstance = FGenericPlatformProcess::IsFirstInstance();
 	}
