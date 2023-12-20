@@ -21,6 +21,31 @@ bool UHardwareDataBPLibrary::IsWindowsPlatform()
 	return UGameplayStatics::GetPlatformName() == FString("Windows") ? true : false;
 }
 
+bool UHardwareDataBPLibrary::IsMacPlatform()
+{
+	return UGameplayStatics::GetPlatformName() == FString("Mac") ? true : false;
+}
+
+bool UHardwareDataBPLibrary::IsLinuxPlatform()
+{
+	return UGameplayStatics::GetPlatformName() == FString("Linux") ? true : false;
+}
+
+bool UHardwareDataBPLibrary::IsIOSPlatform()
+{
+	return UGameplayStatics::GetPlatformName() == FString("IOS") ? true : false;
+}
+
+bool UHardwareDataBPLibrary::IsAndroidPlatform()
+{
+	return UGameplayStatics::GetPlatformName() == FString("Android") ? true : false;
+}
+
+bool UHardwareDataBPLibrary::IsConsolePlatform()
+{
+	return UGameplayStatics::GetPlatformName() == FString("consoles") ? true : false;
+}
+
 FCPUInfo UHardwareDataBPLibrary::GetCPUInformation()
 {
 	FCPUInfo CPUInformation;
@@ -287,6 +312,54 @@ bool UHardwareDataBPLibrary::IsRunningOnLaptopBattery()
 	else
 	{
 		return FGenericPlatformMisc::IsRunningOnBattery();
+	}
+}
+
+bool UHardwareDataBPLibrary::RestartApplication()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::RestartApplication();
+	}
+	else
+	{
+		return FGenericPlatformMisc::RestartApplication();
+	}
+}
+
+bool UHardwareDataBPLibrary::SupportsBrightness()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::SupportsBrightness();
+	}
+	else
+	{
+		return FGenericPlatformMisc::SupportsBrightness();
+	}
+}
+
+float UHardwareDataBPLibrary::GetBrightness()
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::GetBrightness();
+	}
+	else
+	{
+		return FGenericPlatformMisc::GetBrightness();
+	}
+}
+
+void UHardwareDataBPLibrary::SetBrightness(float Value)
+{
+	if(IsWindowsPlatform())
+	{
+		return FWindowsPlatformMisc::SetBrightness(Value);
+	}
+	else
+	{
+		return FGenericPlatformMisc::SetBrightness(Value);
 	}
 }
 

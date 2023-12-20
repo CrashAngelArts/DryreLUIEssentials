@@ -6,10 +6,6 @@
 #include "Windows/WindowsHWrapper.h"
 #include "GenericPlatform/GenericPlatformDriver.h"
 
-#include <stdlib.h>
-#include <stddef.h>
-#include "HAL/Platform.h"
-
 #include "GeneralStructures.generated.h"
 
 /**

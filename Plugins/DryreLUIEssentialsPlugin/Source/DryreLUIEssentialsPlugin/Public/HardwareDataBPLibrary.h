@@ -4,7 +4,6 @@
 
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "GeneralStructures.h"
-#include "Windows/WindowsHWrapper.h"
 
 #include "HAL/Platform.h"
 #include <stdlib.h>
@@ -13,6 +12,7 @@
 #if PLATFORM_WINDOWS
 
 THIRD_PARTY_INCLUDES_START
+#include "Windows/WindowsHWrapper.h"
 #include "Windows/AllowWindowsPlatformTypes.h"
 #include "Windows/PreWindowsApi.h"
 #include "dxgi1_4.h"
@@ -25,7 +25,6 @@ THIRD_PARTY_INCLUDES_END
 
 #endif
 
-
 #include "HardwareDataBPLibrary.generated.h"
 
 UCLASS()
@@ -36,6 +35,21 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 	
 	UFUNCTION()
 	static bool IsWindowsPlatform();
+
+	UFUNCTION()
+	static bool IsMacPlatform();
+
+	UFUNCTION()
+	static bool IsLinuxPlatform();
+
+	UFUNCTION()
+	static bool IsIOSPlatform();
+
+	UFUNCTION()
+	static bool IsAndroidPlatform();
+
+	UFUNCTION()
+	static bool IsConsolePlatform();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FCPUInfo GetCPUInformation();
@@ -77,10 +91,22 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 	static bool IsRunningOnLaptopBattery();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool RestartApplication();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetMaxRefreshRate();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FString GetOSVersion();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool SupportsBrightness();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static float GetBrightness();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void SetBrightness(float Value);
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FProcessInfo GetProcessInformation();
