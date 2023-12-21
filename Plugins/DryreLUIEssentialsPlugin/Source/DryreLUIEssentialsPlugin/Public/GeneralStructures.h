@@ -178,6 +178,19 @@ struct DRYRELUIESSENTIALSPLUGIN_API FDisplayInfo
 	DPI(InDPI)
 	{
 	}
+
+	// Equality operator
+	bool operator==(const FDisplayInfo& Other) const
+	{
+		// Compare each member for equality
+		return Name == Other.Name &&
+			   ID == Other.ID &&
+			   NativeWidth == Other.NativeWidth &&
+			   NativeHeight == Other.NativeHeight &&
+			   MaxResolution == Other.MaxResolution &&
+			   bIsPrimary == Other.bIsPrimary &&
+			   DPI == Other.DPI;
+	}
 };
 
 USTRUCT(BlueprintType)
@@ -190,4 +203,10 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
 	TArray<FDisplayInfo> GetAllDisplays;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	FDisplayInfo GetActiveDisplay;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	int GetActiveDisplayIndex;
 };

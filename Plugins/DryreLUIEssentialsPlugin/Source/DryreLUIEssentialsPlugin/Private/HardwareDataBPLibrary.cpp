@@ -427,6 +427,8 @@ FMonitorsInfo UHardwareDataBPLibrary::GetMonitorInformation()
 	
 		MonitorInformation.GetDisplayCount = GetDisplayCount();
 		MonitorInformation.GetAllDisplays = GetAllDisplays();
+		MonitorInformation.GetActiveDisplay = GetActiveDisplay();
+		MonitorInformation.GetActiveDisplayIndex = GetActiveDisplayIndex();
 	
 	return MonitorInformation;
 }
@@ -436,15 +438,16 @@ bool UHardwareDataBPLibrary::SetActiveDisplay(int32 DisplayIndex)
 	FDisplayMetrics Displays;
 	FDisplayMetrics::RebuildDisplayMetrics(Displays);
 
-	if(DisplayIndex > Displays.MonitorInfo.Num())
+	if(DisplayIndex >= Displays.MonitorInfo.Num())
 	{
 		// Non existing display
 		return false;
 	}
 
+#if !WITH_EDITOR
 	const FMonitorInfo TargetMonitor = Displays.MonitorInfo[DisplayIndex];
 	FVector2D WindowPosition(static_cast<float>(TargetMonitor.WorkArea.Left), static_cast<float>(TargetMonitor.WorkArea.Top));
-
+	
 	if (GEngine && GEngine->GameViewport)
 	{
 		// Display Switching
@@ -454,10 +457,47 @@ bool UHardwareDataBPLibrary::SetActiveDisplay(int32 DisplayIndex)
 		// Switching resolution
 		UGameUserSettings* UserSettings = GEngine->GameUserSettings;
 		UserSettings->SetScreenResolution((FIntPoint(TargetMonitor.NativeWidth, TargetMonitor.NativeHeight)));
-		UserSettings->ApplyResolutionSettings((false);
+		UserSettings->ApplyResolutionSettings((false));
 	}
+#endif
 	
 	return true;
+}
+
+FDisplayInfo UHardwareDataBPLibrary::GetActiveDisplay()
+{
+	TArray<FDisplayInfo> AllDisplays = GetAllDisplays();
+	FDisplayInfo defaultStruct;
+
+	for(FDisplayInfo oneDisplay:AllDisplays)
+	{
+		if(oneDisplay.bIsPrimary == true)
+		{
+			return oneDisplay;
+			break;
+		}
+		return defaultStruct;
+	}
+	return defaultStruct;
+}
+
+int UHardwareDataBPLibrary::GetActiveDisplayIndex()
+{
+	const TArray<FDisplayInfo> AllDisplays = GetAllDisplays();
+	int activeDisplayIndex = -1;
+
+	//AllDisplays.Find(oneDisplay);
+
+	for(FDisplayInfo oneDisplay:AllDisplays)
+	{
+		if(oneDisplay.bIsPrimary == true)
+		{
+			activeDisplayIndex = AllDisplays.Find(oneDisplay);
+			return activeDisplayIndex;
+		}
+		return activeDisplayIndex;
+	}
+	return activeDisplayIndex;
 }
 
 int UHardwareDataBPLibrary::GetDisplayCount()

@@ -120,6 +120,12 @@ class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
 	static bool SetActiveDisplay(int32 DisplayIndex);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FDisplayInfo GetActiveDisplay();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetActiveDisplayIndex();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetDisplayCount();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
