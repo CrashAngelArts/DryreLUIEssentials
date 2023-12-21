@@ -48,7 +48,7 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 			{
 			// Uses DXGI to query GPU hardware
 			// This is what will allow us to get GPU usage statistics at runtime
-			PublicSystemLibraries.Add("DXGI.lib");
+			PublicSystemLibraries.Add("DXGI.lib"); // Required for GPU VRAM values
 			}
 		
 		

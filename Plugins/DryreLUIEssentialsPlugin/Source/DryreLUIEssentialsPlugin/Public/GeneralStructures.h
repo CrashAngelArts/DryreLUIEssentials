@@ -91,6 +91,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
 	int LaptopBatteryLevel;
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
+	bool IsRunningOnLaptopBattery;
+	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
+	FString OperatingSystemBit;
+	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
 	bool IsOperatingSystem64Bit;
 	UPROPERTY(BlueprintReadOnly, Category = "OS Info")
 	bool IsDesktopTouchScreen;
@@ -112,7 +116,7 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Process Info")
 	int32 ProcessID;
 	UPROPERTY(BlueprintReadOnly, Category = "Process Info")
-	FString ApplicationName;
+	FString ApplicationDirectory;
 	UPROPERTY(BlueprintReadOnly, Category = "Process Info")
 	bool IsFirstInstance;
 };

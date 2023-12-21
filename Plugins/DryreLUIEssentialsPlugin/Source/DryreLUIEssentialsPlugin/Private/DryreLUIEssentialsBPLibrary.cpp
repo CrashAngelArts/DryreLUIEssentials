@@ -167,6 +167,8 @@ FOSInfo UDryreLUIEssentialsBPLibrary::GetOSInfo()
 		OSInformation.ComputerName = FWindowsPlatformProcess::ComputerName();
 		OSInformation.Username = FWindowsPlatformProcess::UserName();
 		OSInformation.LaptopBatteryLevel = FWindowsPlatformMisc::GetBatteryLevel();
+		OSInformation.IsRunningOnLaptopBattery = FWindowsPlatformMisc::IsRunningOnBattery();
+		OSInformation.OperatingSystemBit = GetOperatingSystemBit();
 		OSInformation.IsOperatingSystem64Bit = FWindowsPlatformMisc::Is64bitOperatingSystem();
 		OSInformation.IsDesktopTouchScreen = FWindowsPlatformMisc::DesktopTouchScreen();
 		OSInformation.IsHDRUsedByDefault = FWindowsPlatformMisc::UseHDRByDefault();
@@ -371,13 +373,14 @@ FProcessInfo UDryreLUIEssentialsBPLibrary::GetProcessInformation()
 	if (IsWindowsPlatform())
 	{
 		ProcessInformation.ProcessID = FWindowsPlatformProcess::GetCurrentProcessId();
-		ProcessInformation.ApplicationName = FWindowsPlatformProcess::GetApplicationName(FWindowsPlatformProcess::GetCurrentProcessId());
+		ProcessInformation.ApplicationDirectory = FWindowsPlatformProcess::GetApplicationName
+		(FWindowsPlatformProcess::GetCurrentProcessId());
 		ProcessInformation.IsFirstInstance = FWindowsPlatformProcess::IsFirstInstance();
 	}
 	else
 	{
 		ProcessInformation.ProcessID = FGenericPlatformProcess::GetCurrentProcessId();
-		ProcessInformation.ApplicationName = FGenericPlatformProcess::GetApplicationName(FGenericPlatformProcess::GetCurrentProcessId());
+		ProcessInformation.ApplicationDirectory = FGenericPlatformProcess::GetApplicationName(FGenericPlatformProcess::GetCurrentProcessId());
 		ProcessInformation.IsFirstInstance = FGenericPlatformProcess::IsFirstInstance();
 	}
 	return ProcessInformation;
