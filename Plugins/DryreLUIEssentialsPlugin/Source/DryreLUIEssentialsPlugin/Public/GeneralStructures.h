@@ -199,14 +199,17 @@ struct DRYRELUIESSENTIALSPLUGIN_API FMonitorsInfo
 	GENERATED_BODY()
 public:
 	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
-	int GetDisplayCount;
+	int DisplayCount;
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
-	TArray<FDisplayInfo> GetAllDisplays;
+	TArray<FDisplayInfo> AllDisplays;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
-	FDisplayInfo GetActiveDisplay;
+	FDisplayInfo ActiveDisplay;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
-	int GetActiveDisplayIndex;
+	int ActiveDisplayIndex;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Monitor Info")
+	int MaxRefreshRate;
 };

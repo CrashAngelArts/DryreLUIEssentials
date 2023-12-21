@@ -425,10 +425,11 @@ FMonitorsInfo UDryreLUIEssentialsBPLibrary::GetMonitorInformation()
 {
 	FMonitorsInfo MonitorInformation;
 	
-		MonitorInformation.GetDisplayCount = GetDisplayCount();
-		MonitorInformation.GetAllDisplays = GetAllDisplays();
-		MonitorInformation.GetActiveDisplay = GetActiveDisplay();
-		MonitorInformation.GetActiveDisplayIndex = GetActiveDisplayIndex();
+		MonitorInformation.DisplayCount = GetDisplayCount();
+		MonitorInformation.AllDisplays = GetAllDisplays();
+		MonitorInformation.ActiveDisplay = GetActiveDisplay();
+		MonitorInformation.ActiveDisplayIndex = GetActiveDisplayIndex();
+		MonitorInformation.MaxRefreshRate = GetMaxRefreshRate();
 	
 	return MonitorInformation;
 }
