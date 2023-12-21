@@ -1,6 +1,6 @@
 // Copyright © 2024 - DryreL Design
 
-#include "HardwareData.h"
+#include "DryreLUIEssentials.h"
 
 #define LOCTEXT_NAMESPACE "FDryreLUIEssentialsPluginModule"
 

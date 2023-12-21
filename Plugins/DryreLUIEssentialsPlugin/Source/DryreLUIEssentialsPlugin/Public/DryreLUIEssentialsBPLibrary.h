@@ -25,10 +25,10 @@ THIRD_PARTY_INCLUDES_END
 
 #endif
 
-#include "HardwareDataBPLibrary.generated.h"
+#include "DryreLUIEssentialsBPLibrary.generated.h"
 
 UCLASS()
-class UHardwareDataBPLibrary : public UBlueprintFunctionLibrary
+class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 	

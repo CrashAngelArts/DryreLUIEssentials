@@ -1,6 +1,6 @@
 // Copyright © 2024 - DryreL Design
 
-#include "HardwareDataBPLibrary.h"
+#include "DryreLUIEssentialsBPLibrary.h"
 
 #include "GenericPlatform/GenericApplication.h"
 #include "GenericPlatform/GenericPlatformMisc.h"
@@ -12,43 +12,43 @@
 
 #include "Kismet/GameplayStatics.h"
 
-UHardwareDataBPLibrary::UHardwareDataBPLibrary(const FObjectInitializer& ObjectInitializer)
+UDryreLUIEssentialsBPLibrary::UDryreLUIEssentialsBPLibrary(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
 {
 	
 }
 
-bool UHardwareDataBPLibrary::IsWindowsPlatform()
+bool UDryreLUIEssentialsBPLibrary::IsWindowsPlatform()
 {
 	return UGameplayStatics::GetPlatformName() == FString("Windows") ? true : false;
 }
 
-bool UHardwareDataBPLibrary::IsMacPlatform()
+bool UDryreLUIEssentialsBPLibrary::IsMacPlatform()
 {
 	return UGameplayStatics::GetPlatformName() == FString("Mac") ? true : false;
 }
 
-bool UHardwareDataBPLibrary::IsLinuxPlatform()
+bool UDryreLUIEssentialsBPLibrary::IsLinuxPlatform()
 {
 	return UGameplayStatics::GetPlatformName() == FString("Linux") ? true : false;
 }
 
-bool UHardwareDataBPLibrary::IsIOSPlatform()
+bool UDryreLUIEssentialsBPLibrary::IsIOSPlatform()
 {
 	return UGameplayStatics::GetPlatformName() == FString("IOS") ? true : false;
 }
 
-bool UHardwareDataBPLibrary::IsAndroidPlatform()
+bool UDryreLUIEssentialsBPLibrary::IsAndroidPlatform()
 {
 	return UGameplayStatics::GetPlatformName() == FString("Android") ? true : false;
 }
 
-bool UHardwareDataBPLibrary::IsConsolePlatform()
+bool UDryreLUIEssentialsBPLibrary::IsConsolePlatform()
 {
 	return UGameplayStatics::GetPlatformName() == FString("consoles") ? true : false;
 }
 
-FCPUInfo UHardwareDataBPLibrary::GetCPUInformation()
+FCPUInfo UDryreLUIEssentialsBPLibrary::GetCPUInformation()
 {
 	FCPUInfo CPUInformation;
 
@@ -75,7 +75,7 @@ FCPUInfo UHardwareDataBPLibrary::GetCPUInformation()
 	return CPUInformation;
 }
 
-float UHardwareDataBPLibrary::GetCPUUsage()
+float UDryreLUIEssentialsBPLibrary::GetCPUUsage()
 {
 	if(IsWindowsPlatform())
 	{
@@ -87,7 +87,7 @@ float UHardwareDataBPLibrary::GetCPUUsage()
 	}
 }
 
-FGPUInfo UHardwareDataBPLibrary::GetGPUInformation()
+FGPUInfo UDryreLUIEssentialsBPLibrary::GetGPUInformation()
 {
 	FGPUInfo GPUInformation;
 	int convertToMB = 1000 * 1000;
@@ -135,7 +135,7 @@ FGPUInfo UHardwareDataBPLibrary::GetGPUInformation()
 	}
 }
 
-FMemInfo UHardwareDataBPLibrary::GetMemoryInformation()
+FMemInfo UDryreLUIEssentialsBPLibrary::GetMemoryInformation()
 {
 	FMemInfo MemoryInformation;
 	int32 convertByteToMB = 1000 * 1000;
@@ -159,7 +159,7 @@ FMemInfo UHardwareDataBPLibrary::GetMemoryInformation()
 	return MemoryInformation;
 }
 
-FOSInfo UHardwareDataBPLibrary::GetOSInfo()
+FOSInfo UDryreLUIEssentialsBPLibrary::GetOSInfo()
 {
 	FOSInfo OSInformation;
 	if (IsWindowsPlatform())
@@ -189,7 +189,7 @@ FOSInfo UHardwareDataBPLibrary::GetOSInfo()
 	return OSInformation;
 }
 
-int UHardwareDataBPLibrary::GetLaptopBatteryLevel()
+int UDryreLUIEssentialsBPLibrary::GetLaptopBatteryLevel()
 {
 	if(IsWindowsPlatform())
 	{
@@ -201,7 +201,7 @@ int UHardwareDataBPLibrary::GetLaptopBatteryLevel()
 	}
 }
 
-FString UHardwareDataBPLibrary::GetOperatingSystemBit()
+FString UDryreLUIEssentialsBPLibrary::GetOperatingSystemBit()
 {
 	if(IsWindowsPlatform())
 	{
@@ -227,7 +227,7 @@ FString UHardwareDataBPLibrary::GetOperatingSystemBit()
 	}
 }
 
-bool UHardwareDataBPLibrary::IsOperatingSystem64Bit()
+bool UDryreLUIEssentialsBPLibrary::IsOperatingSystem64Bit()
 {
 	if(IsWindowsPlatform())
 	{
@@ -239,7 +239,7 @@ bool UHardwareDataBPLibrary::IsOperatingSystem64Bit()
 	}
 }
 
-bool UHardwareDataBPLibrary::IsTouchscreenSupported()
+bool UDryreLUIEssentialsBPLibrary::IsTouchscreenSupported()
 {
 	if(IsWindowsPlatform())
 	{
@@ -251,7 +251,7 @@ bool UHardwareDataBPLibrary::IsTouchscreenSupported()
 	}
 }
 
-bool UHardwareDataBPLibrary::IsGamepadConnected()
+bool UDryreLUIEssentialsBPLibrary::IsGamepadConnected()
 {
 	const auto GamepadDetectApplication = FSlateApplication::Get().GetPlatformApplication();
 	if (GamepadDetectApplication.Get() != nullptr && GamepadDetectApplication->IsGamepadAttached())
@@ -261,7 +261,7 @@ bool UHardwareDataBPLibrary::IsGamepadConnected()
 	return false;
 }
 
-bool UHardwareDataBPLibrary::IsMouseConnected()
+bool UDryreLUIEssentialsBPLibrary::IsMouseConnected()
 {
 	const auto MouseDetectApplication = FSlateApplication::Get().GetPlatformApplication();
 	if (MouseDetectApplication.Get() != nullptr && MouseDetectApplication->IsMouseAttached())
@@ -271,7 +271,7 @@ bool UHardwareDataBPLibrary::IsMouseConnected()
 	return false;
 }
 
-bool UHardwareDataBPLibrary::IsCapslockActive()
+bool UDryreLUIEssentialsBPLibrary::IsCapslockActive()
 {
 	const auto CapslockDetectApplication = FSlateApplication::Get().GetPlatformApplication();
 	if (CapslockDetectApplication.Get() != nullptr && CapslockDetectApplication->GetModifierKeys().AreCapsLocked())
@@ -281,7 +281,7 @@ bool UHardwareDataBPLibrary::IsCapslockActive()
 	return false;
 }
 
-int UHardwareDataBPLibrary::GetMaxRefreshRate()
+int UDryreLUIEssentialsBPLibrary::GetMaxRefreshRate()
 {
 	if(IsWindowsPlatform())
 	{
@@ -293,7 +293,7 @@ int UHardwareDataBPLibrary::GetMaxRefreshRate()
 	}
 }
 
-FString UHardwareDataBPLibrary::GetOSVersion()
+FString UDryreLUIEssentialsBPLibrary::GetOSVersion()
 {
 	if(IsWindowsPlatform())
 	{
@@ -305,7 +305,7 @@ FString UHardwareDataBPLibrary::GetOSVersion()
 	}
 }
 
-bool UHardwareDataBPLibrary::IsRunningOnLaptopBattery()
+bool UDryreLUIEssentialsBPLibrary::IsRunningOnLaptopBattery()
 {
 	if(IsWindowsPlatform())
 	{
@@ -317,7 +317,7 @@ bool UHardwareDataBPLibrary::IsRunningOnLaptopBattery()
 	}
 }
 
-bool UHardwareDataBPLibrary::RestartApplication()
+bool UDryreLUIEssentialsBPLibrary::RestartApplication()
 {
 	if(IsWindowsPlatform())
 	{
@@ -329,7 +329,7 @@ bool UHardwareDataBPLibrary::RestartApplication()
 	}
 }
 
-bool UHardwareDataBPLibrary::SupportsBrightness()
+bool UDryreLUIEssentialsBPLibrary::SupportsBrightness()
 {
 	if(IsWindowsPlatform())
 	{
@@ -341,7 +341,7 @@ bool UHardwareDataBPLibrary::SupportsBrightness()
 	}
 }
 
-float UHardwareDataBPLibrary::GetBrightness()
+float UDryreLUIEssentialsBPLibrary::GetBrightness()
 {
 	if(IsWindowsPlatform())
 	{
@@ -353,7 +353,7 @@ float UHardwareDataBPLibrary::GetBrightness()
 	}
 }
 
-void UHardwareDataBPLibrary::SetBrightness(float Value)
+void UDryreLUIEssentialsBPLibrary::SetBrightness(float Value)
 {
 	if(IsWindowsPlatform())
 	{
@@ -365,7 +365,7 @@ void UHardwareDataBPLibrary::SetBrightness(float Value)
 	}
 }
 
-FProcessInfo UHardwareDataBPLibrary::GetProcessInformation()
+FProcessInfo UDryreLUIEssentialsBPLibrary::GetProcessInformation()
 {
 	FProcessInfo ProcessInformation;
 	if (IsWindowsPlatform())
@@ -383,7 +383,7 @@ FProcessInfo UHardwareDataBPLibrary::GetProcessInformation()
 	return ProcessInformation;
 }
 
-FDeviceInfo UHardwareDataBPLibrary::GetDeviceInformation()
+FDeviceInfo UDryreLUIEssentialsBPLibrary::GetDeviceInformation()
 {
 	FDeviceInfo DeviceInformation;
 	if (IsWindowsPlatform())
@@ -421,7 +421,7 @@ FDeviceInfo UHardwareDataBPLibrary::GetDeviceInformation()
 	return DeviceInformation;
 }
 
-FMonitorsInfo UHardwareDataBPLibrary::GetMonitorInformation()
+FMonitorsInfo UDryreLUIEssentialsBPLibrary::GetMonitorInformation()
 {
 	FMonitorsInfo MonitorInformation;
 	
@@ -433,7 +433,7 @@ FMonitorsInfo UHardwareDataBPLibrary::GetMonitorInformation()
 	return MonitorInformation;
 }
 
-bool UHardwareDataBPLibrary::SetActiveDisplay(int32 DisplayIndex)
+bool UDryreLUIEssentialsBPLibrary::SetActiveDisplay(int32 DisplayIndex)
 {
 	FDisplayMetrics Displays;
 	FDisplayMetrics::RebuildDisplayMetrics(Displays);
@@ -464,7 +464,7 @@ bool UHardwareDataBPLibrary::SetActiveDisplay(int32 DisplayIndex)
 	return true;
 }
 
-FDisplayInfo UHardwareDataBPLibrary::GetActiveDisplay()
+FDisplayInfo UDryreLUIEssentialsBPLibrary::GetActiveDisplay()
 {
 	TArray<FDisplayInfo> AllDisplays = GetAllDisplays();
 	FDisplayInfo defaultStruct;
@@ -481,7 +481,7 @@ FDisplayInfo UHardwareDataBPLibrary::GetActiveDisplay()
 	return defaultStruct;
 }
 
-int UHardwareDataBPLibrary::GetActiveDisplayIndex()
+int UDryreLUIEssentialsBPLibrary::GetActiveDisplayIndex()
 {
 	const TArray<FDisplayInfo> AllDisplays = GetAllDisplays();
 	int activeDisplayIndex = -1;
@@ -500,14 +500,14 @@ int UHardwareDataBPLibrary::GetActiveDisplayIndex()
 	return activeDisplayIndex;
 }
 
-int UHardwareDataBPLibrary::GetDisplayCount()
+int UDryreLUIEssentialsBPLibrary::GetDisplayCount()
 {
 	FDisplayMetrics Displays;
 	FDisplayMetrics::RebuildDisplayMetrics(Displays);
 	return Displays.MonitorInfo.Num();
 }
 
-TArray<FDisplayInfo> UHardwareDataBPLibrary::GetAllDisplays()
+TArray<FDisplayInfo> UDryreLUIEssentialsBPLibrary::GetAllDisplays()
 {
 	TArray<FDisplayInfo> AllDisplays;
 	AllDisplays.Reset();
