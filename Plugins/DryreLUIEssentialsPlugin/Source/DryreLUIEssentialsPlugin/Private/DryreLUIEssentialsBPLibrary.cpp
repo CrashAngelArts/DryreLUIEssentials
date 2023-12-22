@@ -544,6 +544,56 @@ TArray<FDisplayInfo> UDryreLUIEssentialsBPLibrary::GetAllDisplays()
 	return AllDisplays;
 }
 
+bool UDryreLUIEssentialsBPLibrary::IsINTELProcessor()
+{
+	const bool bIsINTELCPUWindows = FWindowsPlatformMisc::GetCPUVendor().Contains(TEXT("GenuineIntel"));
+	const bool bIsINTELCPUGeneric = FGenericPlatformMisc::GetCPUVendor().Contains(TEXT("GenuineIntel"));
+
+	if(IsWindowsPlatform())
+	{
+		return bIsINTELCPUWindows;
+	}
+	else
+	{
+		return bIsINTELCPUGeneric;
+	}
+	return false;
+}
+
+bool UDryreLUIEssentialsBPLibrary::IsAMDProcessor()
+{
+	const bool bIsAMDCPUWindows = FWindowsPlatformMisc::GetCPUVendor().Contains(TEXT("AuthenticAMD"));
+	const bool bIsAMDCPUGeneric = FGenericPlatformMisc::GetCPUVendor().Contains(TEXT("AuthenticAMD"));
+
+	if(IsWindowsPlatform())
+	{
+		return bIsAMDCPUWindows;
+	}
+	else
+	{
+		return bIsAMDCPUGeneric;
+	}
+	return false;
+}
+
+bool UDryreLUIEssentialsBPLibrary::IsOtherProcessor()
+{
+	const bool bIsINTELCPUWindows = FWindowsPlatformMisc::GetCPUVendor().Contains(TEXT("GenuineIntel"));
+	const bool bIsINTELCPUGeneric = FGenericPlatformMisc::GetCPUVendor().Contains(TEXT("GenuineIntel"));
+	const bool bIsAMDCPUWindows = FWindowsPlatformMisc::GetCPUVendor().Contains(TEXT("AuthenticAMD"));
+	const bool bIsAMDCPUGeneric = FGenericPlatformMisc::GetCPUVendor().Contains(TEXT("AuthenticAMD"));
+	
+	if(IsWindowsPlatform())
+	{
+		return (!bIsINTELCPUWindows && !bIsAMDCPUWindows) ? true : false;
+	}
+	else
+	{
+		return (!bIsINTELCPUGeneric && !bIsAMDCPUGeneric) ? true : false;
+	}
+	return false;
+}
+
 bool UDryreLUIEssentialsBPLibrary::IsNVIDIAGraphicsCard()
 {
 	//const bool gpuVendorWindows = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
