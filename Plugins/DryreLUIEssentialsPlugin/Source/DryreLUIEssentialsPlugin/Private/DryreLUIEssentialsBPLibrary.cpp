@@ -382,8 +382,7 @@ FProcessInfo UDryreLUIEssentialsBPLibrary::GetProcessInformation()
 	{
 		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get Process Informations."));
 		ProcessInformation.ProcessID = FWindowsPlatformProcess::GetCurrentProcessId();
-		ProcessInformation.ApplicationDirectory = FWindowsPlatformProcess::GetApplicationName
-		(FWindowsPlatformProcess::GetCurrentProcessId());
+		ProcessInformation.ApplicationDirectory = FWindowsPlatformProcess::GetApplicationName(FWindowsPlatformProcess::GetCurrentProcessId());
 		ProcessInformation.IsFirstInstance = FWindowsPlatformProcess::IsFirstInstance();
 	}
 	else
@@ -731,3 +730,20 @@ void UDryreLUIEssentialsBPLibrary::GPUShutdownNVML()
 {
 	nvGPUShutdownNVML();
 }
+
+void UDryreLUIEssentialsBPLibrary::GPUInitializeADL()
+{
+	InitializeADL();
+}
+
+void UDryreLUIEssentialsBPLibrary::GPUShutdownADL()
+{
+	ShutdownADL();
+}
+
+/*
+int UDryreLUIEssentialsBPLibrary::GetGPUUsageADL()
+{
+	adlGetGPUUsageADL();
+}
+*/

@@ -18,6 +18,7 @@ THIRD_PARTY_INCLUDES_START
 #include <endpointvolume.h>
 #include <Shlwapi.h>
 #include "NVMLManager.h"
+#include "ADLManager.h"
 THIRD_PARTY_INCLUDES_END
 
 #endif
@@ -29,22 +30,22 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 	
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsWindowsPlatform();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsMacPlatform();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsLinuxPlatform();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsIOSPlatform();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsAndroidPlatform();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsConsolePlatform();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
@@ -140,11 +141,20 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsNVIDIAGraphicsCard();
 
+	// Declare a C++ function that provides the same information
+	static bool IsNVIDIAGraphicsCardCPlusPlus();
+
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsINTELGraphicsCard();
+
+	// Declare a C++ function that provides the same information
+	static bool IsINTELGraphicsCardCPlusPlus();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsAMDGraphicsCard();
+
+	// Declare a C++ function that provides the same information
+	static bool IsAMDGraphicsCardCPlusPlus();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsOtherGraphicsCard();
@@ -163,4 +173,14 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUShutdownNVML();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void GPUInitializeADL();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void GPUShutdownADL();
+/*
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUUsageADL();
+	*/
 };
