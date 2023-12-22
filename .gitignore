@@ -72,3 +72,7 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Custom Ignore (DryreL Design)
+Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/doc/*
+Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/example/*
