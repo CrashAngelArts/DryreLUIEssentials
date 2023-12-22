@@ -5,10 +5,6 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "GeneralStructures.h"
 
-#include "HAL/Platform.h"
-#include <stdlib.h>
-#include <stddef.h>
-
 #if PLATFORM_WINDOWS
 
 THIRD_PARTY_INCLUDES_START
@@ -21,6 +17,7 @@ THIRD_PARTY_INCLUDES_START
 #include <mmdeviceapi.h>
 #include <endpointvolume.h>
 #include <Shlwapi.h>
+#include "GPUUsage.h"
 THIRD_PARTY_INCLUDES_END
 
 #endif
@@ -130,4 +127,19 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static TArray<FDisplayInfo> GetAllDisplays();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUUsageNVML();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUTemperatureNVML();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUDeviceCountNVML();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void GPUInitializeNVML();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void GPUShutdownNVML();
 };

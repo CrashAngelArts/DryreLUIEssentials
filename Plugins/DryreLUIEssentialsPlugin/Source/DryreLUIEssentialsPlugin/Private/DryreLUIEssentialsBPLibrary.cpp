@@ -526,3 +526,28 @@ TArray<FDisplayInfo> UDryreLUIEssentialsBPLibrary::GetAllDisplays()
 	}
 	return AllDisplays;
 }
+
+int UDryreLUIEssentialsBPLibrary::GetGPUUsageNVML()
+{
+	return nvGPUUtilizationNVML();
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureNVML()
+{
+	return nvGPUTemperatureNVML();
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUDeviceCountNVML()
+{
+	return nvGPUDeviceCountNVML();
+}
+
+void UDryreLUIEssentialsBPLibrary::GPUInitializeNVML()
+{
+	nvGPUInitializeNVML();
+}
+
+void UDryreLUIEssentialsBPLibrary::GPUShutdownNVML()
+{
+	nvGPUShutdownNVML();
+}
