@@ -132,6 +132,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static bool IsNVIDIAGraphicsCard();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool IsINTELGraphicsCard();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsAMDGraphicsCard();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")

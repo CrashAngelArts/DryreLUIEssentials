@@ -546,8 +546,11 @@ TArray<FDisplayInfo> UDryreLUIEssentialsBPLibrary::GetAllDisplays()
 
 bool UDryreLUIEssentialsBPLibrary::IsNVIDIAGraphicsCard()
 {
-	const bool gpuVendorWindows = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
-	const bool gpuVendorGeneric = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
+	//const bool gpuVendorWindows = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
+	//const bool gpuVendorGeneric = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
+
+	const bool gpuVendorWindows = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).IsNVIDIA();
+	const bool gpuVendorGeneric = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).IsNVIDIA();
 
 	if(IsWindowsPlatform())
 	{
@@ -568,10 +571,37 @@ bool UDryreLUIEssentialsBPLibrary::IsNVIDIAGraphicsCard()
 	return false;
 }
 
+bool UDryreLUIEssentialsBPLibrary::IsINTELGraphicsCard()
+{
+	const bool gpuVendorWindows = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).IsIntel();
+	const bool gpuVendorGeneric = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).IsIntel();
+	
+	if(IsWindowsPlatform())
+	{
+		if(gpuVendorWindows)
+		{
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		if(gpuVendorGeneric)
+		{
+			return true;
+		}
+		return false;
+	}
+	return false;
+}
+
 bool UDryreLUIEssentialsBPLibrary::IsAMDGraphicsCard()
 {
-	const bool gpuVendorWindows = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
-	const bool gpuVendorGeneric = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
+	const bool gpuVendorWindows = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).IsAMD();
+	const bool gpuVendorGeneric = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).IsAMD();
+	
+	//const bool gpuVendorWindows = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
+	//const bool gpuVendorGeneric = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
 
 	if(IsWindowsPlatform())
 	{
@@ -594,14 +624,23 @@ bool UDryreLUIEssentialsBPLibrary::IsAMDGraphicsCard()
 
 bool UDryreLUIEssentialsBPLibrary::IsOtherGraphicsCard()
 {
+	/*
 	const bool gpuVendorWindowsNVIDIA = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
 	const bool gpuVendorGenericNVIDIA = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
 	const bool gpuVendorWindowsAMD = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
 	const bool gpuVendorGenericAMD = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
+	*/
 
+	const bool gpuVendorWindowsNVIDIA = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).IsNVIDIA();
+	const bool gpuVendorGenericNVIDIA = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).IsNVIDIA();
+	const bool gpuVendorWindowsAMD = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).IsAMD();
+	const bool gpuVendorGenericAMD = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).IsAMD();
+	const bool gpuVendorWindowsINTEL = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).IsIntel();
+	const bool gpuVendorGenericINTEL = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).IsIntel();
+	
 	if(IsWindowsPlatform())
 	{
-		if(!gpuVendorWindowsNVIDIA && !gpuVendorWindowsAMD)
+		if(!gpuVendorWindowsNVIDIA && !gpuVendorWindowsAMD && !gpuVendorWindowsINTEL)
 		{
 			return true;
 		}
@@ -609,7 +648,7 @@ bool UDryreLUIEssentialsBPLibrary::IsOtherGraphicsCard()
 	}
 	else
 	{
-		if(!gpuVendorGenericNVIDIA && !gpuVendorGenericAMD)
+		if(!gpuVendorGenericNVIDIA && !gpuVendorGenericAMD && !gpuVendorWindowsINTEL)
 		{
 			return true;
 		}
