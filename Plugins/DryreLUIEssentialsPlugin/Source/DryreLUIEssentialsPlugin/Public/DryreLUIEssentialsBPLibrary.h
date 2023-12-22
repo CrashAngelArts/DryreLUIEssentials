@@ -129,6 +129,15 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static TArray<FDisplayInfo> GetAllDisplays();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool IsNVIDIAGraphicsCard();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool IsAMDGraphicsCard();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool IsOtherGraphicsCard();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUUsageNVML();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")

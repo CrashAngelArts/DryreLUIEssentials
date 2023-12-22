@@ -527,6 +527,80 @@ TArray<FDisplayInfo> UDryreLUIEssentialsBPLibrary::GetAllDisplays()
 	return AllDisplays;
 }
 
+bool UDryreLUIEssentialsBPLibrary::IsNVIDIAGraphicsCard()
+{
+	const bool gpuVendorWindows = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
+	const bool gpuVendorGeneric = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
+
+	if(IsWindowsPlatform())
+	{
+		if(gpuVendorWindows)
+		{
+		return true;
+		}
+		return false;
+	}
+	else
+	{
+		if(gpuVendorGeneric)
+		{
+			return true;
+		}
+		return false;
+	}
+	return false;
+}
+
+bool UDryreLUIEssentialsBPLibrary::IsAMDGraphicsCard()
+{
+	const bool gpuVendorWindows = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
+	const bool gpuVendorGeneric = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
+
+	if(IsWindowsPlatform())
+	{
+		if(gpuVendorWindows)
+		{
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		if(gpuVendorGeneric)
+		{
+			return true;
+		}
+		return false;
+	}
+	return false;
+}
+
+bool UDryreLUIEssentialsBPLibrary::IsOtherGraphicsCard()
+{
+	const bool gpuVendorWindowsNVIDIA = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
+	const bool gpuVendorGenericNVIDIA = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("NVIDIA"));
+	const bool gpuVendorWindowsAMD = FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FWindowsPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
+	const bool gpuVendorGenericAMD = FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("Advanced Micro Devices, Inc.")) || FGenericPlatformMisc::GetPrimaryGPUBrand().Contains(TEXT("AMD"));
+
+	if(IsWindowsPlatform())
+	{
+		if(!gpuVendorWindowsNVIDIA && !gpuVendorWindowsAMD)
+		{
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		if(!gpuVendorGenericNVIDIA && !gpuVendorGenericAMD)
+		{
+			return true;
+		}
+		return false;
+	}
+	return false;
+}
+
 int UDryreLUIEssentialsBPLibrary::GetGPUUsageNVML()
 {
 	return nvGPUUtilizationNVML();
