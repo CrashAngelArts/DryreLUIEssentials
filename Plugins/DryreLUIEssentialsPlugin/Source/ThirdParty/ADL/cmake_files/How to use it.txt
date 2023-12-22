@@ -1,0 +1,6 @@
+1. Download and install CMAKE.
+
+2. Run CMD.
+
+cmake <current_path>
+cmake --build . --config Release
