@@ -42,18 +42,33 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 				"Slate",
 				"SlateCore",
 				"ApplicationCore", // Required for monitor settings, FDisplayMetrics
+				"DryreLUIEssentialsPlugin",
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
 
 			if ((Target.IsInPlatformGroup(UnrealPlatformGroup.Windows)))
 			{
-			// Uses DXGI to query GPU hardware
-			// This is what will allow us to get GPU usage statistics at runtime
-			PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "ThirdParty"));
+			
+			// Add path to plugin
+			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "ADL", "include"));
+			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "ADL", "lib"));
+			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "ADL", "dll"));
+			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "ADL", "ADLXHelper", "Windows", "Cpp"));
+			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "NVML", "include"));
+			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "NVML", "lib"));
 
-			PublicSystemLibraries.Add("DXGI.lib"); // Required for GPU VRAM values
+			// Uses DXGI to query GPU hardware
+			// This is what will allow us to get GPU usage statistics at runtime (example: GPU VRAM values)
+			PublicSystemLibraries.Add("DXGI.lib");
+			
+			//PublicDelayLoadDLLs.Add("$(PluginDir)/Source/ThirdParty/ADL/dll/PerfAllMetricsLib.dll");
+			//PublicDelayLoadDLLs.Add("$(PluginDir)/Source/ThirdParty/ADL/dll/PerfGPUMetrics.dll");
+
+			
+			// NVML Library is used to get NVIDIA GPU functions
 			PublicAdditionalLibraries.Add("$(PluginDir)/Source/ThirdParty/NVML/lib/nvml.lib");
+			PublicAdditionalLibraries.Add("$(PluginDir)/Source/ThirdParty/ADL/lib/PerfAllMetrics.lib");
 			}
 		
 		
