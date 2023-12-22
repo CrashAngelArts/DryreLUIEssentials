@@ -108,6 +108,7 @@ FGPUInfo UDryreLUIEssentialsBPLibrary::GetGPUInformation()
 	
 	if(IsWindowsPlatform())
 	{
+		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get GPU Informations."));
 		GPUInformation.PrimaryGPUBrand = FWindowsPlatformMisc::GetPrimaryGPUBrand();
 		GPUInformation.DeviceDescription = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).DeviceDescription;
 		GPUInformation.ProviderName = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).ProviderName;
@@ -124,6 +125,7 @@ FGPUInfo UDryreLUIEssentialsBPLibrary::GetGPUInformation()
 	}
 	else
 	{
+		UE_LOG(LogTemp, Log, TEXT("Using Generic libraries to get CPU Informations."));
 		GPUInformation.PrimaryGPUBrand = FGenericPlatformMisc::GetPrimaryGPUBrand();
 		GPUInformation.DeviceDescription = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).DeviceDescription;
 		GPUInformation.ProviderName = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).ProviderName;
@@ -142,6 +144,7 @@ FMemInfo UDryreLUIEssentialsBPLibrary::GetMemoryInformation()
 	
 	if(IsWindowsPlatform())
 	{
+		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get Memory Informations."));
 		MemoryInformation.TotalPhysicalMemoryInGB = FWindowsPlatformMemory::GetPhysicalGBRam();
 		MemoryInformation.PhysicalMemoryAvailableInMB = FWindowsPlatformMemory::GetStats().AvailablePhysical / convertByteToMB;
 		MemoryInformation.VirtualMemoryAvailableInMB = FWindowsPlatformMemory::GetStats().AvailableVirtual / convertByteToMB;
@@ -150,6 +153,7 @@ FMemInfo UDryreLUIEssentialsBPLibrary::GetMemoryInformation()
 	}
 	else
 	{
+		UE_LOG(LogTemp, Log, TEXT("Using Generic libraries to get Memory Informations."));
 		MemoryInformation.TotalPhysicalMemoryInGB = FGenericPlatformMemory::GetPhysicalGBRam() / 1000;
 		MemoryInformation.PhysicalMemoryAvailableInMB = FGenericPlatformMemory::GetStats().AvailablePhysical / convertByteToMB;
 		MemoryInformation.VirtualMemoryAvailableInMB = FGenericPlatformMemory::GetStats().AvailableVirtual / convertByteToMB;
@@ -164,6 +168,7 @@ FOSInfo UDryreLUIEssentialsBPLibrary::GetOSInfo()
 	FOSInfo OSInformation;
 	if (IsWindowsPlatform())
 	{
+		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get OS Informations."));
 		OSInformation.ComputerName = FWindowsPlatformProcess::ComputerName();
 		OSInformation.Username = FWindowsPlatformProcess::UserName();
 		OSInformation.LaptopBatteryLevel = FWindowsPlatformMisc::GetBatteryLevel();
@@ -178,9 +183,12 @@ FOSInfo UDryreLUIEssentialsBPLibrary::GetOSInfo()
 	}
 	else
 	{
+		UE_LOG(LogTemp, Log, TEXT("Using Generic libraries to get OS Informations."));
 		OSInformation.ComputerName = FGenericPlatformProcess::ComputerName();
 		OSInformation.Username = FGenericPlatformProcess::UserName();
 		OSInformation.LaptopBatteryLevel = FGenericPlatformMisc::GetBatteryLevel();
+		OSInformation.IsRunningOnLaptopBattery = FGenericPlatformMisc::IsRunningOnBattery();
+		OSInformation.OperatingSystemBit = GetOperatingSystemBit();
 		OSInformation.IsOperatingSystem64Bit = FGenericPlatformMisc::Is64bitOperatingSystem();
 		OSInformation.IsDesktopTouchScreen = FGenericPlatformMisc::DesktopTouchScreen();
 		OSInformation.IsHDRUsedByDefault = FGenericPlatformMisc::UseHDRByDefault();
@@ -372,6 +380,7 @@ FProcessInfo UDryreLUIEssentialsBPLibrary::GetProcessInformation()
 	FProcessInfo ProcessInformation;
 	if (IsWindowsPlatform())
 	{
+		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get Process Informations."));
 		ProcessInformation.ProcessID = FWindowsPlatformProcess::GetCurrentProcessId();
 		ProcessInformation.ApplicationDirectory = FWindowsPlatformProcess::GetApplicationName
 		(FWindowsPlatformProcess::GetCurrentProcessId());
@@ -379,6 +388,7 @@ FProcessInfo UDryreLUIEssentialsBPLibrary::GetProcessInformation()
 	}
 	else
 	{
+		UE_LOG(LogTemp, Log, TEXT("Using Generic libraries to get Process Informations."));
 		ProcessInformation.ProcessID = FGenericPlatformProcess::GetCurrentProcessId();
 		ProcessInformation.ApplicationDirectory = FGenericPlatformProcess::GetApplicationName(FGenericPlatformProcess::GetCurrentProcessId());
 		ProcessInformation.IsFirstInstance = FGenericPlatformProcess::IsFirstInstance();
@@ -391,7 +401,10 @@ FDeviceInfo UDryreLUIEssentialsBPLibrary::GetDeviceInformation()
 	FDeviceInfo DeviceInformation;
 	if (IsWindowsPlatform())
 	{
+		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get Device Informations."));
+		
 		DeviceInformation.DeviceTemperature = FWindowsPlatformMisc::GetDeviceTemperatureLevel();
+		
 		#if PLATFORM_WINDOWS
 			HRESULT hr = NULL;
 
@@ -413,11 +426,13 @@ FDeviceInfo UDryreLUIEssentialsBPLibrary::GetDeviceInformation()
 			endpointVolume->GetMasterVolumeLevel(&currentVolume);
 			endpointVolume->GetMasterVolumeLevelScalar(&currentVolume);
 			endpointVolume->Release();
+		
 			DeviceInformation.DeviceVolume = currentVolume;
 		#endif
 	}
 	else
 	{
+		UE_LOG(LogTemp, Log, TEXT("Using Generic libraries to get Device Informations."));
 		DeviceInformation.DeviceTemperature = FGenericPlatformMisc::GetDeviceTemperatureLevel();
 		DeviceInformation.DeviceVolume = FGenericPlatformMisc::GetDeviceVolume();		
 	}
@@ -427,6 +442,8 @@ FDeviceInfo UDryreLUIEssentialsBPLibrary::GetDeviceInformation()
 FMonitorsInfo UDryreLUIEssentialsBPLibrary::GetMonitorInformation()
 {
 	FMonitorsInfo MonitorInformation;
+
+	UE_LOG(LogTemp, Log, TEXT("Using libraries to get Monitor Informations."));
 	
 		MonitorInformation.DisplayCount = GetDisplayCount();
 		MonitorInformation.AllDisplays = GetAllDisplays();
