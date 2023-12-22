@@ -1,6 +1,6 @@
 ﻿// Copyright © 2024 - DryreL Design
 
-#include "GPUUsage.h"
+#include "NVMLManager.h"
 
 int main() {
 	

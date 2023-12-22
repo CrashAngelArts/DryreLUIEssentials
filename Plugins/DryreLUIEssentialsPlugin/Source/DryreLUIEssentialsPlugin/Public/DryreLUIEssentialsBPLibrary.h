@@ -17,7 +17,7 @@ THIRD_PARTY_INCLUDES_START
 #include <mmdeviceapi.h>
 #include <endpointvolume.h>
 #include <Shlwapi.h>
-#include "GPUUsage.h"
+#include "NVMLManager.h"
 THIRD_PARTY_INCLUDES_END
 
 #endif
