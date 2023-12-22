@@ -1,5 +1,6 @@
 // Copyright © 2024 - DryreL Design
 
+using System.IO;
 using UnrealBuildTool;
 
 public class DryreLUIEssentialsPlugin : ModuleRules
@@ -37,6 +38,7 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 			{
 				"CoreUObject",
 				"Engine",
+				"RHI",
 				"Slate",
 				"SlateCore",
 				"ApplicationCore", // Required for monitor settings, FDisplayMetrics
@@ -48,7 +50,10 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 			{
 			// Uses DXGI to query GPU hardware
 			// This is what will allow us to get GPU usage statistics at runtime
+			PublicIncludePaths.Add(Path.Combine(ModuleDirectory, "ThirdParty"));
+
 			PublicSystemLibraries.Add("DXGI.lib"); // Required for GPU VRAM values
+			PublicAdditionalLibraries.Add("$(PluginDir)/Source/ThirdParty/NVML/lib/nvml.lib");
 			}
 		
 		
