@@ -78,7 +78,5 @@ Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/doc/*
 Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/example/*
 
 # Custom Include (DryreL Design)
-!Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/ADL/dll/*
-!Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/ADL/lib/*
-!Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/dll/*
-!Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/lib/*
+!Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/*/dll/*.dll
+!Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/*/lib/*.lib
