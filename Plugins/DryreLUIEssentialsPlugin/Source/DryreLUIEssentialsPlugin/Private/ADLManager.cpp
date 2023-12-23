@@ -498,7 +498,7 @@ int adlGetGPUVRAMClockSpeedADL()
 }
 
 // Display the system time stamp (in ms)
-int64 adlGetTimeStampADL()
+int adlGetTimeStampADL()
 {
     if(IsInitializedADL())
     {

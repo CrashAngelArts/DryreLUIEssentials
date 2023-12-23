@@ -205,7 +205,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUVRAMClockSpeedADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int64 GetTimeStampsADL();
+	static int GetTimeStampsADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUTemperatureADL();
