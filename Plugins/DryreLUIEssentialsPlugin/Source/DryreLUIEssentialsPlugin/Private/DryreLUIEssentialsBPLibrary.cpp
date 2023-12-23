@@ -730,6 +730,13 @@ int UDryreLUIEssentialsBPLibrary::GetGPUUsageNVML()
 	else return -1;
 }
 
+int UDryreLUIEssentialsBPLibrary::GetMemoryUsageNVML()
+{
+	if(IsNVIDIAGraphicsCard())
+		return nvMemoryUtilizationNVML();
+	else return -1;
+}
+
 int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureNVML()
 {
 	if(IsNVIDIAGraphicsCard())

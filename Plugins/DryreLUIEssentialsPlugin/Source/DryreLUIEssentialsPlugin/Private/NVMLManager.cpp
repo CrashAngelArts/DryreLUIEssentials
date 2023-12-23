@@ -60,9 +60,38 @@ int nvGPUUtilizationNVML()
 
 	// Access individual utilization values
 	int customgpuUtilization = utilization.gpu;
-	int custommemoryUtilization = utilization.memory;
 	
 	return customgpuUtilization;
+}
+
+int nvMemoryUtilizationNVML()
+{
+	nvmlReturn_t result;
+	nvmlDevice_t device;
+
+	// Get the device handle (here, index 0 represents the first GPU)
+	result = nvmlDeviceGetHandleByIndex(0, &device);
+	if (result != NVML_SUCCESS) {
+		// Print or log an error message
+		printf("Error getting device handle: %s\n", nvmlErrorString(result));
+		nvmlShutdown();
+		return -3;
+	}
+
+	// 'utilization' now contains the GPU utilization percentage
+	nvmlUtilization_t utilization;
+	result = nvmlDeviceGetUtilizationRates(device, &utilization);
+	if (result != NVML_SUCCESS) {
+		// Print or log an error message
+		printf("Error getting GPU utilization rates: %s\n", nvmlErrorString(result));
+		nvmlShutdown();
+		return -4;
+	}
+
+	// Access individual utilization values
+	int custommemoryUtilization = utilization.memory;
+	
+	return custommemoryUtilization;
 }
 
 int nvGPUTemperatureNVML()

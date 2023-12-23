@@ -5,5 +5,6 @@
 int nvGPUInitializeNVML();
 int nvGPUShutdownNVML();
 int nvGPUUtilizationNVML();
+int nvMemoryUtilizationNVML();
 int nvGPUTemperatureNVML();
 int nvGPUDeviceCountNVML();

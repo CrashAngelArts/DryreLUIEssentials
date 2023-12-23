@@ -163,6 +163,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUUsageNVML();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetMemoryUsageNVML();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUTemperatureNVML();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
