@@ -29,7 +29,8 @@ UCLASS()
 class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
-	
+
+	// Platform Check
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsWindowsPlatform();
 
@@ -48,6 +49,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsConsolePlatform();
 
+	// Struct
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FCPUInfo GetCPUInformation();
 
@@ -64,8 +66,18 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static FOSInfo GetOSInfo();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetLaptopBatteryLevel();
+	static FProcessInfo GetProcessInformation();
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FDeviceInfo GetDeviceInformation();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FMonitorsInfo GetMonitorInformation();
+
+	// Others
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetLaptopBatteryLevel();
+	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FString GetOperatingSystemBit();
 
@@ -105,15 +117,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void SetBrightness(float Value);
 	
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static FProcessInfo GetProcessInformation();
-
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static FDeviceInfo GetDeviceInformation();
-
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static FMonitorsInfo GetMonitorInformation();
-	
+	// Monitor/Display
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static bool SetActiveDisplay(int32 DisplayIndex);
 
@@ -129,6 +133,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static TArray<FDisplayInfo> GetAllDisplays();
 
+	// Check The CPU Brand (Graphics Card)
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsINTELProcessor();
 
@@ -137,28 +142,21 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsOtherProcessor();
-	
+
+	// Check The GPU Brand (Graphics Card)
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsNVIDIAGraphicsCard();
 
-	// Declare a C++ function that provides the same information
-	static bool IsNVIDIAGraphicsCardCPlusPlus();
-
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsINTELGraphicsCard();
-
-	// Declare a C++ function that provides the same information
-	static bool IsINTELGraphicsCardCPlusPlus();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsAMDGraphicsCard();
 
-	// Declare a C++ function that provides the same information
-	static bool IsAMDGraphicsCardCPlusPlus();
-
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsOtherGraphicsCard();
-	
+
+	// NVML Library (NVIDIA Graphics Card)
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUUsageNVML();
 
@@ -186,6 +184,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUShutdownNVML();
 
+	// ADLX Library (AMD Graphics Card)
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUInitializeADL();
 
