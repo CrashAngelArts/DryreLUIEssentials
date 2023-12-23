@@ -331,6 +331,50 @@ int nvGetGPUFanSpeedNVML(int Index)
 	return static_cast<int>(fanSpeed);
 }
 
+// Display GPU VRAM (in MB)
+int nvGetGPUVRAMNVML(int Index, FString state)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML()) {
+		// Handle initialization error
+		printf("NVML is not initialized.\n");
+		return -1;
+	}
+
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return -1;
+	}
+
+	nvmlMemory_t memoryInfo;
+	nvmlReturn_t result = nvmlDeviceGetMemoryInfo(device, &memoryInfo);
+	if (result != NVML_SUCCESS) {
+		// Handle memory info retrieval error
+		printf("Error on memory info retrieval: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+    int byteToMB = (1024 * 1024);
+	
+	// Return used GPU memory size as an integer (convert bytes to megabytes)
+	if(state == "used" || state == "USED")
+	{
+		return static_cast<int>(memoryInfo.used / byteToMB);
+	}
+	else if (state == "free" || state == "FREE")
+	{
+		return static_cast<int>(memoryInfo.free / byteToMB);
+	}
+	else if (state == "total" || state == "TOTAL")
+	{
+		return static_cast<int>(memoryInfo.total / byteToMB);
+	}
+	else return -1;
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()

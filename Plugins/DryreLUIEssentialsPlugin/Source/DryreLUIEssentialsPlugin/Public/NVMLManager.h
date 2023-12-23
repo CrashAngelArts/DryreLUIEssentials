@@ -48,3 +48,6 @@ int nvGetGPUPowerNVML(int Index);
 
 // Display GPU fan speed (in &)
 int nvGetGPUFanSpeedNVML(int Index);
+
+// Display GPU VRAM Used (in MB)
+int nvGetGPUVRAMNVML(int Index, FString state);

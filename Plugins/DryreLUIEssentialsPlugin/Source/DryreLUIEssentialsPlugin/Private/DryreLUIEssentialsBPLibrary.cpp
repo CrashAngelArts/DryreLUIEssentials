@@ -730,10 +730,31 @@ int UDryreLUIEssentialsBPLibrary::GetGPUUsageNVML(int Index)
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetMemoryUsageNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPUMemoryUsageNVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 		return nvMemoryUtilizationNVML(Index);
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUVRAMUsedNVML(int Index, FString state)
+{
+	if(IsNVIDIAGraphicsCard())
+		return nvGetGPUVRAMNVML(Index, "USED");
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUVRAMFreeNVML(int Index, FString state)
+{
+	if(IsNVIDIAGraphicsCard())
+    		return nvGetGPUVRAMNVML(Index, "FREE");
+    	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUVRAMTotalNVML(int Index, FString state)
+{
+	if(IsNVIDIAGraphicsCard())
+		return nvGetGPUVRAMNVML(Index, "TOTAL");
 	else return -1;
 }
 

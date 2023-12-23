@@ -161,7 +161,16 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUUsageNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetMemoryUsageNVML(int Index);
+	static int GetGPUMemoryUsageNVML(int Index);
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUVRAMUsedNVML(int Index, FString state);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUVRAMFreeNVML(int Index, FString state);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUVRAMTotalNVML(int Index, FString state);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUClockSpeedNVML(int Index);
