@@ -218,7 +218,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static FString GetGPUBrandNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUGetCountNVML(int Index);
+	static int GetGPUGetCountNVML();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUGetMemoryBusWidthNVML(int Index);

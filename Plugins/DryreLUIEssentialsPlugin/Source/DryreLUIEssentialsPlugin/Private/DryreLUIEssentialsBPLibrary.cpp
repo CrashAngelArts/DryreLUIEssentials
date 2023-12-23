@@ -842,6 +842,13 @@ int UDryreLUIEssentialsBPLibrary::GetBoardIDNVML(int Index)
 	else return -1;
 }
 
+FString UDryreLUIEssentialsBPLibrary::GetBoardPartNumberNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetBoardPartNumberNVML(Index);
+	else return "Unknown";
+}
+
 int UDryreLUIEssentialsBPLibrary::GetGPUBrandTypeNVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
