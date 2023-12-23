@@ -99,3 +99,12 @@ int nvGetGPUGetPcieSpeedNVML(int Index);
 
 // Function to get the VBIOS version of the GPU device
 FString nvGetGPUGetVBIOSVersionNVML(int Index);
+
+// Function to get the CUDA compute capability of the GPU device
+int nvGetGPUGetCudaComputeCapabilityNVML(int Index);
+
+// Function to check if CUDA is available
+bool nvGetGPUCudaAvailabilityNVML(int Index);
+
+// Function to get GPU power state as FString
+FString nvGetGPUGetPowerStateNVML(int Index);

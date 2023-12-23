@@ -634,83 +634,50 @@ int nvGetGPUBrandTypeNVML(int Index)
 
 FString nvGetGPUBrandNVML(int Index)
 {
-	if(nvGetGPUBrandTypeNVML(Index) == 0)
+	int brandType = nvGetGPUBrandTypeNVML(Index);
+	switch (brandType)
 	{
+	case 0:
 		return "UNKNOWN";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 1)
-	{
+	case 1:
 		return "QUADRO";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 2)
-	{
+	case 2:
 		return "TESLA";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 3)
-	{
+	case 3:
 		return "NVS";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 4)
-	{
+	case 4:
 		return "GRID";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 5)
-	{
+	case 5:
 		return "GEFORCE";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 6)
-	{
+	case 6:
 		return "TITAN";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 7)
-	{
+	case 7:
 		return "NVIDIA VAPPS";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 8)
-	{
+	case 8:
 		return "NVIDIA VPC";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 9)
-	{
+	case 9:
 		return "NVIDIA VCS";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 10)
-	{
+	case 10:
 		return "NVIDIA VWS";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 11)
-	{
+	case 11:
 		return "NVIDIA Cloud Gaming";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 12)
-	{
+	case 12:
 		return "NVIDIA VGAMING";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 13)
-	{
+	case 13:
 		return "QUADRO RTX";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 14)
-	{
+	case 14:
 		return "NVIDIA RTX";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 15)
-	{
+	case 15:
 		return "NVIDIA";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 16)
-	{
+	case 16:
 		return "GEFORCE RTX";
-	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 17)
-	{
+	case 17:
 		return "TITAN RTX";
+	case 18:
+		return "BRAND COUNT: " + IntToFString(brandType);
+	default:
+		return "INVALID BRAND TYPE";
 	}
-	else if(nvGetGPUBrandTypeNVML(Index) == 18)
-	{
-		return "BRAND COUNT: " + IntToFString(nvGetGPUBrandTypeNVML(Index));
-	}
-	else return "ERROR";
 
 }
 
@@ -757,15 +724,13 @@ int nvGetGPUGetMemoryBusWidthNVML(int Index)
 		return -1;
 	}
 
-	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
-
-	// Check for errors in getting GPU device
-	if (result != NVML_SUCCESS)
+	nvmlReturn_t result;
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device)
 	{
-		// Handle error in getting GPU device
-		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"), *FString(nvmlErrorString(result)));
-		return -1;
+		// Handle device retrieval error
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device"));
+		return -1;  // or another appropriate value
 	}
 
 	unsigned int busWidth;
@@ -775,7 +740,7 @@ int nvGetGPUGetMemoryBusWidthNVML(int Index)
 	if (result != NVML_SUCCESS)
 	{
 		// Handle error in getting memory bus width
-		UE_LOG(LogTemp, Error, TEXT("Error getting memory bus width: %s"), *FString(nvmlErrorString(result)));
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"));
 		return -1;
 	}
 
@@ -794,15 +759,13 @@ FString nvGetGPUGetNameNVML(int Index)
 		return FString(TEXT("-1"));
 	}
 
-	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
-
-	// Check for errors in getting GPU device
-	if (result != NVML_SUCCESS)
+	nvmlReturn_t result;
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device)
 	{
-		// Handle error in getting GPU device
-		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"), *FString(nvmlErrorString(result)));
-		return FString(TEXT("-1"));
+		// Handle device retrieval error
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device"));
+		return "-1";  // or another appropriate value
 	}
 
 	// Assuming a reasonable maximum length for the GPU name
@@ -834,15 +797,13 @@ int nvGetGPUGetPcieSpeedNVML(int Index)
 		return -1;
 	}
 
-	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
-
-	// Check for errors in getting GPU device
-	if (result != NVML_SUCCESS)
+	nvmlDevice_t device = GetGPUDevice(Index);
+	nvmlReturn_t result;
+	if (!device)
 	{
-		// Handle error in getting GPU device
-		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"), *FString(nvmlErrorString(result)));
-		return -1;
+		// Handle device retrieval error
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device"));
+		return -1;  // or another appropriate value
 	}
 
 	unsigned int pcieSpeed;
@@ -871,15 +832,13 @@ FString nvGetGPUGetVBIOSVersionNVML(int Index)
 		return "-1";
 	}
 
-	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
-
-	// Check for errors in getting GPU device
-	if (result != NVML_SUCCESS)
+	nvmlReturn_t result;
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device)
 	{
-		// Handle error in getting GPU device
-		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"), *FString(nvmlErrorString(result)));
-		return "-1";
+		// Handle device retrieval error
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device"));
+		return "-1";  // or another appropriate value
 	}
 
 	const int maxLength = 256;
@@ -896,6 +855,150 @@ FString nvGetGPUGetVBIOSVersionNVML(int Index)
 
 	// Return the VBIOS version as FString
 	return FString(version);
+}
+
+// Function to get the CUDA compute capability of the GPU device
+int nvGetGPUGetCudaComputeCapabilityNVML(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML())
+	{
+		// Handle NVML initialization error
+		UE_LOG(LogTemp, Error, TEXT("Error initializing NVML."));
+		return -1;
+	}
+
+	nvmlReturn_t result;
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device)
+	{
+		// Handle device retrieval error
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device"));
+		return -1;  // or another appropriate value
+	}
+
+	int major, minor;
+	result = nvmlDeviceGetCudaComputeCapability(device, &major, &minor);
+
+	// Check for errors in getting CUDA compute capability
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting CUDA compute capability
+		UE_LOG(LogTemp, Error, TEXT("Error getting CUDA compute capability: %s"), *FString(nvmlErrorString(result)));
+		return -1;
+	}
+
+	// Return the CUDA compute capability as an integer
+	return major * 10 + minor;
+}
+
+bool nvGetGPUCudaAvailabilityNVML(int Index)
+{
+	if(nvIsInitializedNVML())
+	{
+		return (GetGPUDevice(Index)) ? true : false;
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Error initializing NVML."));
+		return false;
+	}
+	return false;
+}
+
+// Function to get GPU power state as FString
+FString nvGetGPUGetPowerStateNVML(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML())
+	{
+		UE_LOG(LogTemp, Error, TEXT("NVML is not initialized."));
+		return FString(TEXT("NVML not initialized"));
+	}
+
+	nvmlReturn_t result;
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device)
+	{
+		// Handle device retrieval error
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device"));
+		return "-1";  // or another appropriate value
+	}
+
+	// Get GPU power state
+	nvmlPstates_t powerState;
+	result = nvmlDeviceGetPowerState(device, &powerState);
+
+	if (result != NVML_SUCCESS)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU power state: %s"), ANSI_TO_TCHAR(nvmlErrorString(result)));
+		return FString(TEXT("Error getting GPU power state"));
+	}
+
+	// Finalize NVML
+	nvmlShutdown();
+
+	// Convert power state enum to FString
+	FString powerStateString;
+	switch (powerState)
+	{
+	case NVML_PSTATE_0:
+		powerStateString = FString(TEXT("Maximum Performance"));
+		break;
+	case NVML_PSTATE_1:
+		powerStateString = FString(TEXT("Performance state 1"));
+		break;
+	case NVML_PSTATE_2:
+		powerStateString = FString(TEXT("Performance state 2"));
+		break;
+	case NVML_PSTATE_3:
+		powerStateString = FString(TEXT("Performance state 3"));
+		break;
+	case NVML_PSTATE_4:
+		powerStateString = FString(TEXT("Performance state 4"));
+		break;
+	case NVML_PSTATE_5:
+		powerStateString = FString(TEXT("Performance state 5"));
+		break;
+	case NVML_PSTATE_6:
+		powerStateString = FString(TEXT("Performance state 6"));
+		break;
+	case NVML_PSTATE_7:
+		powerStateString = FString(TEXT("Performance state 7"));
+		break;
+	case NVML_PSTATE_8:
+		powerStateString = FString(TEXT("Performance state 8"));
+		break;
+	case NVML_PSTATE_9:
+		powerStateString = FString(TEXT("Performance state 9"));
+		break;
+	case NVML_PSTATE_10:
+		powerStateString = FString(TEXT("Performance state 10"));
+		break;
+	case NVML_PSTATE_11:
+		powerStateString = FString(TEXT("Performance state 11"));
+		break;
+	case NVML_PSTATE_12:
+		powerStateString = FString(TEXT("Performance state 12"));
+		break;
+	case NVML_PSTATE_13:
+		powerStateString = FString(TEXT("Performance state 13"));
+		break;
+	case NVML_PSTATE_14:
+		powerStateString = FString(TEXT("Performance state 14"));
+		break;
+	case NVML_PSTATE_15:
+		powerStateString = FString(TEXT("Minimum Performance"));
+		break;
+	case NVML_PSTATE_UNKNOWN:
+		powerStateString = FString(TEXT("Unknown power state"));
+		break;
+	default:
+		powerStateString = FString(TEXT("Invalid power state"));
+		break;
+	}
+
+	return powerStateString;
 }
 
 /*
