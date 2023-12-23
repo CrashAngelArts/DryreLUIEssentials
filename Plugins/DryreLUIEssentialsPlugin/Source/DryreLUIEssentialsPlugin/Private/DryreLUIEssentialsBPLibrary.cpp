@@ -823,3 +823,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureADL()
 		return adlGetGPUTemperatureADL();
 	else return -1;
 }
+
+int UDryreLUIEssentialsBPLibrary::GetGPUHotspotTemperatureADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUHotspotTemperatureADL();
+	else return -1;
+}
