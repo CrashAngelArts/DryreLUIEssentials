@@ -58,3 +58,6 @@ int adlGetGPUUsageADL();
 
 // Get GPU clock speed (in MHz)
 int adlGetGPUClockSpeedADL();
+
+// Get GPU VRAM clock speed (in MHz)
+int adlGetGPUVRAMClockSpeedADL();

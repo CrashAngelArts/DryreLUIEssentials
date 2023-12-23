@@ -466,6 +466,38 @@ int adlGetGPUClockSpeedADL()
     return -1;
 }
 
+// Get GPU VRAM clock speed (in MHz)
+int adlGetGPUVRAMClockSpeedADL()
+{
+    if(isADLXInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+
+        adlx_bool supported = false;
+        // Check GPU VRAM clock speed support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUVRAMClockSpeed(&supported);
+
+        if (ADLX_SUCCEEDED(res) && supported)
+        {
+            adlx_int memoryClock = 0;
+            // Get GPU VRAM clock speed
+            res = gpuMetrics->GPUVRAMClockSpeed(&memoryClock);
+        
+            if (ADLX_SUCCEEDED(res))
+            {
+                // Return GPU VRAM clock speed as an integer
+                return static_cast<int>(memoryClock);
+            }
+        }
+        return -1;
+    }
+
+    // Return a default value or an error code indicating failure
+    return -1;
+}
+
+
 
 // Display GPU clock speed (in MHz)
 void ShowGPUClockSpeedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics)
