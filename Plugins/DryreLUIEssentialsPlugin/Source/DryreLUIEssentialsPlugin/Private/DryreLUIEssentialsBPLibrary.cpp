@@ -744,7 +744,7 @@ int UDryreLUIEssentialsBPLibrary::GetGPUVRAMNVML(int Index, E_VRAM_STATUS_NVML s
  {
 	if (IsNVIDIAGraphicsCard())
 	{
-		return nvGetGPUVRAMNVML(Index, state);
+		return nvGetGPUVRAMNVML(Index, EqualityEnum(state));
 	}
  	else return -1;
  }
@@ -1028,4 +1028,23 @@ int UDryreLUIEssentialsBPLibrary::GetGPUVoltageADL()
 	if(IsAMDGraphicsCard())
 		return adlGetGPUVoltageADL();
 	else return -1;
+}
+
+E_NV_VRAM_STATUS_NVML UDryreLUIEssentialsBPLibrary::EqualityEnum(E_VRAM_STATUS_NVML Enum)
+{
+	switch (Enum)
+	{
+	case E_VRAM_STATUS_NVML::Free:
+		return E_NV_VRAM_STATUS_NVML::Free;
+		
+	case E_VRAM_STATUS_NVML::Total:
+		return E_NV_VRAM_STATUS_NVML::Total;
+		
+	case E_VRAM_STATUS_NVML::Used:
+		return E_NV_VRAM_STATUS_NVML::Used;
+		
+	default:
+		return E_NV_VRAM_STATUS_NVML::Free;		
+	}
+	
 }
