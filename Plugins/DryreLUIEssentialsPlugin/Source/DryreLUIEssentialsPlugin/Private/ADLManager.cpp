@@ -299,6 +299,52 @@ void ShowGPUUsageADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetric
     }
 }
 
+// Function to get the GPU at a specific index
+IADLXGPUPtr GetGPUAtIndex(adlx_uint index)
+{
+    ADLX_RESULT res = ADLX_FAIL;
+
+    // Initialize ADLX
+    res = g_ADLXHelp.Initialize();
+
+    if (ADLX_SUCCEEDED(res))
+    {
+        // Get GPU list
+        IADLXGPUListPtr gpus;
+        res = g_ADLXHelp.GetSystemServices()->GetGPUs(&gpus);
+
+        if (ADLX_SUCCEEDED(res) && index <= gpus->End())
+        {
+            // Get the GPU at the specified index
+            IADLXGPUPtr gpu;
+            res = gpus->At(index, &gpu);
+
+            if (ADLX_SUCCEEDED(res))
+            {
+                return gpu;
+            }
+            else
+            {
+                // Handle the error, you might want to log or throw an exception
+                std::cerr << "Failed to get GPU at index " << index << std::endl;
+            }
+        }
+        else
+        {
+            // Handle the error, you might want to log or throw an exception
+            std::cerr << "Invalid GPU index or failed to get GPU list." << std::endl;
+        }
+    }
+    else
+    {
+        // Handle the error, you might want to log or throw an exception
+        std::cerr << "Failed to initialize ADLX." << std::endl;
+    }
+
+    // Return a nullptr in case of failure
+    return nullptr;
+}
+
 // Function to check GPU usage support status
 bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport)
 {
