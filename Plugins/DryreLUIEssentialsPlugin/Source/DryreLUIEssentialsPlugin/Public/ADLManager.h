@@ -1,10 +1,9 @@
-﻿#include <windows.h>
+﻿// Copyright © 2024 - DryreL Design
+
+#include <windows.h>
 #include <iostream>
 #include "ThirdParty/ADL/include/ADLX.h"
-#include "ThirdParty/ADL/include/ADLXDefines.h"
-#include "ThirdParty/ADL/include/ADLXStructures.h"
 #include "ThirdParty/ADL/include/IPerformanceMonitoring.h"
-#include "ThirdParty/ADL/include/ISystem.h"
 #include "ThirdParty/ADL/ADLXHelper/Windows/Cpp/ADLXHelper.h"
 
 // Function declaration
