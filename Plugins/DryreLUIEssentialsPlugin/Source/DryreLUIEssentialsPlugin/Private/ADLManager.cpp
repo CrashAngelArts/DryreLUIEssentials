@@ -498,7 +498,7 @@ int adlGetGPUVRAMClockSpeedADL()
 }
 
 // Display the system time stamp (in ms)
-int adlGetTimeStampADL()
+int64 adlGetTimeStampADL()
 {
     if(IsInitializedADL())
     {
@@ -514,6 +514,34 @@ int adlGetTimeStampADL()
             // Handle the error or return a default value as needed
             return -1;
         }
+        return -1;
+    }
+    return -1;
+}
+
+// Display GPU temperature(in °C)
+int adlGetGPUTemperatureADL()
+{
+    if(IsInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+        
+        adlx_bool supported = false;
+
+        // Check GPU temperature support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUTemperature(&supported);
+        if (ADLX_SUCCEEDED(res)) {
+            if (supported) {
+                adlx_double temperature = 0;
+                res = gpuMetrics->GPUTemperature(&temperature);
+                if (ADLX_SUCCEEDED(res)) {
+                    // Return GPU temperature as an integer (you might want to round or convert to int as needed)
+                    return static_cast<int>(temperature);
+                }
+            }
+        }
+        // Handle the error or return a default value as needed
         return -1;
     }
     return -1;

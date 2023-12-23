@@ -62,4 +62,7 @@ int adlGetGPUClockSpeedADL();
 int adlGetGPUVRAMClockSpeedADL();
 
 // Display the system time stamp (in ms)
-int adlGetTimeStampADL();
+int64 adlGetTimeStampADL();
+
+// Display GPU temperature(in °C)
+int adlGetGPUTemperatureADL();

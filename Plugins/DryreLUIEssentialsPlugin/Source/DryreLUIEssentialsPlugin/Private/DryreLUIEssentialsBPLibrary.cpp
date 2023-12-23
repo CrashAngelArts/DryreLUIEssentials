@@ -816,3 +816,10 @@ int64 UDryreLUIEssentialsBPLibrary::GetTimeStampsADL()
 		return adlGetTimeStampADL();
 	else return -1;
 }
+
+int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUTemperatureADL();
+	else return -1;
+}
