@@ -20,9 +20,6 @@ int nvGPUUtilizationNVML(int Index);
 // Function to get GPU Memory usage (in %)
 int nvMemoryUtilizationNVML(int Index);
 
-// Function to get GPU temperature (in Celsius)
-int nvGPUTemperatureNVML(int Index);
-
 // Function to get GPU Device Count
 int nvGPUDeviceCountNVML();
 
@@ -37,5 +34,8 @@ int nvGetGPUVRAMClockSpeedNVML(int Index);
 int nvGetTimeStampNVML();
 */
 
-// Display GPU temperature(in °C)
+// Display GPU temperature (in °C)
 int nvGetGPUTemperatureNVML(int Index);
+
+// Display GPU temperature threshold (in °C)
+int nvGetGPUTemperatureThresholdNVML(int Index);

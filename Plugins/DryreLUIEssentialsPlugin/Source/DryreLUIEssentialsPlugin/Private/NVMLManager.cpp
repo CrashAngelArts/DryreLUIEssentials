@@ -230,6 +230,37 @@ int nvGetGPUTemperatureNVML(int Index)
 	return static_cast<int>(temperature);
 }
 
+// Display GPU temperature threshold (in °C)
+int nvGetGPUTemperatureThresholdNVML(int Index)
+{
+	if (!nvIsInitializedNVML()) {
+		// Handle NVML not initialized
+		return -1;
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
+	if (result != NVML_SUCCESS) {
+		// Handle device retrieval error
+		printf("Error on device retrieval: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+	unsigned int temperatureThreshold;
+	result = nvmlDeviceGetTemperatureThreshold(device, NVML_TEMPERATURE_THRESHOLD_GPU_MAX, &temperatureThreshold);
+	if (result != NVML_SUCCESS) {
+		// Handle temperature threshold retrieval error
+		printf("Error on temperature threshold retrieval: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+	// Shutdown NVML before returning
+	nvGPUShutdownNVML();
+
+	// Return the GPU temperature threshold as an integer
+	return static_cast<int>(temperatureThreshold);
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()

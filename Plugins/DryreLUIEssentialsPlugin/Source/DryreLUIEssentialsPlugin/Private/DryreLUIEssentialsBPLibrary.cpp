@@ -758,6 +758,13 @@ int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureNVML(int Index)
 	else return -1;
 }
 
+int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureThresholdNVML(int Index)
+{
+	if(IsNVIDIAGraphicsCard())
+		return nvGetGPUTemperatureThresholdNVML(Index);
+	else return -1;
+}
+
 int UDryreLUIEssentialsBPLibrary::GetGPUDeviceCountNVML()
 {
 	if(IsNVIDIAGraphicsCard())
