@@ -345,6 +345,32 @@ IADLXGPUPtr GetGPUAtIndex(adlx_uint index)
     return nullptr;
 }
 
+// Function to get GPU metrics for a specific GPU
+IADLXGPUMetricsPtr GetGPUCurrentMetricsADL(IADLXGPUPtr gpu)
+{
+    ADLX_RESULT res = ADLX_FAIL;
+
+    // Get Performance Monitoring services
+    IADLXPerformanceMonitoringServicesPtr perfMonitoringServices;
+    res = g_ADLXHelp.GetSystemServices()->GetPerformanceMonitoringServices(&perfMonitoringServices);
+
+    if (ADLX_SUCCEEDED(res))
+    {
+        IADLXGPUMetricsPtr gpuMetrics;
+        // Get current GPU metrics
+        res = perfMonitoringServices->GetCurrentGPUMetrics(gpu, &gpuMetrics);
+
+        if (ADLX_SUCCEEDED(res))
+        {
+            return gpuMetrics;
+        }
+    }
+
+    // Handle the error, log, or throw an exception
+    std::cerr << "Failed to get current GPU metrics." << std::endl;
+    return nullptr; // Return nullptr to indicate failure
+}
+
 // Function to check GPU usage support status
 bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport)
 {

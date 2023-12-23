@@ -44,6 +44,9 @@ void ShowHistoricalGPUMetricsADL(IADLXPerformanceMonitoringServicesPtr perfMonit
 // Function to get GPU (given index)
 IADLXGPUPtr GetGPUAtIndex(adlx_uint index);
 
+// Function to get GPU metrics
+IADLXGPUMetricsPtr GetGPUMetricsADL(IADLXGPUPtr gpu);
+
 // Function to check GPU usage support status
 bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport);
 
