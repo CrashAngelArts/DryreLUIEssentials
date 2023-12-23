@@ -781,3 +781,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPUUsageADL()
 	return adlGetGPUUsageADL();
 	else return -1;
 }
+
+int UDryreLUIEssentialsBPLibrary::GetGPUClockSpeedADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUClockSpeedADL();
+	else return -1;
+}

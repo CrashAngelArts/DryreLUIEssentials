@@ -186,4 +186,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUUsageADL();
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUClockSpeedADL();
+
 };

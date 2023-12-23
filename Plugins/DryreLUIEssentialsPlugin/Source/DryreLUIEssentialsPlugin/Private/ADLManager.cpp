@@ -435,6 +435,38 @@ int adlGetGPUUsageADL()
     return -1;
 }
 
+// Get GPU clock speed (in MHz)
+int adlGetGPUClockSpeedADL()
+{
+    if(isADLXInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+
+        adlx_bool supported = false;
+        // Check GPU clock speed support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUClockSpeed(&supported);
+
+        if (ADLX_SUCCEEDED(res) && supported)
+        {
+            adlx_int gpuClock = 0;
+            // Get GPU clock speed
+            res = gpuMetrics->GPUClockSpeed(&gpuClock);
+        
+            if (ADLX_SUCCEEDED(res))
+            {
+                // Return GPU clock speed as an integer
+                return static_cast<int>(gpuClock);
+            }
+        }
+        return -1;
+    }
+    
+    // Return a default value or an error code indicating failure
+    return -1;
+}
+
+
 // Display GPU clock speed (in MHz)
 void ShowGPUClockSpeedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics)
 {

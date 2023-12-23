@@ -55,3 +55,6 @@ bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport);
 
 // Function to get GPU usage (in %)
 int adlGetGPUUsageADL();
+
+// Get GPU clock speed (in MHz)
+int adlGetGPUClockSpeedADL();
