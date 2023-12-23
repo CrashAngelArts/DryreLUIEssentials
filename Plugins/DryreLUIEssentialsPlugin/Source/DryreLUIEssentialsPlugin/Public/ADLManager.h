@@ -44,7 +44,7 @@ void ShowCurrentGPUMetricsFromHistoricalADL(IADLXPerformanceMonitoringServicesPt
 void ShowHistoricalGPUMetricsADL(IADLXPerformanceMonitoringServicesPtr perfMonitoringServices, IADLXGPUPtr oneGPU);
 
 // Function to get GPU (given index)
-IADLXGPUPtr GetGPUAtIndex(adlx_uint index);
+IADLXGPUPtr GetGPUDevice(adlx_uint index);
 
 // Function to get GPU metrics
 IADLXGPUMetricsPtr GetGPUMetricsADL(IADLXGPUPtr gpu);

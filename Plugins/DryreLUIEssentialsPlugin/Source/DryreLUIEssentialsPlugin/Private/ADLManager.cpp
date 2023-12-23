@@ -318,7 +318,7 @@ void ShowGPUUsageADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetric
 }
 
 // Function to get the GPU at a specific index
-IADLXGPUPtr GetGPUAtIndex(adlx_uint index)
+IADLXGPUPtr GetGPUDevice(adlx_uint index)
 {
     ADLX_RESULT res = ADLX_FAIL;
 
