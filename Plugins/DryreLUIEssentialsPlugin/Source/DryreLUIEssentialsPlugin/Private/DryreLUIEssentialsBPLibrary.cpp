@@ -758,6 +758,13 @@ int UDryreLUIEssentialsBPLibrary::GetGPUVRAMTotalNVML(int Index, FString state)
 	else return -1;
 }
 
+int UDryreLUIEssentialsBPLibrary::GetGPUVoltageNVML(int Index)
+{
+	if(IsNVIDIAGraphicsCard())
+		return nvGetGPUVoltageNVML(Index);
+	else return -1;
+}
+
 int UDryreLUIEssentialsBPLibrary::GetGPUClockSpeedNVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())

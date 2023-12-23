@@ -51,3 +51,6 @@ int nvGetGPUFanSpeedNVML(int Index);
 
 // Display GPU VRAM Used (in MB)
 int nvGetGPUVRAMNVML(int Index, FString state);
+
+// Display GPU Voltage (in mV)
+int nvGetGPUVoltageNVML(int Index);

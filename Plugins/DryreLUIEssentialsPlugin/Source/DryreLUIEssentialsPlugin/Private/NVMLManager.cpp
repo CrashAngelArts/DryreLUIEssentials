@@ -375,6 +375,32 @@ int nvGetGPUVRAMNVML(int Index, FString state)
 	else return -1;
 }
 
+// Display GPU Voltage (in mV)
+int nvGetGPUVoltageNVML(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML()) {
+		// Handle initialization error
+		printf("NVML is not initialized.\n");
+		return -1;
+	}
+
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return -1;
+	}
+
+	int gpuPower = nvGetGPUPowerNVML(Index);
+	int volts = 12;
+	int voltage = gpuPower / volts;
+
+	// Return GPU voltage as an integer
+	return static_cast<int>(voltage);
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()

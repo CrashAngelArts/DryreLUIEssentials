@@ -173,6 +173,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUVRAMTotalNVML(int Index, FString state);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+    static int GetGPUVoltageNVML(int Index);
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUClockSpeedNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
