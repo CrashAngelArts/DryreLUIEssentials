@@ -215,4 +215,13 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUIntakeTemperatureADL();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUFanSpeedADL();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUVRAMADL();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUVoltageADL();
 };

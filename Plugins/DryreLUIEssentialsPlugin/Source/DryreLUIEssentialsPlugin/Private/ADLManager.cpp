@@ -657,6 +657,87 @@ int adlGetGPUIntakeTemperatureADL()
     return -1;
 }
 
+int adlGetGPUFanSpeedADL()
+{
+    if(IsInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+        
+        adlx_bool supported = false;
+
+        // Check GPU fan speed support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUFanSpeed(&supported);
+        if (ADLX_SUCCEEDED(res)) {
+            if (supported) {
+                adlx_int fanSpeed = 0;
+                res = gpuMetrics->GPUFanSpeed(&fanSpeed);
+                if (ADLX_SUCCEEDED(res)) {
+                    // Return GPU fan speed as an integer
+                    return fanSpeed;
+                }
+            }
+        }
+        // Handle the error or return a default value as needed
+        return -1;
+    }
+    return -1;
+}
+
+int adlGetGPUVRAMADL()
+{
+    if(IsInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+
+        adlx_bool supported = false;
+
+        // Check GPU VRAM support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUVRAM(&supported);
+        if (ADLX_SUCCEEDED(res)) {
+            if (supported) {
+                adlx_int VRAM = 0;
+                res = gpuMetrics->GPUVRAM(&VRAM);
+                if (ADLX_SUCCEEDED(res)) {
+                    // Return GPU VRAM as an integer
+                    return VRAM;
+                }
+            }
+        }
+        // Handle the error or return a default value as needed
+        return -1;
+    }
+    return -1;
+}
+
+int adlGetGPUVoltageADL()
+{
+    if(IsInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+
+        adlx_bool supported = false;
+
+        // Check GPU voltage support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUVoltage(&supported);
+        if (ADLX_SUCCEEDED(res)) {
+            if (supported) {
+                adlx_int voltage = 0;
+                res = gpuMetrics->GPUVoltage(&voltage);
+                if (ADLX_SUCCEEDED(res)) {
+                    // Return GPU voltage as an integer
+                    return voltage;
+                }
+            }
+        }
+        // Handle the error or return a default value as needed
+        return -1;
+    }
+    return -1;
+}
+
 // Display GPU clock speed (in MHz)
 void ShowGPUClockSpeedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics)
 {

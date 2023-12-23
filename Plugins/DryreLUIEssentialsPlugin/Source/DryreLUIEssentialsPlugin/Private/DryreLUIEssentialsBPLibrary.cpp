@@ -851,3 +851,24 @@ int UDryreLUIEssentialsBPLibrary::GetGPUIntakeTemperatureADL()
 		return adlGetGPUIntakeTemperatureADL();
 	else return -1;
 }
+
+int UDryreLUIEssentialsBPLibrary::GetGPUFanSpeedADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUFanSpeedADL();
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUVRAMADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUVRAMADL();
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUVoltageADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUVoltageADL();
+	else return -1;
+}

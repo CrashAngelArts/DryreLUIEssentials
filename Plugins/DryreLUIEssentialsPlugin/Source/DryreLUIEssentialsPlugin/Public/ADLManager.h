@@ -78,3 +78,12 @@ int adlGetGPUTotalBoardPowerADL();
 
 // Display GPU intake temperature(in °C)
 int adlGetGPUIntakeTemperatureADL();
+
+// Display GPU fan speed (in RPM)
+int adlGetGPUFanSpeedADL();
+
+// Display GPU VRAM (in MB)
+int adlGetGPUVRAMADL();
+
+// Display GPU Voltage (in mV)
+int adlGetGPUVoltageADL();
