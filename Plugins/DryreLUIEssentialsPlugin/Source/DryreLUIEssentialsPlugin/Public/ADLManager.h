@@ -15,7 +15,7 @@ using namespace adlx;
 void InitializeADL();
 
 // Function to check if ADLX is initialized
-bool isADLXInitializedADL();
+bool IsInitializedADL();
 
 // Initialize ADL
 void ShutdownADL();

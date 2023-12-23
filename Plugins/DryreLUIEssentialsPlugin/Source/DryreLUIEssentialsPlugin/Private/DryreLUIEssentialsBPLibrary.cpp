@@ -757,6 +757,13 @@ void UDryreLUIEssentialsBPLibrary::GPUInitializeNVML()
 	nvGPUInitializeNVML();
 }
 
+bool UDryreLUIEssentialsBPLibrary::GPUIsInitializedNVML()
+{
+	if(IsNVIDIAGraphicsCard())
+		return nvIsInitializedNVML();
+	else return false;
+}
+
 void UDryreLUIEssentialsBPLibrary::GPUShutdownNVML()
 {
 	if(IsNVIDIAGraphicsCard())
@@ -767,6 +774,13 @@ void UDryreLUIEssentialsBPLibrary::GPUInitializeADL()
 {
 	if(IsAMDGraphicsCard())
 	InitializeADL();
+}
+
+bool UDryreLUIEssentialsBPLibrary::GPUIsInitializedADL()
+{
+	if(IsAMDGraphicsCard())
+		return IsInitializedADL();
+	else return false;
 }
 
 void UDryreLUIEssentialsBPLibrary::GPUShutdownADL()

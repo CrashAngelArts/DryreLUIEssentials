@@ -109,7 +109,7 @@ void InitializeADL()
     }
 }
 
-bool isADLXInitializedADL()
+bool IsInitializedADL()
 {
     ADLX_RESULT res = ADLX_FAIL;
 
@@ -411,7 +411,7 @@ int adlGetGPUUsageADL()
     // Check GPU usage support status
     ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUUsage(&supported);
 
-    if(isADLXInitializedADL())
+    if(IsInitializedADL())
     {
         if (ADLX_SUCCEEDED(res))
         {
@@ -438,7 +438,7 @@ int adlGetGPUUsageADL()
 // Get GPU clock speed (in MHz)
 int adlGetGPUClockSpeedADL()
 {
-    if(isADLXInitializedADL())
+    if(IsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -469,7 +469,7 @@ int adlGetGPUClockSpeedADL()
 // Get GPU VRAM clock speed (in MHz)
 int adlGetGPUVRAMClockSpeedADL()
 {
-    if(isADLXInitializedADL())
+    if(IsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;

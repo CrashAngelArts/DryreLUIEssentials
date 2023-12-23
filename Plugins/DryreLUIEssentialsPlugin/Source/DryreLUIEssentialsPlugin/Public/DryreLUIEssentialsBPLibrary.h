@@ -175,10 +175,16 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static void GPUInitializeNVML();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	bool GPUIsInitializedNVML();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUShutdownNVML();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUInitializeADL();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	bool GPUIsInitializedADL();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUShutdownADL();

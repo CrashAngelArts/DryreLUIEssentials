@@ -8,6 +8,9 @@
 // Initialize NVML
 int nvGPUInitializeNVML();
 
+// Is Initialized?
+bool nvIsInitializedNVML();
+
 // Shutdown NVML
 int nvGPUShutdownNVML();
 
