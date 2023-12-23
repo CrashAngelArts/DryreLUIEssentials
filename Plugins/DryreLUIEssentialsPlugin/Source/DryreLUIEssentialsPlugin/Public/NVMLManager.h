@@ -25,3 +25,6 @@ int nvGPUTemperatureNVML();
 
 // Function to get GPU Device Count
 int nvGPUDeviceCountNVML();
+
+// Get GPU clock speed (in MHz)
+int nvGetGPUClockSpeedNVML();

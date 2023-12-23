@@ -165,3 +165,32 @@ int nvGPUDeviceCountNVML()
 	}
 	return 0;
 }
+
+int nvGetGPUClockSpeedNVML()
+{
+	if(nvIsInitializedNVML())
+	{
+		nvmlReturn_t result;
+	
+		nvmlDevice_t device;
+		result = nvmlDeviceGetHandleByIndex(0, &device); // Assuming you want to get information for the first GPU
+		if (result != NVML_SUCCESS) {
+			// Handle error getting device handle
+			printf("Error on getting NVML device handle: %s\n", nvmlErrorString(result));
+			nvmlShutdown();
+			return -1;
+		}
+
+		unsigned int clock;
+		result = nvmlDeviceGetClockInfo(device, NVML_CLOCK_SM, &clock);
+		if (result != NVML_SUCCESS) {
+			// Handle error getting clock info
+			printf("Error on getting GPU clock speed: %s\n", nvmlErrorString(result));
+			nvmlShutdown();
+			return -1;
+		}
+		// Return GPU clock speed as an integer
+		return static_cast<int>(clock);
+	}
+	return 0;
+}
