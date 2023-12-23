@@ -196,38 +196,38 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static void GPUShutdownADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUUsageADL();
+	int GetGPUUsageADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUClockSpeedADL();
+	int GetGPUClockSpeedADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVRAMClockSpeedADL();
+	int GetGPUVRAMClockSpeedADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetTimeStampsADL();
+	int GetTimeStampsADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUTemperatureADL();
+	int GetGPUTemperatureADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUHotspotTemperatureADL();
+	int GetGPUHotspotTemperatureADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUPowerADL();
+	int GetGPUPowerADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUTotalBoardPowerADL();
+	int GetGPUTotalBoardPowerADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUIntakeTemperatureADL();
+	int GetGPUIntakeTemperatureADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUFanSpeedADL();
+	int GetGPUFanSpeedADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVRAMADL();
+	int GetGPUVRAMADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVoltageADL();
+	int GetGPUVoltageADL();
 };
