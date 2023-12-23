@@ -15,6 +15,9 @@ using namespace adlx;
 // Initialize ADL
 void InitializeADL();
 
+// Function to check if ADLX is initialized
+bool isADLXInitializedADL();
+
 // Initialize ADL
 void ShutdownADL();
 
@@ -51,4 +54,4 @@ IADLXGPUMetricsPtr GetGPUMetricsADL(IADLXGPUPtr gpu);
 bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport);
 
 // Function to get GPU usage (in %)
-int adlGetGPUUsageADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics);
+int adlGetGPUUsageADL();

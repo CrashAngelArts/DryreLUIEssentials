@@ -179,8 +179,8 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUShutdownADL();
-/*
+
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUUsageADL();
-	*/
+
 };

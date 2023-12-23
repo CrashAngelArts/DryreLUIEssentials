@@ -708,42 +708,52 @@ bool UDryreLUIEssentialsBPLibrary::IsOtherGraphicsCard()
 
 int UDryreLUIEssentialsBPLibrary::GetGPUUsageNVML()
 {
+	if(IsNVIDIAGraphicsCard())
 	return nvGPUUtilizationNVML();
+	else return -1;
 }
 
 int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureNVML()
 {
+	if(IsNVIDIAGraphicsCard())
 	return nvGPUTemperatureNVML();
+	else return -1;
 }
 
 int UDryreLUIEssentialsBPLibrary::GetGPUDeviceCountNVML()
 {
+	if(IsNVIDIAGraphicsCard())
 	return nvGPUDeviceCountNVML();
+	else return -1;
 }
 
 void UDryreLUIEssentialsBPLibrary::GPUInitializeNVML()
 {
+	if(IsNVIDIAGraphicsCard())
 	nvGPUInitializeNVML();
 }
 
 void UDryreLUIEssentialsBPLibrary::GPUShutdownNVML()
 {
+	if(IsNVIDIAGraphicsCard())
 	nvGPUShutdownNVML();
 }
 
 void UDryreLUIEssentialsBPLibrary::GPUInitializeADL()
 {
+	if(IsAMDGraphicsCard())
 	InitializeADL();
 }
 
 void UDryreLUIEssentialsBPLibrary::GPUShutdownADL()
 {
+	if(IsAMDGraphicsCard())
 	ShutdownADL();
 }
 
-/*
 int UDryreLUIEssentialsBPLibrary::GetGPUUsageADL()
 {
-	adlGetGPUUsageADL();
+	if(IsAMDGraphicsCard())
+	return adlGetGPUUsageADL();
+	else return -1;
 }
-*/

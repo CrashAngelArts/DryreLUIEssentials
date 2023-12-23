@@ -75,7 +75,7 @@ void InitializeADL()
 
     // Initialize ADLX
     res = g_ADLXHelp.Initialize();
-
+    
     if (ADLX_SUCCEEDED(res))
     {
         // Get Performance Monitoring services
@@ -107,6 +107,24 @@ void InitializeADL()
         else
             std::cout << "\tGet performance monitoring services failed" << std::endl;
     }
+}
+
+bool isADLXInitializedADL()
+{
+    ADLX_RESULT res = ADLX_FAIL;
+
+    // Initialize ADLX
+    res = g_ADLXHelp.Initialize();
+    
+    if (ADLX_SUCCEEDED(res))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    return false;
 }
 
 void ShutdownADL()
@@ -383,23 +401,34 @@ bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport)
 }
 
 // Function to get GPU usage (in %)
-int adlGetGPUUsageADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics)
+int adlGetGPUUsageADL()
 {
+    IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+    IADLXGPUMetricsPtr gpuMetrics;
+    
     adlx_bool supported = false;
+    
     // Check GPU usage support status
     ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUUsage(&supported);
-    if (ADLX_SUCCEEDED(res))
+
+    if(isADLXInitializedADL())
     {
-        if (supported)
+        if (ADLX_SUCCEEDED(res))
         {
-            adlx_double usage = 0;
-            res = gpuMetrics->GPUUsage(&usage);
-            if (ADLX_SUCCEEDED(res))
+            if (supported)
             {
-                // Return GPU usage as an integer (you might want to round or convert to int as needed)
-                return static_cast<int>(usage);
+                adlx_double usage = 0;
+                res = gpuMetrics->GPUUsage(&usage);
+                if (ADLX_SUCCEEDED(res))
+                {
+                    // Return GPU usage as an integer (you might want to round or convert to int as needed)
+                    return static_cast<int>(usage);
+                }
+                return -1;
             }
+            return -1;
         }
+        return -1;
     }
 
     // Return a default value or an error code indicating failure
