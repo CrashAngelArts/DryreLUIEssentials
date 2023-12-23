@@ -86,10 +86,16 @@ FString nvGetGPUBrandNVML(int Index);
 FString IntToFString(int Number);
 
 // Function to get the count of GPU devices
-int GetGPUGetCount();
+int nvGetGPUGetCountNVML();
 
 // Function to get the memory bus width of the GPU device
-int GetGPUGetMemoryBusWidth(int Index);
+int nvGetGPUGetMemoryBusWidthNVML(int Index);
 
 // Function to get the name of the GPU device
-FString GetGPUGetName(int Index);
+FString nvGetGPUGetNameNVML(int Index);
+
+// Function to get the PCIe speed of the GPU device
+int nvGetGPUGetPcieSpeedNVML(int Index);
+
+// Function to get the VBIOS version of the GPU device
+FString nvGetGPUGetVBIOSVersionNVML(int Index);

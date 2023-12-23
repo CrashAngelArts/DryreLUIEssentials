@@ -722,7 +722,7 @@ FString IntToFString(int Number)
 }
 
 // Function to get the count of GPU devices
-int GetGPUGetCount()
+int nvGetGPUGetCountNVML()
 {
 	// Check if NVML is initialized
 	if (!nvIsInitializedNVML())
@@ -747,7 +747,7 @@ int GetGPUGetCount()
 	return static_cast<int>(deviceCount);
 }
 
-int GetGPUGetMemoryBusWidth(int Index)
+int nvGetGPUGetMemoryBusWidthNVML(int Index)
 {
 	// Check if NVML is initialized
 	if (!nvIsInitializedNVML())
@@ -784,7 +784,7 @@ int GetGPUGetMemoryBusWidth(int Index)
 }
 
 // Function to get the name of the GPU device
-FString GetGPUGetName(int Index)
+FString nvGetGPUGetNameNVML(int Index)
 {
 	// Check if NVML is initialized
 	if (!nvIsInitializedNVML())
@@ -821,6 +821,81 @@ FString GetGPUGetName(int Index)
 
 	// Return the GPU name as FString
 	return FString(UTF8_TO_TCHAR(name));
+}
+
+// Function to get the PCIe speed of the GPU device
+int nvGetGPUGetPcieSpeedNVML(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML())
+	{
+		// Handle NVML initialization error
+		UE_LOG(LogTemp, Error, TEXT("Error initializing NVML."));
+		return -1;
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
+
+	// Check for errors in getting GPU device
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting GPU device
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"), *FString(nvmlErrorString(result)));
+		return -1;
+	}
+
+	unsigned int pcieSpeed;
+	result = nvmlDeviceGetPcieSpeed(device, &pcieSpeed);
+
+	// Check for errors in getting PCIe speed
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting PCIe speed
+		UE_LOG(LogTemp, Error, TEXT("Error getting PCIe speed: %s"), *FString(nvmlErrorString(result)));
+		return -1;
+	}
+
+	// Return the PCIe speed
+	return static_cast<int>(pcieSpeed);
+}
+
+// Function to get the VBIOS version of the GPU device
+FString nvGetGPUGetVBIOSVersionNVML(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML())
+	{
+		// Handle NVML initialization error
+		UE_LOG(LogTemp, Error, TEXT("Error initializing NVML."));
+		return "-1";
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
+
+	// Check for errors in getting GPU device
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting GPU device
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"), *FString(nvmlErrorString(result)));
+		return "-1";
+	}
+
+	const int maxLength = 256;
+	char version[maxLength];
+	result = nvmlDeviceGetVbiosVersion(device, version, maxLength);
+
+	// Check for errors in getting VBIOS version
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting VBIOS version
+		UE_LOG(LogTemp, Error, TEXT("Error getting VBIOS version: %s"), *FString(nvmlErrorString(result)));
+		return "-1";
+	}
+
+	// Return the VBIOS version as FString
+	return FString(version);
 }
 
 /*
