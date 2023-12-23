@@ -90,3 +90,6 @@ int GetGPUGetCount();
 
 // Function to get the memory bus width of the GPU device
 int GetGPUGetMemoryBusWidth(int Index);
+
+// Function to get the name of the GPU device
+FString GetGPUGetName(int Index);

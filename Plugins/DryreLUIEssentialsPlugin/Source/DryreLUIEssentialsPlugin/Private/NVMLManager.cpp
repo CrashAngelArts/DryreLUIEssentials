@@ -783,6 +783,46 @@ int GetGPUGetMemoryBusWidth(int Index)
 	return static_cast<int>(busWidth);
 }
 
+// Function to get the name of the GPU device
+FString GetGPUGetName(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML())
+	{
+		// Handle NVML initialization error
+		UE_LOG(LogTemp, Error, TEXT("Error initializing NVML."));
+		return FString(TEXT("-1"));
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
+
+	// Check for errors in getting GPU device
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting GPU device
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"), *FString(nvmlErrorString(result)));
+		return FString(TEXT("-1"));
+	}
+
+	// Assuming a reasonable maximum length for the GPU name
+	const int MaxNameLength = 64;
+	char name[MaxNameLength];
+
+	result = nvmlDeviceGetName(device, name, MaxNameLength);
+
+	// Check for errors in getting GPU name
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting GPU name
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU name: %s"), *FString(nvmlErrorString(result)));
+		return FString(TEXT("-1"));
+	}
+
+	// Return the GPU name as FString
+	return FString(UTF8_TO_TCHAR(name));
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()
