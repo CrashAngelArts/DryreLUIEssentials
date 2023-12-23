@@ -75,3 +75,6 @@ int nvGetBoardIDNVML(int Index);
 
 // Board Part Number
 FString nvGetBoardPartNumberNVML(int Index);
+
+// GPU Brand Type
+int nvGetGPUBrandTypeNVML(int Index);

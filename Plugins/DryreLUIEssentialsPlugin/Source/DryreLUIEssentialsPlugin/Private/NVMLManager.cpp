@@ -599,6 +599,39 @@ FString nvGetBoardPartNumberNVML(int Index)
 	return BoardPartNumberStr;
 }
 
+// GPU Brand Type
+int nvGetGPUBrandTypeNVML(int Index)
+{
+	if (!nvIsInitializedNVML())
+	{
+		// Handle the case where NVML is not initialized
+		UE_LOG(LogTemp, Warning, TEXT("NVML Not Initialized"));
+		return -1;  // or another appropriate value
+	}
+
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device)
+	{
+		// Handle device retrieval error
+		UE_LOG(LogTemp, Warning, TEXT("Error getting GPU device."));
+		return -1;  // or another appropriate value
+	}
+
+	nvmlBrandType_t brandType;
+	nvmlReturn_t result = nvmlDeviceGetBrand(device, &brandType);
+	if (result != NVML_SUCCESS)
+	{
+		// Handle brand retrieval error
+		UE_LOG(LogTemp, Warning, TEXT("Error on brand retrieval: %s"), ANSI_TO_TCHAR(nvmlErrorString(result)));
+		nvmlShutdown();
+		return -1;  // or another appropriate value
+	}
+
+	// Return the brand type as an integer
+	nvmlShutdown();
+	return static_cast<int>(brandType);
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()
