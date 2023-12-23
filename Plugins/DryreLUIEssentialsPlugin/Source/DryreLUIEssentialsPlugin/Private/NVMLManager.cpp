@@ -227,3 +227,39 @@ int nvGetGPUVRAMClockSpeedNVML()
 	// Return GPU VRAM clock speed as an integer
 	return static_cast<int>(vramClock);
 }
+
+/*
+// Display the system time stamp (in ms)
+int nvGetTimeStampNVML()
+{
+	if (!nvIsInitializedNVML()) {
+		// Handle NVML not initialized
+		return -1;
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(0, &device); // Assuming you want to get information for the first GPU
+	if (result != NVML_SUCCESS) {
+		// Handle error getting device handle
+		printf("Error on getting NVML device handle: %s\n", nvmlErrorString(result));
+		nvGPUShutdownNVML();
+		return -1;
+	}
+
+	nvmlValueType_t valueType;
+	unsigned long long timeStamp;
+	result = nvmlDeviceGetTimeStamp(device, &timeStamp);
+	if (result != NVML_SUCCESS) {
+		// Handle error getting GPU timestamp
+		printf("Error on getting GPU timestamp: %s\n", nvmlErrorString(result));
+		nvGPUShutdownNVML();
+		return -1;
+	}
+
+	// Shutdown NVML before returning
+	nvGPUShutdownNVML();
+
+	// Return GPU timestamp as an integer
+	return static_cast<int>(timeStamp);
+}
+*/

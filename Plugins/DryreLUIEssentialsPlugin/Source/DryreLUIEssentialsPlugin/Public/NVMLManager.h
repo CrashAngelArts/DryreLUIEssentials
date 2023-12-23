@@ -31,3 +31,8 @@ int nvGetGPUClockSpeedNVML();
 
 // Get GPU VRAM clock speed (in MHz)
 int nvGetGPUVRAMClockSpeedNVML();
+
+/*
+// Display the system time stamp (in ms)
+int nvGetTimeStampNVML();
+*/
