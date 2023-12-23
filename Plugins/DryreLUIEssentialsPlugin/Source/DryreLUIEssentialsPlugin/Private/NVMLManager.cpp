@@ -747,6 +747,42 @@ int GetGPUGetCount()
 	return static_cast<int>(deviceCount);
 }
 
+int GetGPUGetMemoryBusWidth(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML())
+	{
+		// Handle NVML initialization error
+		UE_LOG(LogTemp, Error, TEXT("Error initializing NVML."));
+		return -1;
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
+
+	// Check for errors in getting GPU device
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting GPU device
+		UE_LOG(LogTemp, Error, TEXT("Error getting GPU device: %s"), *FString(nvmlErrorString(result)));
+		return -1;
+	}
+
+	unsigned int busWidth;
+	result = nvmlDeviceGetMemoryBusWidth(device, &busWidth);
+
+	// Check for errors in getting memory bus width
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting memory bus width
+		UE_LOG(LogTemp, Error, TEXT("Error getting memory bus width: %s"), *FString(nvmlErrorString(result)));
+		return -1;
+	}
+
+	// Return the memory bus width as an integer
+	return static_cast<int>(busWidth);
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()

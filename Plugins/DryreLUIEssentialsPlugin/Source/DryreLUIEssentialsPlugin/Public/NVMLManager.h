@@ -87,3 +87,6 @@ FString IntToFString(int Number);
 
 // Function to get the count of GPU devices
 int GetGPUGetCount();
+
+// Function to get the memory bus width of the GPU device
+int GetGPUGetMemoryBusWidth(int Index);
