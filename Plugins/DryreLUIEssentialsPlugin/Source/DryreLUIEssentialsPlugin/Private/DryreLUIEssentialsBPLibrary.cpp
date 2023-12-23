@@ -880,10 +880,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPUIntakeTemperatureADL()
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUFanSpeedADL()
+int UDryreLUIEssentialsBPLibrary::GetGPUFanSpeedInRPMADL()
 {
 	if(IsAMDGraphicsCard())
-		return adlGetGPUFanSpeedADL();
+		return adlGetGPUFanSpeedInRPMADL();
 	else return -1;
 }
 

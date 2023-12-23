@@ -46,3 +46,5 @@ int nvGetGPUTemperatureThresholdNVML(int Index);
 // Display GPU power (in W)
 int nvGetGPUPowerNVML(int Index);
 
+// Display GPU fan speed (in &)
+int nvGetGPUFanSpeedNVML(int Index);

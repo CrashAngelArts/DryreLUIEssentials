@@ -228,7 +228,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUIntakeTemperatureADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUFanSpeedADL();
+	static int GetGPUFanSpeedInRPMADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUVRAMADL();

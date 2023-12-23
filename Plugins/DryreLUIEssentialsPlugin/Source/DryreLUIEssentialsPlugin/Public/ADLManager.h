@@ -80,7 +80,7 @@ int adlGetGPUTotalBoardPowerADL();
 int adlGetGPUIntakeTemperatureADL();
 
 // Display GPU fan speed (in RPM)
-int adlGetGPUFanSpeedADL();
+int adlGetGPUFanSpeedInRPMADL();
 
 // Display GPU VRAM (in MB)
 int adlGetGPUVRAMADL();

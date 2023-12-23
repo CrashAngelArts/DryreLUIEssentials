@@ -58,7 +58,6 @@ nvmlDevice_t GetGPUDevice(int index)
 	return device;
 }
 
-
 int nvGPUUtilizationNVML(int Index)
 {
 	if(nvIsInitializedNVML())
@@ -300,6 +299,36 @@ int nvGetGPUPowerNVML(int Index)
 
 	// Return GPU power as an integer
 	return static_cast<int>(power);
+}
+
+// Display GPU fan speed (in &)
+int nvGetGPUFanSpeedNVML(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML()) {
+		// Handle initialization error
+		printf("NVML is not initialized.\n");
+		return -1;
+	}
+
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return -1;
+	}
+
+	unsigned int fanSpeed;
+	nvmlReturn_t result = nvmlDeviceGetFanSpeed(device, &fanSpeed);
+	if (result != NVML_SUCCESS) {
+		// Handle fan speed retrieval error
+		printf("Error on fan speed retrieval: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+	// Return GPU fan speed as an integer
+	return static_cast<int>(fanSpeed);
 }
 
 /*

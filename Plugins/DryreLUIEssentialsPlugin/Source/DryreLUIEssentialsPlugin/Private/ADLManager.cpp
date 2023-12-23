@@ -657,7 +657,8 @@ int adlGetGPUIntakeTemperatureADL()
     return -1;
 }
 
-int adlGetGPUFanSpeedADL()
+// Display GPU fan speed (in RPM)
+int adlGetGPUFanSpeedInRPMADL()
 {
     if(IsInitializedADL())
     {
