@@ -23,19 +23,10 @@ int nvGPUInitializeNVML()
 // Is Initialized?
 bool nvIsInitializedNVML()
 {
-	nvmlReturn_t result;
-
-	// Initialize NVML
-	result = nvmlInit();
-	if (result == NVML_SUCCESS) {
-		// NVML initialization successful
-		return true;
-	} else {
-		// Handle initialization error
-		printf("Error on NVML initialization: %s\n", nvmlErrorString(result));
-		return false;
-	}
+	nvmlReturn_t result = nvmlInit();
+	return result == NVML_SUCCESS;
 }
+
 int nvGPUShutdownNVML()
 {
 	nvmlReturn_t result;
@@ -50,20 +41,36 @@ int nvGPUShutdownNVML()
 	return 0;
 }
 
+// Function to get GPU device by index
+nvmlDevice_t GetGPUDevice(int index)
+{
+	nvmlReturn_t result;
+	nvmlDevice_t device;
+
+	// Get the device handle (here, index represents the GPU index)
+	result = nvmlDeviceGetHandleByIndex(index, &device);
+	if (result != NVML_SUCCESS) {
+		// Print or log an error message
+		printf("Error getting device handle: %s\n", nvmlErrorString(result));
+		return nullptr; // Return nullptr on error
+	}
+
+	return device;
+}
+
+
 int nvGPUUtilizationNVML(int Index)
 {
 	if(nvIsInitializedNVML())
 	{
 		nvmlReturn_t result;
-		nvmlDevice_t device;
 
-		// Get the device handle (here, index 0 represents the first GPU)
-		result = nvmlDeviceGetHandleByIndex(Index, &device);
-		if (result != NVML_SUCCESS) {
-			// Print or log an error message
-			printf("Error getting device handle: %s\n", nvmlErrorString(result));
-			nvmlShutdown();
-			return -3;
+		// Get GPU device
+		nvmlDevice_t device = GetGPUDevice(Index);
+		if (!device) {
+			// Handle device retrieval error
+			printf("Error getting GPU device.\n");
+			return -1;
 		}
 
 		// 'utilization' now contains the GPU utilization percentage
@@ -89,15 +96,13 @@ int nvMemoryUtilizationNVML(int Index)
 	if(nvIsInitializedNVML())
 	{
 		nvmlReturn_t result;
-		nvmlDevice_t device;
-
-		// Get the device handle (here, index 0 represents the first GPU)
-		result = nvmlDeviceGetHandleByIndex(Index, &device);
-		if (result != NVML_SUCCESS) {
-			// Print or log an error message
-			printf("Error getting device handle: %s\n", nvmlErrorString(result));
-			nvmlShutdown();
-			return -3;
+		
+		// Get GPU device
+		nvmlDevice_t device = GetGPUDevice(Index);
+		if (!device) {
+			// Handle device retrieval error
+			printf("Error getting GPU device.\n");
+			return -1;
 		}
 
 		// 'utilization' now contains the GPU utilization percentage
@@ -143,12 +148,11 @@ int nvGetGPUClockSpeedNVML(int Index)
 	{
 		nvmlReturn_t result;
 	
-		nvmlDevice_t device;
-		result = nvmlDeviceGetHandleByIndex(Index, &device); // Assuming you want to get information for the first GPU
-		if (result != NVML_SUCCESS) {
-			// Handle error getting device handle
-			printf("Error on getting NVML device handle: %s\n", nvmlErrorString(result));
-			nvmlShutdown();
+		// Get GPU device
+		nvmlDevice_t device = GetGPUDevice(Index);
+		if (!device) {
+			// Handle device retrieval error
+			printf("Error getting GPU device.\n");
 			return -1;
 		}
 
@@ -174,12 +178,13 @@ int nvGetGPUVRAMClockSpeedNVML(int Index)
 		return -1;
 	}
 
-	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device); // Assuming you want to get information for the first GPU
-	if (result != NVML_SUCCESS) {
-		// Handle error getting device handle
-		printf("Error on getting NVML device handle: %s\n", nvmlErrorString(result));
-		nvGPUShutdownNVML();
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
 		return -1;
 	}
 
@@ -207,11 +212,13 @@ int nvGetGPUTemperatureNVML(int Index)
 		return -1;
 	}
 
-	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
-	if (result != NVML_SUCCESS) {
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
 		// Handle device retrieval error
-		printf("Error on device retrieval: %s\n", nvmlErrorString(result));
+		printf("Error getting GPU device.\n");
 		return -1;
 	}
 
@@ -238,11 +245,13 @@ int nvGetGPUTemperatureThresholdNVML(int Index)
 		return -1;
 	}
 
-	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
-	if (result != NVML_SUCCESS) {
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
 		// Handle device retrieval error
-		printf("Error on device retrieval: %s\n", nvmlErrorString(result));
+		printf("Error getting GPU device.\n");
 		return -1;
 	}
 
@@ -271,11 +280,13 @@ int nvGetGPUPowerNVML(int Index)
 		return -1;
 	}
 
-	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
-	if (result != NVML_SUCCESS) {
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
 		// Handle device retrieval error
-		printf("Error on device retrieval: %s\n", nvmlErrorString(result));
+		printf("Error getting GPU device.\n");
 		return -1;
 	}
 

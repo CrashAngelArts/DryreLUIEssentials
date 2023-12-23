@@ -14,6 +14,9 @@ bool nvIsInitializedNVML();
 // Shutdown NVML
 int nvGPUShutdownNVML();
 
+// Function to get GPU device by index
+nvmlDevice_t GetGPUDevice(int Index);
+
 // Function to get GPU usage (in %)
 int nvGPUUtilizationNVML(int Index);
 
@@ -40,5 +43,6 @@ int nvGetGPUTemperatureNVML(int Index);
 // Display GPU temperature threshold (in °C)
 int nvGetGPUTemperatureThresholdNVML(int Index);
 
-// Display GPU power(in W)
+// Display GPU power (in W)
 int nvGetGPUPowerNVML(int Index);
+
