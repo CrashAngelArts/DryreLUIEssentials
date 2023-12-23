@@ -164,13 +164,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUMemoryUsageNVML(int Index);
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVRAMUsedNVML(int Index, FString state);
-
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVRAMFreeNVML(int Index, FString state);
-
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVRAMTotalNVML(int Index, FString state);
+	static int GetGPUVRAMNVML(int Index, E_VRAM_STATUS_NVML state);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
     static int GetGPUVoltageNVML(int Index);
@@ -254,7 +248,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUInitializeADL();
 
-	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool GPUIsInitializedADL();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
@@ -295,4 +289,12 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUVoltageADL();
+};
+
+// Define an enum for VRAM STATUS
+	UENUM(BlueprintType)
+	enum class E_VRAM_STATUS_NVML : uint8 {
+ 	Free = static_cast<uint8>(E_NV_VRAM_STATUS_NVML::Free),
+ 	Used = static_cast<uint8>(E_NV_VRAM_STATUS_NVML::Used),
+ 	Total = static_cast<uint8>(E_NV_VRAM_STATUS_NVML::Total)
 };

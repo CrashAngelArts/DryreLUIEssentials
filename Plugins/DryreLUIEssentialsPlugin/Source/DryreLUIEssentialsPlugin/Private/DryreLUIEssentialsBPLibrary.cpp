@@ -2,6 +2,7 @@
 
 #include "DryreLUIEssentialsBPLibrary.h"
 
+#include "DSP/LFO.h"
 #include "GenericPlatform/GenericApplication.h"
 #include "GenericPlatform/GenericPlatformMisc.h"
 #include "GenericPlatform/GenericPlatformTime.h"
@@ -15,7 +16,8 @@
 UDryreLUIEssentialsBPLibrary::UDryreLUIEssentialsBPLibrary(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
 {
-	
+	// Initialize enum with a default value
+	//E_NV_VRAM_STATUS_NVML defaultVRAMSTATUS = E_NV_VRAM_STATUS_NVML::Free;
 }
 
 bool UDryreLUIEssentialsBPLibrary::IsWindowsPlatform()
@@ -737,26 +739,15 @@ int UDryreLUIEssentialsBPLibrary::GetGPUMemoryUsageNVML(int Index)
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVRAMUsedNVML(int Index, FString state)
-{
-	if(IsNVIDIAGraphicsCard())
-		return nvGetGPUVRAMNVML(Index, "USED");
-	else return -1;
-}
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVRAMFreeNVML(int Index, FString state)
-{
-	if(IsNVIDIAGraphicsCard())
-    		return nvGetGPUVRAMNVML(Index, "FREE");
-    	else return -1;
-}
-
-int UDryreLUIEssentialsBPLibrary::GetGPUVRAMTotalNVML(int Index, FString state)
-{
-	if(IsNVIDIAGraphicsCard())
-		return nvGetGPUVRAMNVML(Index, "TOTAL");
-	else return -1;
-}
+int UDryreLUIEssentialsBPLibrary::GetGPUVRAMNVML(int Index, E_VRAM_STATUS_NVML state)
+ {
+	if (IsNVIDIAGraphicsCard())
+	{
+		return nvGetGPUVRAMNVML(Index, state);
+	}
+ 	else return -1;
+ }
 
 int UDryreLUIEssentialsBPLibrary::GetGPUVoltageNVML(int Index)
 {

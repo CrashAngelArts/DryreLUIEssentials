@@ -332,7 +332,7 @@ int nvGetGPUFanSpeedNVML(int Index)
 }
 
 // Display GPU VRAM (in MB)
-int nvGetGPUVRAMNVML(int Index, FString state)
+int nvGetGPUVRAMNVML(int Index, E_NV_VRAM_STATUS_NVML state)
 {
 	// Check if NVML is initialized
 	if (!nvIsInitializedNVML()) {
@@ -357,22 +357,19 @@ int nvGetGPUVRAMNVML(int Index, FString state)
 		return -1;
 	}
 
-    int byteToMB = (1024 * 1024);
+    const double byteToMB = (1024 * 1024);
 	
-	// Return used GPU memory size as an integer (convert bytes to megabytes)
-	if(state == "used" || state == "USED")
-	{
-		return static_cast<int>(memoryInfo.used / byteToMB);
-	}
-	else if (state == "free" || state == "FREE")
-	{
+	switch (state) {
+	case E_NV_VRAM_STATUS_NVML::Free:
 		return static_cast<int>(memoryInfo.free / byteToMB);
-	}
-	else if (state == "total" || state == "TOTAL")
-	{
+	case E_NV_VRAM_STATUS_NVML::Used:
+		return static_cast<int>(memoryInfo.used / byteToMB);
+	case E_NV_VRAM_STATUS_NVML::Total:
 		return static_cast<int>(memoryInfo.total / byteToMB);
+	default:
+		std::cerr << "Invalid state!" << std::endl;
+		return -1; // Return an error code for an invalid state
 	}
-	else return -1;
 }
 
 // Display GPU Voltage (in mV)

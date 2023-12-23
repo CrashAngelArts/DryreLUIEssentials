@@ -3,7 +3,12 @@
 #include <iostream>
 #include "ThirdParty/NVML/include/nvml.h"
 
-// Function declaration
+// Define an enum for VRAM STATUS
+enum class E_NV_VRAM_STATUS_NVML {
+	Free,
+	Used,
+	Total
+};
 
 // Initialize NVML
 int nvGPUInitializeNVML();
@@ -50,7 +55,7 @@ int nvGetGPUPowerNVML(int Index);
 int nvGetGPUFanSpeedNVML(int Index);
 
 // Display GPU VRAM Used (in MB)
-int nvGetGPUVRAMNVML(int Index, FString state);
+int nvGetGPUVRAMNVML(int Index, E_NV_VRAM_STATUS_NVML state);
 
 // Display GPU Voltage (in mV)
 int nvGetGPUVoltageNVML(int Index);
