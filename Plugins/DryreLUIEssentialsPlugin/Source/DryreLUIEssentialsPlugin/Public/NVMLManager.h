@@ -28,3 +28,6 @@ int nvGPUDeviceCountNVML();
 
 // Get GPU clock speed (in MHz)
 int nvGetGPUClockSpeedNVML();
+
+// Get GPU VRAM clock speed (in MHz)
+int nvGetGPUVRAMClockSpeedNVML();

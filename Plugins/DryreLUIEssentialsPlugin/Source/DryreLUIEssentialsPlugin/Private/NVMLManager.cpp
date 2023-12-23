@@ -194,3 +194,36 @@ int nvGetGPUClockSpeedNVML()
 	}
 	return 0;
 }
+
+// Get GPU VRAM clock speed (in MHz)
+int nvGetGPUVRAMClockSpeedNVML()
+{
+	if (!nvIsInitializedNVML()) {
+		// Handle NVML not initialized
+		return -1;
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(0, &device); // Assuming you want to get information for the first GPU
+	if (result != NVML_SUCCESS) {
+		// Handle error getting device handle
+		printf("Error on getting NVML device handle: %s\n", nvmlErrorString(result));
+		nvGPUShutdownNVML();
+		return -1;
+	}
+
+	unsigned int vramClock;
+	result = nvmlDeviceGetClockInfo(device, NVML_CLOCK_MEM, &vramClock);
+	if (result != NVML_SUCCESS) {
+		// Handle error getting VRAM clock info
+		printf("Error on getting GPU VRAM clock speed: %s\n", nvmlErrorString(result));
+		nvGPUShutdownNVML();
+		return -1;
+	}
+
+	// Shutdown NVML before returning
+	nvGPUShutdownNVML();
+
+	// Return GPU VRAM clock speed as an integer
+	return static_cast<int>(vramClock);
+}

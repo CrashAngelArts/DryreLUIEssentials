@@ -169,6 +169,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUClockSpeedNVML();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUVRAMClockSpeedNVML();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUTemperatureNVML();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
