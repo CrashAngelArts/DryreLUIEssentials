@@ -807,6 +807,109 @@ int UDryreLUIEssentialsBPLibrary::GetGPUDeviceCountNVML()
 	else return -1;
 }
 
+int UDryreLUIEssentialsBPLibrary::GetNumFansNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetNumFansNVML(Index);
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetNumGpuCoresNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetNumGpuCoresNVML(Index);
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetArchitectureNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetArchitectureNVML(Index);
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetBAR1MemoryInfoNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetBAR1MemoryInfoNVML(Index);
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetBoardIDNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetBoardIDNVML(Index);
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUBrandTypeNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUBrandTypeNVML(Index);
+	else return -1;
+}
+
+FString UDryreLUIEssentialsBPLibrary::GetGPUBrandNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUBrandNVML(Index);
+	else return "Unknown";
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUGetCountNVML()
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUGetCountNVML();
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUGetMemoryBusWidthNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUGetMemoryBusWidthNVML(Index);
+	else return -1;
+}
+
+FString UDryreLUIEssentialsBPLibrary::GetGPUGetNameNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUGetNameNVML(Index);
+	else return "Unknown";
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUGetPcieSpeedNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUGetPcieSpeedNVML(Index);
+	else return -1;
+}
+
+FString UDryreLUIEssentialsBPLibrary::GetGPUGetVBIOSVersionNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUGetVBIOSVersionNVML(Index);
+	else return "Unknown";
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPUGetCudaComputeCapabilityNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUGetCudaComputeCapabilityNVML(Index);
+	else return -1;
+}
+
+bool UDryreLUIEssentialsBPLibrary::GetGPUCudaAvailabilityNVML(int Index)
+{
+	return nvGetGPUCudaAvailabilityNVML(Index);
+}
+
+FString UDryreLUIEssentialsBPLibrary::GetGPUGetPowerStateNVML(int Index)
+{
+	if (IsNVIDIAGraphicsCard())
+		return nvGetGPUGetPowerStateNVML(Index);
+	else return "Unknown";
+}
+
 void UDryreLUIEssentialsBPLibrary::GPUInitializeNVML()
 {
 	if(IsNVIDIAGraphicsCard())

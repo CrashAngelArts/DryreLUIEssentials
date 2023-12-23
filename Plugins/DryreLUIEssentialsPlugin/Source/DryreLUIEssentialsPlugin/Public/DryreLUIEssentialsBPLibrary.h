@@ -193,10 +193,58 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUDeviceCountNVML();
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetNumFansNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetNumGpuCoresNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetArchitectureNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetBAR1MemoryInfoNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetBoardIDNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FString GetBoardPartNumberNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUBrandTypeNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FString GetGPUBrandNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUGetCountNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUGetMemoryBusWidthNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FString GetGPUGetNameNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUGetPcieSpeedNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FString GetGPUGetVBIOSVersionNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUGetCudaComputeCapabilityNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool GetGPUCudaAvailabilityNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FString GetGPUGetPowerStateNVML(int Index);
+
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUInitializeNVML();
 
-	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool GPUIsInitializedNVML();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")

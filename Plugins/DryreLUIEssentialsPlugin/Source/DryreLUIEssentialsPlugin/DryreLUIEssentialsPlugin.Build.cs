@@ -53,7 +53,6 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 			// Add path to plugin
 			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "ADL", "include"));
 			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "ADL", "lib"));
-			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "ADL", "dll"));
 			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "ADL", "ADLXHelper", "Windows", "Cpp"));
 			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "NVML", "include"));
 			PublicIncludePaths.Add(Path.Combine(PluginDirectory, "Source", "ThirdParty", "NVML", "lib"));
