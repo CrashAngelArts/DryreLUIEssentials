@@ -118,35 +118,6 @@ int nvMemoryUtilizationNVML()
 	return 0;
 }
 
-int nvGPUTemperatureNVML()
-{
-	if(nvIsInitializedNVML())
-	{
-		nvmlReturn_t result;
-		nvmlDevice_t device;
-	
-		int deviceCount = nvGPUDeviceCountNVML();
-
-		result = nvmlDeviceGetHandleByIndex(0, &device);
-		if (result != NVML_SUCCESS) {
-			std::cerr << "Failed to get device handle: " << nvmlErrorString(result) << std::endl;
-			nvmlShutdown();
-			return -5;
-		}
-	
-		// Get the GPU temperature
-		unsigned int temperature;
-		result = nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temperature);
-		if (result != NVML_SUCCESS) {
-			printf("Failed to get GPU temperature: %s\n", nvmlErrorString(result));
-			nvmlShutdown();
-			return -6;
-		}
-		return temperature;
-	}
-	return 0;
-}
-
 int nvGPUDeviceCountNVML()
 {
 	if(nvIsInitializedNVML())
@@ -226,6 +197,37 @@ int nvGetGPUVRAMClockSpeedNVML()
 
 	// Return GPU VRAM clock speed as an integer
 	return static_cast<int>(vramClock);
+}
+
+// Display GPU temperature(in °C)
+int nvGetGPUTemperatureNVML(int gpuIndex)
+{
+	if (!nvIsInitializedNVML()) {
+		// Handle NVML not initialized
+		return -1;
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(gpuIndex, &device);
+	if (result != NVML_SUCCESS) {
+		// Handle device retrieval error
+		printf("Error on device retrieval: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+	unsigned int temperature;
+	result = nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temperature);
+	if (result != NVML_SUCCESS) {
+		// Handle temperature retrieval error
+		printf("Error on temperature retrieval: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+	// Shutdown NVML before returning
+	nvGPUShutdownNVML();
+
+	// Return the GPU temperature as an integer
+	return static_cast<int>(temperature);
 }
 
 /*

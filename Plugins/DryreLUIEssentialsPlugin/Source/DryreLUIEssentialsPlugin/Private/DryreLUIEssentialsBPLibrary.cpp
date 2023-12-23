@@ -751,10 +751,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPUVRAMClockSpeedNVML()
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureNVML()
+int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureNVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
-	return nvGPUTemperatureNVML();
+	return nvGetGPUTemperatureNVML(Index);
 	else return -1;
 }
 

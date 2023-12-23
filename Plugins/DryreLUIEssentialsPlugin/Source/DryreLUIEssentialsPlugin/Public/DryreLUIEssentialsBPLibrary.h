@@ -170,7 +170,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUVRAMClockSpeedNVML();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUTemperatureNVML();
+	static int GetGPUTemperatureNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUDeviceCountNVML();
@@ -179,7 +179,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static void GPUInitializeNVML();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
-	bool GPUIsInitializedNVML();
+	static bool GPUIsInitializedNVML();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUShutdownNVML();
@@ -189,44 +189,44 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static void GPUInitializeADL();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
-	bool GPUIsInitializedADL();
+	static bool GPUIsInitializedADL();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPUShutdownADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUUsageADL();
+	static int GetGPUUsageADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUClockSpeedADL();
+	static int GetGPUClockSpeedADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUVRAMClockSpeedADL();
+	static int GetGPUVRAMClockSpeedADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetTimeStampsADL();
+	static int GetTimeStampsADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUTemperatureADL();
+	static int GetGPUTemperatureADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUHotspotTemperatureADL();
+	static int GetGPUHotspotTemperatureADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUPowerADL();
+	static int GetGPUPowerADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUTotalBoardPowerADL();
+	static int GetGPUTotalBoardPowerADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUIntakeTemperatureADL();
+	static int GetGPUIntakeTemperatureADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUFanSpeedADL();
+	static int GetGPUFanSpeedADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUVRAMADL();
+	static int GetGPUVRAMADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	int GetGPUVoltageADL();
+	static int GetGPUVoltageADL();
 };

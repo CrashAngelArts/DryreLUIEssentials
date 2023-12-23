@@ -36,3 +36,6 @@ int nvGetGPUVRAMClockSpeedNVML();
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML();
 */
+
+// Display GPU temperature(in °C)
+int nvGetGPUTemperatureNVML(int gpuIndex);
