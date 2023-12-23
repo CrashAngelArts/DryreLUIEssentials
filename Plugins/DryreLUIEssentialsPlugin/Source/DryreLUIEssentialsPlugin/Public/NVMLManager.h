@@ -85,3 +85,5 @@ FString nvGetGPUBrandNVML(int Index);
 // Function to convert int to FString
 FString IntToFString(int Number);
 
+// Function to get the count of GPU devices
+int GetGPUGetCount();

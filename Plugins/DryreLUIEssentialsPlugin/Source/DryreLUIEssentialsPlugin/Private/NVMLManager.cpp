@@ -721,6 +721,32 @@ FString IntToFString(int Number)
 	return FString::Printf(TEXT("%d"), Number);
 }
 
+// Function to get the count of GPU devices
+int GetGPUGetCount()
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML())
+	{
+		// Handle NVML initialization error
+		printf("Error initializing NVML.\n");
+		return -1;
+	}
+
+	unsigned int deviceCount;
+	nvmlReturn_t result = nvmlDeviceGetCount_v2(&deviceCount);
+
+	// Check for errors in getting GPU count
+	if (result != NVML_SUCCESS)
+	{
+		// Handle error in getting GPU count
+		printf("Error getting GPU count: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+	// Return the count of GPU devices as an integer
+	return static_cast<int>(deviceCount);
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()
