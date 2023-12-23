@@ -72,3 +72,6 @@ int adlGetGPUHotspotTemperatureADL();
 
 // Display GPU power(in W)
 int adlGetGPUPowerADL();
+
+// Display GPU total board power(in W)
+int adlGetGPUTotalBoardPowerADL();

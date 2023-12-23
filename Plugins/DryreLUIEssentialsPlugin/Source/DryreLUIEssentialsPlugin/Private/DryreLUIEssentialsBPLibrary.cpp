@@ -837,3 +837,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPUPowerADL()
 		return adlGetGPUPowerADL();
 	else return -1;
 }
+
+int UDryreLUIEssentialsBPLibrary::GetGPUTotalBoardPowerADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUTotalBoardPowerADL();
+	else return -1;
+}

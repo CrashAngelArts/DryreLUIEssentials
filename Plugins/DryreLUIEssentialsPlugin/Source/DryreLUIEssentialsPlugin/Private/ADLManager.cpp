@@ -602,6 +602,34 @@ int adlGetGPUPowerADL()
     return -1;
 }
 
+// Display GPU total board power(in W)
+int adlGetGPUTotalBoardPowerADL()
+{
+    if(IsInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+        
+        adlx_bool supported = false;
+
+        // Check GPU total board power support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUTotalBoardPower(&supported);
+        if (ADLX_SUCCEEDED(res)) {
+            if (supported) {
+                adlx_double power = 0;
+                res = gpuMetrics->GPUTotalBoardPower(&power);
+                if (ADLX_SUCCEEDED(res)) {
+                    // Return GPU total board power as an integer (you might want to round or convert to int as needed)
+                    return static_cast<int>(power);
+                }
+            }
+        }
+        // Handle the error or return a default value as needed
+        return -1;
+    }
+    return -1;
+}
+
 // Display GPU clock speed (in MHz)
 void ShowGPUClockSpeedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics)
 {
