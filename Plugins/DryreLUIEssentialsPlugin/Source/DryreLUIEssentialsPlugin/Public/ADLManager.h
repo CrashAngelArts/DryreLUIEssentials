@@ -75,3 +75,6 @@ int adlGetGPUPowerADL();
 
 // Display GPU total board power(in W)
 int adlGetGPUTotalBoardPowerADL();
+
+// Display GPU intake temperature(in °C)
+int adlGetGPUIntakeTemperatureADL();

@@ -630,6 +630,33 @@ int adlGetGPUTotalBoardPowerADL()
     return -1;
 }
 
+int adlGetGPUIntakeTemperatureADL()
+{
+    if(IsInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+        
+        adlx_bool supported = false;
+
+        // Check GPU intake temperature support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUIntakeTemperature(&supported);
+        if (ADLX_SUCCEEDED(res)) {
+            if (supported) {
+                adlx_double temperature = 0;
+                res = gpuMetrics->GPUIntakeTemperature(&temperature);
+                if (ADLX_SUCCEEDED(res)) {
+                    // Return GPU intake temperature as an integer (you might want to round or convert to int as needed)
+                    return static_cast<int>(temperature);
+                }
+            }
+        }
+        // Handle the error or return a default value as needed
+        return -1;
+    }
+    return -1;
+}
+
 // Display GPU clock speed (in MHz)
 void ShowGPUClockSpeedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics)
 {

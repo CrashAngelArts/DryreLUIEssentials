@@ -844,3 +844,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPUTotalBoardPowerADL()
 		return adlGetGPUTotalBoardPowerADL();
 	else return -1;
 }
+
+int UDryreLUIEssentialsBPLibrary::GetGPUIntakeTemperatureADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUIntakeTemperatureADL();
+	else return -1;
+}
