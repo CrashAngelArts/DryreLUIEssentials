@@ -497,7 +497,27 @@ int adlGetGPUVRAMClockSpeedADL()
     return -1;
 }
 
-
+// Display the system time stamp (in ms)
+int adlGetTimeStampADL()
+{
+    if(IsInitializedADL())
+    {
+        IADLXGPUMetricsPtr gpuMetrics;
+    
+        adlx_int64 timeStamp = 0;
+        ADLX_RESULT res = gpuMetrics->TimeStamp(&timeStamp);
+        if (ADLX_SUCCEEDED(res))
+            {
+            // Return the GPU timestamp as an integer
+            return static_cast<int64>(timeStamp);
+        } else {
+            // Handle the error or return a default value as needed
+            return -1;
+        }
+        return -1;
+    }
+    return -1;
+}
 
 // Display GPU clock speed (in MHz)
 void ShowGPUClockSpeedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics)

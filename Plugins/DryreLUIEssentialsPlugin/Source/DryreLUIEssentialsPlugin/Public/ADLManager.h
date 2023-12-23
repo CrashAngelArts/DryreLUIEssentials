@@ -60,3 +60,6 @@ int adlGetGPUClockSpeedADL();
 
 // Get GPU VRAM clock speed (in MHz)
 int adlGetGPUVRAMClockSpeedADL();
+
+// Display the system time stamp (in ms)
+int adlGetTimeStampADL();

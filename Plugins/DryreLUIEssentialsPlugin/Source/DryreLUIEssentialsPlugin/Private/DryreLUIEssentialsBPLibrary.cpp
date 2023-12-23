@@ -809,3 +809,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPUVRAMClockSpeedADL()
 		return adlGetGPUVRAMClockSpeedADL();
 	else return -1;
 }
+
+int64 UDryreLUIEssentialsBPLibrary::GetTimeStampsADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetTimeStampADL();
+	else return -1;
+}
