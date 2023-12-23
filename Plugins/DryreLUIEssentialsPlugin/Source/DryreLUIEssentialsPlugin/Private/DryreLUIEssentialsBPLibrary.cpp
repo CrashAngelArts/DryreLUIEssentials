@@ -61,6 +61,10 @@ FCPUInfo UDryreLUIEssentialsBPLibrary::GetCPUInformation()
 		CPUInformation.CPUVendor = FWindowsPlatformMisc::GetCPUVendor();
 		CPUInformation.CPUCoresWithHyperthread = FWindowsPlatformMisc::NumberOfCoresIncludingHyperthreads();
 		CPUInformation.CPUUsage = FWindowsPlatformTime::GetCPUTime().CPUTimePct;
+		CPUInformation.isINTEProcessor = IsNVIDIAGraphicsCard();
+		CPUInformation.isAMDProcessor = IsAMDGraphicsCard();
+		CPUInformation.isOTHERProcessor = IsINTELGraphicsCard();
+		return CPUInformation;
 	}
 	else
 	{
@@ -71,6 +75,10 @@ FCPUInfo UDryreLUIEssentialsBPLibrary::GetCPUInformation()
 		CPUInformation.CPUVendor = FGenericPlatformMisc::GetCPUVendor();
 		CPUInformation.CPUCoresWithHyperthread = FGenericPlatformMisc::NumberOfCoresIncludingHyperthreads();
 		CPUInformation.CPUUsage = FGenericPlatformTime::GetCPUTime().CPUTimePct;
+		CPUInformation.isINTEProcessor = IsNVIDIAGraphicsCard();
+		CPUInformation.isAMDProcessor = IsAMDGraphicsCard();
+		CPUInformation.isOTHERProcessor = IsINTELGraphicsCard();
+		return CPUInformation;
 	}
 	return CPUInformation;
 }
@@ -121,6 +129,10 @@ FGPUInfo UDryreLUIEssentialsBPLibrary::GetGPUInformation()
 		GPUInformation.UserDriverVersion = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).UserDriverVersion;
 		GPUInformation.DriverDate = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).DriverDate;
 		GPUInformation.RHIName = FWindowsPlatformMisc::GetGPUDriverInfo(FWindowsPlatformMisc::GetPrimaryGPUBrand()).RHIName;
+		GPUInformation.isNVIDIAGraphicsCard = IsNVIDIAGraphicsCard();
+		GPUInformation.isAMDGraphicsCard = IsAMDGraphicsCard();
+		GPUInformation.isINTELGraphicsCard = IsINTELGraphicsCard();
+		GPUInformation.isOTHERGraphicsCard = IsOtherGraphicsCard();
 		return GPUInformation;
 	}
 	else
@@ -133,8 +145,13 @@ FGPUInfo UDryreLUIEssentialsBPLibrary::GetGPUInformation()
 		GPUInformation.UserDriverVersion = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).UserDriverVersion;
 		GPUInformation.DriverDate = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).DriverDate;
 		GPUInformation.RHIName = FGenericPlatformMisc::GetGPUDriverInfo(FGenericPlatformMisc::GetPrimaryGPUBrand()).RHIName;
+		GPUInformation.isNVIDIAGraphicsCard = IsNVIDIAGraphicsCard();
+		GPUInformation.isAMDGraphicsCard = IsAMDGraphicsCard();
+		GPUInformation.isINTELGraphicsCard = IsINTELGraphicsCard();
+		GPUInformation.isOTHERGraphicsCard = IsOtherGraphicsCard();
 		return GPUInformation;
 	}
+	return GPUInformation;
 }
 
 FMemInfo UDryreLUIEssentialsBPLibrary::GetMemoryInformation()

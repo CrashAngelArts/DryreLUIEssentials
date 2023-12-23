@@ -29,6 +29,12 @@ public:
 		int32 CPUCoresWithHyperthread;
 	UPROPERTY(BlueprintReadOnly, Category = "CPU Info")
 		float CPUUsage;
+	UPROPERTY(BlueprintReadOnly, Category = "CPU Info")
+		bool isINTEProcessor;
+	UPROPERTY(BlueprintReadOnly, Category = "CPU Info")
+		bool isAMDProcessor;
+	UPROPERTY(BlueprintReadOnly, Category = "CPU Info")
+		bool isOTHERProcessor;
 };
 
 USTRUCT(BlueprintType)
@@ -60,6 +66,14 @@ public:
 		FString DriverDate;
 	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
 		FString RHIName;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		bool isNVIDIAGraphicsCard;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		bool isAMDGraphicsCard;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		bool isINTELGraphicsCard;
+	UPROPERTY(BlueprintReadOnly, Category = "GPU Info")
+		bool isOTHERGraphicsCard;
 };
 
 USTRUCT(BlueprintType)

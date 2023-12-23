@@ -62,10 +62,6 @@ public class DryreLUIEssentialsPlugin : ModuleRules
 			// This is what will allow us to get GPU usage statistics at runtime (example: GPU VRAM values)
 			PublicSystemLibraries.Add("DXGI.lib");
 			
-			//PublicDelayLoadDLLs.Add("$(PluginDir)/Source/ThirdParty/ADL/dll/PerfAllMetricsLib.dll");
-			//PublicDelayLoadDLLs.Add("$(PluginDir)/Source/ThirdParty/ADL/dll/PerfGPUMetrics.dll");
-
-			
 			// NVML Library is used to get NVIDIA GPU functions
 			PublicAdditionalLibraries.Add("$(PluginDir)/Source/ThirdParty/NVML/lib/nvml.lib");
 			PublicAdditionalLibraries.Add("$(PluginDir)/Source/ThirdParty/ADL/lib/PerfAllMetrics.lib");
