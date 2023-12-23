@@ -54,3 +54,24 @@ int nvGetGPUVRAMNVML(int Index, FString state);
 
 // Display GPU Voltage (in mV)
 int nvGetGPUVoltageNVML(int Index);
+
+// Number of Fans
+int nvGetNumFansNVML(int Index);
+
+// Number of GPU Cores
+int nvGetNumGpuCoresNVML(int Index);
+
+// Number of GPU Cores
+int nvGetNumGpuCoresNVML(int Index);
+
+// Architecture
+int nvGetArchitectureNVML(int Index);
+
+// BAR1 Memory Info
+int nvGetBAR1MemoryInfoNVML(int Index);
+
+// BAR1 Board ID
+int nvGetBoardIDNVML(int Index);
+
+// Board Part Number
+FString nvGetBoardPartNumberNVML(int Index);

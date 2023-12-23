@@ -401,6 +401,204 @@ int nvGetGPUVoltageNVML(int Index)
 	return static_cast<int>(voltage);
 }
 
+// Number of Fans
+int nvGetNumFansNVML(int Index)
+{
+	if (!nvIsInitializedNVML())
+	{
+		// Handle the case where NVML is not initialized
+		return -1;  // or another appropriate value
+	}
+
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return -1;
+	}
+
+	unsigned int numFans;
+	result = nvmlDeviceGetNumFans (device, &numFans);
+	if (result != NVML_SUCCESS)
+	{
+		// Handle fan speed info retrieval error
+		printf("Error on fan speed info retrieval: %s\n", nvmlErrorString(result));
+		return -1;  // or another appropriate value
+	}
+
+	return numFans;
+}
+
+// Number of GPU Cores
+int nvGetNumGpuCoresNVML(int Index)
+{
+	if (!nvIsInitializedNVML())
+	{
+		// Handle the case where NVML is not initialized
+		return -1;  // or another appropriate value
+	}
+
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return -1;
+	}
+
+	unsigned int numGpuCores;
+	result = nvmlDeviceGetNumGpuCores(device, &numGpuCores);
+	if (result != NVML_SUCCESS)
+	{
+		// Handle GPU cores info retrieval error
+		printf("Error on GPU cores info retrieval: %s\n", nvmlErrorString(result));
+		return -1;  // or another appropriate value
+	}
+	return numGpuCores;
+}
+
+// Get Architecture
+int nvGetArchitectureNVML(int Index)
+{
+	if (!nvIsInitializedNVML())
+	{
+		// Handle the case where NVML is not initialized
+		return -1;  // or another appropriate value
+	}
+
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return -1;
+	}
+
+	nvmlDeviceArchitecture_t arch;
+	result = nvmlDeviceGetArchitecture(device, &arch);
+	if (result != NVML_SUCCESS)
+	{
+		// Handle architecture retrieval error
+		printf("Error on architecture retrieval: %s\n", nvmlErrorString(result));
+		return -1;  // or another appropriate value
+	}
+
+	return static_cast<int>(arch);
+}
+
+// BAR1 Memory Info
+int nvGetBAR1MemoryInfoNVML(int Index)
+{
+	if (!nvIsInitializedNVML())
+	{
+		// Handle the case where NVML is not initialized
+		return -1;  // or another appropriate value
+	}
+
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return -1;
+	}
+
+	nvmlBAR1Memory_t bar1MemoryInfo;
+	result = nvmlDeviceGetBAR1MemoryInfo(device, &bar1MemoryInfo);
+	if (result != NVML_SUCCESS)
+	{
+		// Handle BAR1 memory info retrieval error
+		printf("Error on BAR1 memory info retrieval: %s\n", nvmlErrorString(result));
+		return -1;  // or another appropriate value
+	}
+
+	int byteToMB = 1024 * 1024;
+	
+	// Return the BAR1 memory size in megabytes
+	return static_cast<int>(bar1MemoryInfo.bar1Total / byteToMB);
+}
+
+// BAR1 Board ID
+int nvGetBoardIDNVML(int Index)
+{
+	if (!nvIsInitializedNVML())
+	{
+		// Handle the case where NVML is not initialized
+		return -1;  // or another appropriate value
+	}
+
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return -1;
+	}
+
+	unsigned int boardId;
+	result = nvmlDeviceGetBoardId(device, &boardId);
+	if (result != NVML_SUCCESS)
+	{
+		// Handle board ID retrieval error
+		printf("Error on board ID retrieval: %s\n", nvmlErrorString(result));
+		return -1;  // or another appropriate value
+	}
+
+	// Return the board ID
+	return static_cast<int>(boardId);
+}
+
+// Board Part Number
+FString nvGetBoardPartNumberNVML(int Index)
+{
+	if (!nvIsInitializedNVML())
+	{
+		// Handle the case where NVML is not initialized
+		return "NVML is not initialized";  // or another appropriate value
+	}
+
+	nvmlReturn_t result;
+	
+	// Get GPU device
+	nvmlDevice_t device = GetGPUDevice(Index);
+	if (!device) {
+		// Handle device retrieval error
+		printf("Error getting GPU device.\n");
+		return "Error getting GPU device.";
+	}
+
+	char boardPartNumber[NVML_DEVICE_PART_NUMBER_BUFFER_SIZE];
+	result = nvmlDeviceGetBoardPartNumber(device, boardPartNumber, NVML_DEVICE_PART_NUMBER_BUFFER_SIZE);
+	if (result != NVML_SUCCESS)
+	{
+		// Handle board part number retrieval error
+		FString ErrorMessage = FString::Printf(TEXT("Error on board part number retrieval: %s"), ANSI_TO_TCHAR(nvmlErrorString(result)));
+		nvmlShutdown();
+		return ErrorMessage;
+	}
+
+	// Convert char array to FString
+	FString BoardPartNumberStr = FString(ANSI_TO_TCHAR(boardPartNumber));
+
+	// Print or use the board part number as needed
+	UE_LOG(LogTemp, Warning, TEXT("The board part number is: %s"), *BoardPartNumberStr);
+
+	// Return the board part number as FString
+	nvmlShutdown();
+	return BoardPartNumberStr;
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()
