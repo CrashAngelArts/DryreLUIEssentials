@@ -69,3 +69,6 @@ int adlGetGPUTemperatureADL();
 
 // Display GPU hotspot temperature(in °C)
 int adlGetGPUHotspotTemperatureADL();
+
+// Display GPU power(in W)
+int adlGetGPUPowerADL();

@@ -830,3 +830,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPUHotspotTemperatureADL()
 		return adlGetGPUHotspotTemperatureADL();
 	else return -1;
 }
+
+int UDryreLUIEssentialsBPLibrary::GetGPUPowerADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUPowerADL();
+	else return -1;
+}

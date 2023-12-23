@@ -574,6 +574,34 @@ int adlGetGPUHotspotTemperatureADL()
     return -1;
 }
 
+// Display GPU power(in W)
+int adlGetGPUPowerADL()
+{
+    if(IsInitializedADL())
+    {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+        
+        adlx_bool supported = false;
+
+        // Check GPU power support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUPower(&supported);
+        if (ADLX_SUCCEEDED(res)) {
+            if (supported) {
+                adlx_double power = 0;
+                res = gpuMetrics->GPUPower(&power);
+                if (ADLX_SUCCEEDED(res)) {
+                    // Return GPU power as an integer (you might want to round or convert to int as needed)
+                    return static_cast<int>(power);
+                }
+            }
+        }
+        // Handle the error or return a default value as needed
+        return -1;
+    }
+    return -1;
+}
+
 // Display GPU clock speed (in MHz)
 void ShowGPUClockSpeedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport, IADLXGPUMetricsPtr gpuMetrics)
 {
