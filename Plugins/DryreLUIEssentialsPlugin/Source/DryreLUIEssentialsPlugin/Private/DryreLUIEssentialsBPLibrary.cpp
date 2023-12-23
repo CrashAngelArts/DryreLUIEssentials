@@ -723,31 +723,31 @@ bool UDryreLUIEssentialsBPLibrary::IsOtherGraphicsCard()
 	return false;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUUsageNVML()
+int UDryreLUIEssentialsBPLibrary::GetGPUUsageNVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
-	return nvGPUUtilizationNVML();
+	return nvGPUUtilizationNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetMemoryUsageNVML()
+int UDryreLUIEssentialsBPLibrary::GetMemoryUsageNVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
-		return nvMemoryUtilizationNVML();
+		return nvMemoryUtilizationNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUClockSpeedNVML()
+int UDryreLUIEssentialsBPLibrary::GetGPUClockSpeedNVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
-		return nvGetGPUClockSpeedNVML();
+		return nvGetGPUClockSpeedNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVRAMClockSpeedNVML()
+int UDryreLUIEssentialsBPLibrary::GetGPUVRAMClockSpeedNVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
-		return nvGetGPUVRAMClockSpeedNVML();
+		return nvGetGPUVRAMClockSpeedNVML(Index);
 	else return -1;
 }
 

@@ -158,16 +158,16 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	// NVML Library (NVIDIA Graphics Card)
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUUsageNVML();
+	static int GetGPUUsageNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetMemoryUsageNVML();
+	static int GetMemoryUsageNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUClockSpeedNVML();
+	static int GetGPUClockSpeedNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVRAMClockSpeedNVML();
+	static int GetGPUVRAMClockSpeedNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUTemperatureNVML(int Index);

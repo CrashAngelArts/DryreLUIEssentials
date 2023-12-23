@@ -15,22 +15,22 @@ bool nvIsInitializedNVML();
 int nvGPUShutdownNVML();
 
 // Function to get GPU usage (in %)
-int nvGPUUtilizationNVML();
+int nvGPUUtilizationNVML(int Index);
 
 // Function to get GPU Memory usage (in %)
-int nvMemoryUtilizationNVML();
+int nvMemoryUtilizationNVML(int Index);
 
 // Function to get GPU temperature (in Celsius)
-int nvGPUTemperatureNVML();
+int nvGPUTemperatureNVML(int Index);
 
 // Function to get GPU Device Count
 int nvGPUDeviceCountNVML();
 
 // Get GPU clock speed (in MHz)
-int nvGetGPUClockSpeedNVML();
+int nvGetGPUClockSpeedNVML(int Index);
 
 // Get GPU VRAM clock speed (in MHz)
-int nvGetGPUVRAMClockSpeedNVML();
+int nvGetGPUVRAMClockSpeedNVML(int Index);
 
 /*
 // Display the system time stamp (in ms)
@@ -38,4 +38,4 @@ int nvGetTimeStampNVML();
 */
 
 // Display GPU temperature(in °C)
-int nvGetGPUTemperatureNVML(int gpuIndex);
+int nvGetGPUTemperatureNVML(int Index);

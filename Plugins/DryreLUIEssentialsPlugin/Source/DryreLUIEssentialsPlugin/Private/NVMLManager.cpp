@@ -50,7 +50,7 @@ int nvGPUShutdownNVML()
 	return 0;
 }
 
-int nvGPUUtilizationNVML()
+int nvGPUUtilizationNVML(int Index)
 {
 	if(nvIsInitializedNVML())
 	{
@@ -58,7 +58,7 @@ int nvGPUUtilizationNVML()
 		nvmlDevice_t device;
 
 		// Get the device handle (here, index 0 represents the first GPU)
-		result = nvmlDeviceGetHandleByIndex(0, &device);
+		result = nvmlDeviceGetHandleByIndex(Index, &device);
 		if (result != NVML_SUCCESS) {
 			// Print or log an error message
 			printf("Error getting device handle: %s\n", nvmlErrorString(result));
@@ -84,7 +84,7 @@ int nvGPUUtilizationNVML()
 	return 0;
 }
 
-int nvMemoryUtilizationNVML()
+int nvMemoryUtilizationNVML(int Index)
 {
 	if(nvIsInitializedNVML())
 	{
@@ -92,7 +92,7 @@ int nvMemoryUtilizationNVML()
 		nvmlDevice_t device;
 
 		// Get the device handle (here, index 0 represents the first GPU)
-		result = nvmlDeviceGetHandleByIndex(0, &device);
+		result = nvmlDeviceGetHandleByIndex(Index, &device);
 		if (result != NVML_SUCCESS) {
 			// Print or log an error message
 			printf("Error getting device handle: %s\n", nvmlErrorString(result));
@@ -137,14 +137,14 @@ int nvGPUDeviceCountNVML()
 	return 0;
 }
 
-int nvGetGPUClockSpeedNVML()
+int nvGetGPUClockSpeedNVML(int Index)
 {
 	if(nvIsInitializedNVML())
 	{
 		nvmlReturn_t result;
 	
 		nvmlDevice_t device;
-		result = nvmlDeviceGetHandleByIndex(0, &device); // Assuming you want to get information for the first GPU
+		result = nvmlDeviceGetHandleByIndex(Index, &device); // Assuming you want to get information for the first GPU
 		if (result != NVML_SUCCESS) {
 			// Handle error getting device handle
 			printf("Error on getting NVML device handle: %s\n", nvmlErrorString(result));
@@ -167,7 +167,7 @@ int nvGetGPUClockSpeedNVML()
 }
 
 // Get GPU VRAM clock speed (in MHz)
-int nvGetGPUVRAMClockSpeedNVML()
+int nvGetGPUVRAMClockSpeedNVML(int Index)
 {
 	if (!nvIsInitializedNVML()) {
 		// Handle NVML not initialized
@@ -175,7 +175,7 @@ int nvGetGPUVRAMClockSpeedNVML()
 	}
 
 	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(0, &device); // Assuming you want to get information for the first GPU
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device); // Assuming you want to get information for the first GPU
 	if (result != NVML_SUCCESS) {
 		// Handle error getting device handle
 		printf("Error on getting NVML device handle: %s\n", nvmlErrorString(result));
@@ -200,7 +200,7 @@ int nvGetGPUVRAMClockSpeedNVML()
 }
 
 // Display GPU temperature(in °C)
-int nvGetGPUTemperatureNVML(int gpuIndex)
+int nvGetGPUTemperatureNVML(int Index)
 {
 	if (!nvIsInitializedNVML()) {
 		// Handle NVML not initialized
@@ -208,7 +208,7 @@ int nvGetGPUTemperatureNVML(int gpuIndex)
 	}
 
 	nvmlDevice_t device;
-	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(gpuIndex, &device);
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
 	if (result != NVML_SUCCESS) {
 		// Handle device retrieval error
 		printf("Error on device retrieval: %s\n", nvmlErrorString(result));
