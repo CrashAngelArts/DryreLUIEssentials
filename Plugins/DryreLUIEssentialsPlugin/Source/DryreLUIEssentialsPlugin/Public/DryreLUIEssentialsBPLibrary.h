@@ -176,6 +176,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPUTemperatureThresholdNVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPUPowerNVML(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUDeviceCountNVML();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")

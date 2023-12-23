@@ -765,6 +765,13 @@ int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureThresholdNVML(int Index)
 	else return -1;
 }
 
+int UDryreLUIEssentialsBPLibrary::GetGPUPowerNVML(int Index)
+{
+	if(IsNVIDIAGraphicsCard())
+		return nvGetGPUPowerNVML(Index);
+	else return -1;
+}
+
 int UDryreLUIEssentialsBPLibrary::GetGPUDeviceCountNVML()
 {
 	if(IsNVIDIAGraphicsCard())

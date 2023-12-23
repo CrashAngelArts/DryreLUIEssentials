@@ -261,6 +261,36 @@ int nvGetGPUTemperatureThresholdNVML(int Index)
 	return static_cast<int>(temperatureThreshold);
 }
 
+// Display GPU power (in W)
+int nvGetGPUPowerNVML(int Index)
+{
+	// Check if NVML is initialized
+	if (!nvIsInitializedNVML()) {
+		// Handle initialization error
+		printf("NVML is not initialized.\n");
+		return -1;
+	}
+
+	nvmlDevice_t device;
+	nvmlReturn_t result = nvmlDeviceGetHandleByIndex(Index, &device);
+	if (result != NVML_SUCCESS) {
+		// Handle device retrieval error
+		printf("Error on device retrieval: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+	unsigned int power;
+	result = nvmlDeviceGetPowerUsage(device, &power);
+	if (result != NVML_SUCCESS) {
+		// Handle power retrieval error
+		printf("Error on power retrieval: %s\n", nvmlErrorString(result));
+		return -1;
+	}
+
+	// Return GPU power as an integer
+	return static_cast<int>(power);
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()

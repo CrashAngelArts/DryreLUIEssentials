@@ -39,3 +39,6 @@ int nvGetGPUTemperatureNVML(int Index);
 
 // Display GPU temperature threshold (in °C)
 int nvGetGPUTemperatureThresholdNVML(int Index);
+
+// Display GPU power(in W)
+int nvGetGPUPowerNVML(int Index);
