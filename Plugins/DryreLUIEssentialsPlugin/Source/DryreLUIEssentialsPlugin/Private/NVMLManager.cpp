@@ -632,6 +632,95 @@ int nvGetGPUBrandTypeNVML(int Index)
 	return static_cast<int>(brandType);
 }
 
+FString nvGetGPUBrandNVML(int Index)
+{
+	if(nvGetGPUBrandTypeNVML(Index) == 0)
+	{
+		return "UNKNOWN";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 1)
+	{
+		return "QUADRO";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 2)
+	{
+		return "TESLA";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 3)
+	{
+		return "NVS";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 4)
+	{
+		return "GRID";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 5)
+	{
+		return "GEFORCE";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 6)
+	{
+		return "TITAN";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 7)
+	{
+		return "NVIDIA VAPPS";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 8)
+	{
+		return "NVIDIA VPC";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 9)
+	{
+		return "NVIDIA VCS";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 10)
+	{
+		return "NVIDIA VWS";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 11)
+	{
+		return "NVIDIA Cloud Gaming";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 12)
+	{
+		return "NVIDIA VGAMING";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 13)
+	{
+		return "QUADRO RTX";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 14)
+	{
+		return "NVIDIA RTX";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 15)
+	{
+		return "NVIDIA";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 16)
+	{
+		return "GEFORCE RTX";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 17)
+	{
+		return "TITAN RTX";
+	}
+	else if(nvGetGPUBrandTypeNVML(Index) == 18)
+	{
+		return "BRAND COUNT: " + IntToFString(nvGetGPUBrandTypeNVML(Index));
+	}
+	else return "ERROR";
+
+}
+
+// Function to convert int to FString
+FString IntToFString(int Number)
+{
+	// Using FString::Printf to format the int as a string
+	return FString::Printf(TEXT("%d"), Number);
+}
+
 /*
 // Display the system time stamp (in ms)
 int nvGetTimeStampNVML()

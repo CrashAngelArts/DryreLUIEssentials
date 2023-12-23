@@ -78,3 +78,10 @@ FString nvGetBoardPartNumberNVML(int Index);
 
 // GPU Brand Type
 int nvGetGPUBrandTypeNVML(int Index);
+
+// GPU Brand
+FString nvGetGPUBrandNVML(int Index);
+
+// Function to convert int to FString
+FString IntToFString(int Number);
+
