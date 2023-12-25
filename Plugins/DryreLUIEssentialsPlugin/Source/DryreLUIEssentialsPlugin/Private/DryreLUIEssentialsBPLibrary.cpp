@@ -471,6 +471,18 @@ FMonitorsInfo UDryreLUIEssentialsBPLibrary::GetMonitorInformation()
 	return MonitorInformation;
 }
 
+float UDryreLUIEssentialsBPLibrary::GetAverageFPS()
+{
+	extern ENGINE_API float GAverageFPS;
+	return GAverageFPS;
+}
+
+float UDryreLUIEssentialsBPLibrary::GetAverageMS()
+{
+	extern ENGINE_API float GAverageMS;
+	return GAverageMS;
+}
+
 FString UDryreLUIEssentialsBPLibrary::GetLogin_ID()
 {
 	if (IsWindowsPlatform())

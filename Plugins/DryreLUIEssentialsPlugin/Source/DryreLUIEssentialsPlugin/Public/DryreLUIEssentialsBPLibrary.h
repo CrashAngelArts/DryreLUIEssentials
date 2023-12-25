@@ -84,6 +84,12 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	// Others
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static float GetAverageFPS();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static float GetAverageMS();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static FString GetLogin_ID();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
