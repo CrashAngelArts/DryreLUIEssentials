@@ -357,7 +357,7 @@ int nvGetGPUVRAMNVML(int Index, E_NV_VRAM_STATUS_NVML state)
 		return -1;
 	}
 
-    const double byteToMB = (1024 * 1024);
+	double byteToMB = (1024 * 1024);
 	
 	switch (state) {
 	case E_NV_VRAM_STATUS_NVML::Free:

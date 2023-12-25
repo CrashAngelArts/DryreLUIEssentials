@@ -25,6 +25,14 @@ THIRD_PARTY_INCLUDES_END
 
 #include "DryreLUIEssentialsBPLibrary.generated.h"
 
+// Define an enum for VRAM STATUS
+UENUM(BlueprintType)
+enum class E_VRAM_STATUS_NVML : uint8 {
+	Free,
+	Used,
+	Total
+};
+
 UCLASS()
 class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 {
@@ -290,16 +298,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPUVoltageADL();
 
-	//Ayberk
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static E_NV_VRAM_STATUS_NVML EqualityEnum(E_VRAM_STATUS_NVML Enum);
+	//UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	//static E_NV_VRAM_STATUS_NVML EqualityEnum(E_VRAM_STATUS_NVML Enum);
 	
-};
-
-// Define an enum for VRAM STATUS
-	UENUM(BlueprintType)
-	enum class E_VRAM_STATUS_NVML : uint8 {
- 	Free,
- 	Used,
- 	Total
 };

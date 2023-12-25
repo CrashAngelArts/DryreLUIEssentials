@@ -16,8 +16,7 @@
 UDryreLUIEssentialsBPLibrary::UDryreLUIEssentialsBPLibrary(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
 {
-	// Initialize enum with a default value
-	//E_NV_VRAM_STATUS_NVML defaultVRAMSTATUS = E_NV_VRAM_STATUS_NVML::Free;
+	
 }
 
 bool UDryreLUIEssentialsBPLibrary::IsWindowsPlatform()
@@ -744,9 +743,20 @@ int UDryreLUIEssentialsBPLibrary::GetGPUVRAMNVML(int Index, E_VRAM_STATUS_NVML s
  {
 	if (IsNVIDIAGraphicsCard())
 	{
-		return nvGetGPUVRAMNVML(Index, EqualityEnum(state));
+		switch (state)
+		{
+		case E_VRAM_STATUS_NVML::Free:
+			return nvGetGPUVRAMNVML(Index, E_NV_VRAM_STATUS_NVML::Free);
+		case E_VRAM_STATUS_NVML::Used:
+			return nvGetGPUVRAMNVML(Index, E_NV_VRAM_STATUS_NVML::Used);
+		case E_VRAM_STATUS_NVML::Total:
+			return nvGetGPUVRAMNVML(Index, E_NV_VRAM_STATUS_NVML::Total);
+		default:
+			// Handle unknown enum value
+				return -1;
+		}
 	}
- 	else return -1;
+	else return -1;
  }
 
 int UDryreLUIEssentialsBPLibrary::GetGPUVoltageNVML(int Index)
@@ -1030,6 +1040,7 @@ int UDryreLUIEssentialsBPLibrary::GetGPUVoltageADL()
 	else return -1;
 }
 
+/*
 E_NV_VRAM_STATUS_NVML UDryreLUIEssentialsBPLibrary::EqualityEnum(E_VRAM_STATUS_NVML Enum)
 {
 	switch (Enum)
@@ -1048,3 +1059,4 @@ E_NV_VRAM_STATUS_NVML UDryreLUIEssentialsBPLibrary::EqualityEnum(E_VRAM_STATUS_N
 	}
 	
 }
+*/
