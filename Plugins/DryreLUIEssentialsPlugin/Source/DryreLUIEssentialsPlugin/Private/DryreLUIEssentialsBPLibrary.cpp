@@ -195,9 +195,9 @@ FOSInfo UDryreLUIEssentialsBPLibrary::GetOSInfo()
 		OSInformation.IsOperatingSystem64Bit = FWindowsPlatformMisc::Is64bitOperatingSystem();
 		OSInformation.IsDesktopTouchScreen = FWindowsPlatformMisc::DesktopTouchScreen();
 		OSInformation.IsHDRUsedByDefault = FWindowsPlatformMisc::UseHDRByDefault();
-		OSInformation.IsGamepadConnected = IsGamepadConnected();
-		OSInformation.IsMouseConnected = IsMouseConnected();
-		OSInformation.IsCapsLockActive = IsCapslockActive();
+		OSInformation.IsGamepadConnected = GetIsGamepadConnected();
+		OSInformation.IsMouseConnected = GetIsMouseConnected();
+		OSInformation.IsCapsLockActive = GetIsCapslockActive();
 	}
 	else
 	{
@@ -210,9 +210,9 @@ FOSInfo UDryreLUIEssentialsBPLibrary::GetOSInfo()
 		OSInformation.IsOperatingSystem64Bit = FGenericPlatformMisc::Is64bitOperatingSystem();
 		OSInformation.IsDesktopTouchScreen = FGenericPlatformMisc::DesktopTouchScreen();
 		OSInformation.IsHDRUsedByDefault = FGenericPlatformMisc::UseHDRByDefault();
-		OSInformation.IsGamepadConnected = IsGamepadConnected();
-		OSInformation.IsMouseConnected = IsMouseConnected();
-		OSInformation.IsCapsLockActive = IsCapslockActive();
+		OSInformation.IsGamepadConnected = GetIsGamepadConnected();
+		OSInformation.IsMouseConnected = GetIsMouseConnected();
+		OSInformation.IsCapsLockActive = GetIsCapslockActive();
 	}
 	return OSInformation;
 }
@@ -255,7 +255,7 @@ FString UDryreLUIEssentialsBPLibrary::GetOperatingSystemBit()
 	}
 }
 
-bool UDryreLUIEssentialsBPLibrary::IsOperatingSystem64Bit()
+bool UDryreLUIEssentialsBPLibrary::GetIsOperatingSystem64Bit()
 {
 	if(IsWindowsPlatform())
 	{
@@ -267,7 +267,7 @@ bool UDryreLUIEssentialsBPLibrary::IsOperatingSystem64Bit()
 	}
 }
 
-bool UDryreLUIEssentialsBPLibrary::IsTouchscreenSupported()
+bool UDryreLUIEssentialsBPLibrary::GetIsTouchscreenSupported()
 {
 	if(IsWindowsPlatform())
 	{
@@ -279,7 +279,7 @@ bool UDryreLUIEssentialsBPLibrary::IsTouchscreenSupported()
 	}
 }
 
-bool UDryreLUIEssentialsBPLibrary::IsGamepadConnected()
+bool UDryreLUIEssentialsBPLibrary::GetIsGamepadConnected()
 {
 	const auto GamepadDetectApplication = FSlateApplication::Get().GetPlatformApplication();
 	if (GamepadDetectApplication.Get() != nullptr && GamepadDetectApplication->IsGamepadAttached())
@@ -289,7 +289,7 @@ bool UDryreLUIEssentialsBPLibrary::IsGamepadConnected()
 	return false;
 }
 
-bool UDryreLUIEssentialsBPLibrary::IsMouseConnected()
+bool UDryreLUIEssentialsBPLibrary::GetIsMouseConnected()
 {
 	const auto MouseDetectApplication = FSlateApplication::Get().GetPlatformApplication();
 	if (MouseDetectApplication.Get() != nullptr && MouseDetectApplication->IsMouseAttached())
@@ -299,7 +299,7 @@ bool UDryreLUIEssentialsBPLibrary::IsMouseConnected()
 	return false;
 }
 
-bool UDryreLUIEssentialsBPLibrary::IsCapslockActive()
+bool UDryreLUIEssentialsBPLibrary::GetIsCapslockActive()
 {
 	const auto CapslockDetectApplication = FSlateApplication::Get().GetPlatformApplication();
 	if (CapslockDetectApplication.Get() != nullptr && CapslockDetectApplication->GetModifierKeys().AreCapsLocked())
@@ -333,7 +333,7 @@ FString UDryreLUIEssentialsBPLibrary::GetOSVersion()
 	}
 }
 
-bool UDryreLUIEssentialsBPLibrary::IsRunningOnLaptopBattery()
+bool UDryreLUIEssentialsBPLibrary::GetIsRunningOnLaptopBattery()
 {
 	if(IsWindowsPlatform())
 	{
@@ -345,7 +345,7 @@ bool UDryreLUIEssentialsBPLibrary::IsRunningOnLaptopBattery()
 	}
 }
 
-bool UDryreLUIEssentialsBPLibrary::RestartApplication()
+bool UDryreLUIEssentialsBPLibrary::GetRestartApplication()
 {
 	if(IsWindowsPlatform())
 	{
@@ -357,7 +357,7 @@ bool UDryreLUIEssentialsBPLibrary::RestartApplication()
 	}
 }
 
-bool UDryreLUIEssentialsBPLibrary::SupportsBrightness()
+bool UDryreLUIEssentialsBPLibrary::GetSupportsBrightness()
 {
 	if(IsWindowsPlatform())
 	{

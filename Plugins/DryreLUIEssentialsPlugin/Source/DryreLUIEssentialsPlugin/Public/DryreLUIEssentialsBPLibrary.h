@@ -90,25 +90,25 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static FString GetOperatingSystemBit();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool IsOperatingSystem64Bit();
+	static bool GetIsOperatingSystem64Bit();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool IsTouchscreenSupported();
+	static bool GetIsTouchscreenSupported();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool IsGamepadConnected();
+	static bool GetIsGamepadConnected();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool IsMouseConnected();
+	static bool GetIsMouseConnected();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool IsCapslockActive();
+	static bool GetIsCapslockActive();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool IsRunningOnLaptopBattery();
+	static bool GetIsRunningOnLaptopBattery();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool RestartApplication();
+	static bool GetRestartApplication();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetMaxRefreshRate();
@@ -117,7 +117,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static FString GetOSVersion();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool SupportsBrightness();
+	static bool GetSupportsBrightness();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static float GetBrightness();
