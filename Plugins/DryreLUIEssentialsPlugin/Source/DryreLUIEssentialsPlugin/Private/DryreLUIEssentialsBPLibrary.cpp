@@ -724,14 +724,14 @@ bool UDryreLUIEssentialsBPLibrary::IsOtherGraphicsCard()
 	return false;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUUsageNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_Usage_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 	return nvGPUUtilizationNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUMemoryUsageNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_MemoryUsage_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 		return nvMemoryUtilizationNVML(Index);
@@ -739,7 +739,7 @@ int UDryreLUIEssentialsBPLibrary::GetGPUMemoryUsageNVML(int Index)
 }
 
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVRAMNVML(int Index, E_VRAM_STATUS_NVML state)
+int UDryreLUIEssentialsBPLibrary::GetGPU_VRAM_NVML(int Index, E_VRAM_STATUS_NVML state)
  {
 	if (IsNVIDIAGraphicsCard())
 	{
@@ -759,179 +759,179 @@ int UDryreLUIEssentialsBPLibrary::GetGPUVRAMNVML(int Index, E_VRAM_STATUS_NVML s
 	else return -1;
  }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVoltageNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_Voltage_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 		return nvGetGPUVoltageNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUClockSpeedNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_ClockSpeed_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 		return nvGetGPUClockSpeedNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVRAMClockSpeedNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_VRAM_ClockSpeed_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 		return nvGetGPUVRAMClockSpeedNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_Temperature_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 	return nvGetGPUTemperatureNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureThresholdNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_TemperatureThreshold_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 		return nvGetGPUTemperatureThresholdNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUPowerNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::Get_GPU_Power_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
 		return nvGetGPUPowerNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUDeviceCountNVML()
+int UDryreLUIEssentialsBPLibrary::GetGPU_DeviceCount_NVML()
 {
 	if(IsNVIDIAGraphicsCard())
 	return nvGPUDeviceCountNVML();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetNumFansNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::Get_GPU_FansCount_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetNumFansNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetNumGpuCoresNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::Get_GPU_CoresCount_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetNumGpuCoresNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetArchitectureNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_Architecture_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetArchitectureNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetBAR1MemoryInfoNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_BAR1_Memory_Info_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetBAR1MemoryInfoNVML(Index);
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetBoardIDNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_Board_ID_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetBoardIDNVML(Index);
 	else return -1;
 }
 
-FString UDryreLUIEssentialsBPLibrary::GetBoardPartNumberNVML(int Index)
+FString UDryreLUIEssentialsBPLibrary::GetGPU_Board_Part_Number_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetBoardPartNumberNVML(Index);
 	else return "Unknown";
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUBrandTypeNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_Brand_Type_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUBrandTypeNVML(Index);
 	else return -1;
 }
 
-FString UDryreLUIEssentialsBPLibrary::GetGPUBrandNVML(int Index)
+FString UDryreLUIEssentialsBPLibrary::GetGPU_Brand_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUBrandNVML(Index);
 	else return "Unknown";
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUGetCountNVML()
+int UDryreLUIEssentialsBPLibrary::GetGPU_Get_Count_NVML()
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetCountNVML();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUGetMemoryBusWidthNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_GetMemoryBusWidth_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetMemoryBusWidthNVML(Index);
 	else return -1;
 }
 
-FString UDryreLUIEssentialsBPLibrary::GetGPUGetNameNVML(int Index)
+FString UDryreLUIEssentialsBPLibrary::GetGPU_GetName_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetNameNVML(Index);
 	else return "Unknown";
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUGetPcieSpeedNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_GetPCIE_Speed_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetPcieSpeedNVML(Index);
 	else return -1;
 }
 
-FString UDryreLUIEssentialsBPLibrary::GetGPUGetVBIOSVersionNVML(int Index)
+FString UDryreLUIEssentialsBPLibrary::GetGPU_GetVBIOS_Version_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetVBIOSVersionNVML(Index);
 	else return "Unknown";
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUGetCudaComputeCapabilityNVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_GetCUDA_ComputeCapability_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetCudaComputeCapabilityNVML(Index);
 	else return -1;
 }
 
-bool UDryreLUIEssentialsBPLibrary::GetGPUCudaAvailabilityNVML(int Index)
+bool UDryreLUIEssentialsBPLibrary::GetGPU_CUDA_Availability_NVML(int Index)
 {
 	return nvGetGPUCudaAvailabilityNVML(Index);
 }
 
-FString UDryreLUIEssentialsBPLibrary::GetGPUGetPowerStateNVML(int Index)
+FString UDryreLUIEssentialsBPLibrary::GetGPU_GetPowerState_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetPowerStateNVML(Index);
 	else return "Unknown";
 }
 
-void UDryreLUIEssentialsBPLibrary::GPUInitializeNVML()
+void UDryreLUIEssentialsBPLibrary::GPU_Initialize_NVML()
 {
 	if(IsNVIDIAGraphicsCard())
 	nvGPUInitializeNVML();
 }
 
-bool UDryreLUIEssentialsBPLibrary::GPUIsInitializedNVML()
+bool UDryreLUIEssentialsBPLibrary::GPU_IsInitialized_NVML()
 {
 	if(IsNVIDIAGraphicsCard())
 		return nvIsInitializedNVML();
 	else return false;
 }
 
-void UDryreLUIEssentialsBPLibrary::GPUShutdownNVML()
+void UDryreLUIEssentialsBPLibrary::GPU_Shutdown_NVML()
 {
 	if(IsNVIDIAGraphicsCard())
 	nvGPUShutdownNVML();
