@@ -499,6 +499,20 @@ FString UDryreLUIEssentialsBPLibrary::GetTimeZone_ID()
 	}
 }
 
+bool UDryreLUIEssentialsBPLibrary::GetHasActiveWiFiConnection()
+{
+	if (IsWindowsPlatform())
+	{
+		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get Has Active WiFi Connection."));
+		return FWindowsPlatformMisc::HasActiveWiFiConnection();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("Using Generic libraries to get Has Active WiFi Connection."));
+		return FGenericPlatformMisc::HasActiveWiFiConnection();
+	}
+}
+
 bool UDryreLUIEssentialsBPLibrary::SetActiveDisplay(int32 DisplayIndex)
 {
 	FDisplayMetrics Displays;

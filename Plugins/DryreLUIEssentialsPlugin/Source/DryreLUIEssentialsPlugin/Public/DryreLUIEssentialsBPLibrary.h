@@ -90,6 +90,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static FString GetTimeZone_ID();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool GetHasActiveWiFiConnection();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetLaptopBatteryLevel();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
