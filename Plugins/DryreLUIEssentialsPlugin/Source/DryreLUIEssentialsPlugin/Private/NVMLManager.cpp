@@ -570,7 +570,7 @@ FString nvGetBoardPartNumberNVML(int Index)
 	nvmlDevice_t device = GetGPUDevice(Index);
 	if (!device) {
 		// Handle device retrieval error
-		printf("Error getting GPU device.\n");
+		// printf("Error getting GPU device.\n");
 		return "Error getting GPU device.";
 	}
 
@@ -579,19 +579,23 @@ FString nvGetBoardPartNumberNVML(int Index)
 	if (result != NVML_SUCCESS)
 	{
 		// Handle board part number retrieval error
-		FString ErrorMessage = FString::Printf(TEXT("Error on board part number retrieval: %s"), ANSI_TO_TCHAR(nvmlErrorString(result)));
-		nvmlShutdown();
-		return ErrorMessage;
+		//FString ErrorMessage = FString::Printf(TEXT("Error on board part number retrieval: %s"), ANSI_TO_TCHAR(nvmlErrorString(result)));
+		//nvmlShutdown();
+		return "Error";
 	}
 
 	// Convert char array to FString
 	FString BoardPartNumberStr = FString(ANSI_TO_TCHAR(boardPartNumber));
 
+	if (BoardPartNumberStr.IsEmpty())
+	{
+		return "Unknown";
+	}
+
 	// Print or use the board part number as needed
 	UE_LOG(LogTemp, Warning, TEXT("The board part number is: %s"), *BoardPartNumberStr);
 
 	// Return the board part number as FString
-	nvmlShutdown();
 	return BoardPartNumberStr;
 }
 
@@ -634,19 +638,19 @@ FString nvGetGPUBrandNVML(int Index)
 	switch (brandType)
 	{
 	case 0:
-		return "UNKNOWN";
+		return "Unknown";
 	case 1:
-		return "QUADRO";
+		return "Quadro";
 	case 2:
-		return "TESLA";
+		return "Tesla";
 	case 3:
 		return "NVS";
 	case 4:
-		return "GRID";
+		return "Grid";
 	case 5:
-		return "GEFORCE";
+		return "GeForce";
 	case 6:
-		return "TITAN";
+		return "Titan";
 	case 7:
 		return "NVIDIA VAPPS";
 	case 8:
@@ -670,9 +674,9 @@ FString nvGetGPUBrandNVML(int Index)
 	case 17:
 		return "TITAN RTX";
 	case 18:
-		return "BRAND COUNT: " + IntToFString(brandType);
+		return "Brand Count: " + IntToFString(brandType);
 	default:
-		return "INVALID BRAND TYPE";
+		return "Unknown";
 	}
 
 }
@@ -942,55 +946,55 @@ FString nvGetGPUGetPowerStateNVML(int Index)
 		powerStateString = FString(TEXT("Maximum Performance"));
 		break;
 	case NVML_PSTATE_1:
-		powerStateString = FString(TEXT("Performance state 1"));
+		powerStateString = FString(TEXT("Performance State 1"));
 		break;
 	case NVML_PSTATE_2:
-		powerStateString = FString(TEXT("Performance state 2"));
+		powerStateString = FString(TEXT("Performance State 2"));
 		break;
 	case NVML_PSTATE_3:
-		powerStateString = FString(TEXT("Performance state 3"));
+		powerStateString = FString(TEXT("Performance State 3"));
 		break;
 	case NVML_PSTATE_4:
-		powerStateString = FString(TEXT("Performance state 4"));
+		powerStateString = FString(TEXT("Performance State 4"));
 		break;
 	case NVML_PSTATE_5:
-		powerStateString = FString(TEXT("Performance state 5"));
+		powerStateString = FString(TEXT("Performance State 5"));
 		break;
 	case NVML_PSTATE_6:
-		powerStateString = FString(TEXT("Performance state 6"));
+		powerStateString = FString(TEXT("Performance State 6"));
 		break;
 	case NVML_PSTATE_7:
-		powerStateString = FString(TEXT("Performance state 7"));
+		powerStateString = FString(TEXT("Performance State 7"));
 		break;
 	case NVML_PSTATE_8:
-		powerStateString = FString(TEXT("Performance state 8"));
+		powerStateString = FString(TEXT("Performance State 8"));
 		break;
 	case NVML_PSTATE_9:
-		powerStateString = FString(TEXT("Performance state 9"));
+		powerStateString = FString(TEXT("Performance State 9"));
 		break;
 	case NVML_PSTATE_10:
-		powerStateString = FString(TEXT("Performance state 10"));
+		powerStateString = FString(TEXT("Performance State 10"));
 		break;
 	case NVML_PSTATE_11:
-		powerStateString = FString(TEXT("Performance state 11"));
+		powerStateString = FString(TEXT("Performance State 11"));
 		break;
 	case NVML_PSTATE_12:
-		powerStateString = FString(TEXT("Performance state 12"));
+		powerStateString = FString(TEXT("Performance State 12"));
 		break;
 	case NVML_PSTATE_13:
-		powerStateString = FString(TEXT("Performance state 13"));
+		powerStateString = FString(TEXT("Performance State 13"));
 		break;
 	case NVML_PSTATE_14:
-		powerStateString = FString(TEXT("Performance state 14"));
+		powerStateString = FString(TEXT("Performance State 14"));
 		break;
 	case NVML_PSTATE_15:
 		powerStateString = FString(TEXT("Minimum Performance"));
 		break;
 	case NVML_PSTATE_UNKNOWN:
-		powerStateString = FString(TEXT("Unknown power state"));
+		powerStateString = FString(TEXT("Unknown Performance"));
 		break;
 	default:
-		powerStateString = FString(TEXT("Invalid power state"));
+		powerStateString = FString(TEXT("Maximum Performance"));
 		break;
 	}
 
