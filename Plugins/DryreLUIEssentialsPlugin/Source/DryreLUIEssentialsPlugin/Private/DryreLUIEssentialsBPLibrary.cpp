@@ -937,103 +937,103 @@ void UDryreLUIEssentialsBPLibrary::GPU_Shutdown_NVML()
 	nvGPUShutdownNVML();
 }
 
-void UDryreLUIEssentialsBPLibrary::GPUInitializeADL()
+void UDryreLUIEssentialsBPLibrary::GPU_Initialize_ADL()
 {
 	if(IsAMDGraphicsCard())
 	InitializeADL();
 }
 
-bool UDryreLUIEssentialsBPLibrary::GPUIsInitializedADL()
+bool UDryreLUIEssentialsBPLibrary::GPU_IsInitialized_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return IsInitializedADL();
 	else return false;
 }
 
-void UDryreLUIEssentialsBPLibrary::GPUShutdownADL()
+void UDryreLUIEssentialsBPLibrary::GPU_Shutdown_ADL()
 {
 	if(IsAMDGraphicsCard())
 	ShutdownADL();
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUUsageADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_Usage_ADL()
 {
 	if(IsAMDGraphicsCard())
 	return adlGetGPUUsageADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUClockSpeedADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_ClockSpeed_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUClockSpeedADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVRAMClockSpeedADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_VRAM_ClockSpeed_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUVRAMClockSpeedADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetTimeStampsADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_TimeStamps_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetTimeStampADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUTemperatureADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_Temperature_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUTemperatureADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUHotspotTemperatureADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_HotspotTemperature_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUHotspotTemperatureADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUPowerADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_Power_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUPowerADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUTotalBoardPowerADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_TotalBoardPower_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUTotalBoardPowerADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUIntakeTemperatureADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_IntakeTemperature_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUIntakeTemperatureADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUFanSpeedInRPMADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_FanSpeedInRPM_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUFanSpeedInRPMADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVRAMADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_VRAM_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUVRAMADL();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPUVoltageADL()
+int UDryreLUIEssentialsBPLibrary::GetGPU_Voltage_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetGPUVoltageADL();

@@ -254,49 +254,49 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	// ADLX Library (AMD Graphics Card)
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
-	static void GPUInitializeADL();
+	static void GPU_Initialize_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static bool GPUIsInitializedADL();
+	static bool GPU_IsInitialized_ADL();
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
-	static void GPUShutdownADL();
+	static void GPU_Shutdown_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUUsageADL();
+	static int GetGPU_Usage_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUClockSpeedADL();
+	static int GetGPU_ClockSpeed_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVRAMClockSpeedADL();
+	static int GetGPU_VRAM_ClockSpeed_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetTimeStampsADL();
+	static int GetGPU_TimeStamps_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUTemperatureADL();
+	static int GetGPU_Temperature_ADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUHotspotTemperatureADL();
+	static int GetGPU_HotspotTemperature_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUPowerADL();
+	static int GetGPU_Power_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUTotalBoardPowerADL();
+	static int GetGPU_TotalBoardPower_ADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUIntakeTemperatureADL();
+	static int GetGPU_IntakeTemperature_ADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUFanSpeedInRPMADL();
+	static int GetGPU_FanSpeedInRPM_ADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVRAMADL();
+	static int GetGPU_VRAM_ADL();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPUVoltageADL();
+	static int GetGPU_Voltage_ADL();
 
 	//UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	//static E_NV_VRAM_STATUS_NVML EqualityEnum(E_VRAM_STATUS_NVML Enum);
