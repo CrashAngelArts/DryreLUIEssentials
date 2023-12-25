@@ -485,6 +485,20 @@ FString UDryreLUIEssentialsBPLibrary::GetLogin_ID()
 	}
 }
 
+FString UDryreLUIEssentialsBPLibrary::GetTimeZone_ID()
+{
+	if (IsWindowsPlatform())
+	{
+		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get TimeZone ID."));
+		return FWindowsPlatformMisc::GetTimeZoneId();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("Using Generic libraries to get TimeZone ID."));
+		return FGenericPlatformMisc::GetTimeZoneId();
+	}
+}
+
 bool UDryreLUIEssentialsBPLibrary::SetActiveDisplay(int32 DisplayIndex)
 {
 	FDisplayMetrics Displays;
