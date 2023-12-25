@@ -58,7 +58,7 @@ nvmlDevice_t GetGPUDevice(int index)
 	return device;
 }
 
-int nvGPUUtilizationNVML(int Index)
+int nvGPUUsageNVML(int Index)
 {
 	if(nvIsInitializedNVML())
 	{

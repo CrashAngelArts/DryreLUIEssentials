@@ -769,7 +769,7 @@ bool UDryreLUIEssentialsBPLibrary::IsOtherGraphicsCard()
 int UDryreLUIEssentialsBPLibrary::GetGPU_Usage_NVML(int Index)
 {
 	if(IsNVIDIAGraphicsCard())
-	return nvGPUUtilizationNVML(Index);
+	return nvGPUUsageNVML(Index);
 	else return -1;
 }
 
@@ -982,20 +982,20 @@ void UDryreLUIEssentialsBPLibrary::GPU_Shutdown_NVML()
 void UDryreLUIEssentialsBPLibrary::GPU_Initialize_ADL()
 {
 	if(IsAMDGraphicsCard())
-	InitializeADL();
+	adlInitializeADL();
 }
 
 bool UDryreLUIEssentialsBPLibrary::GPU_IsInitialized_ADL()
 {
 	if(IsAMDGraphicsCard())
-		return IsInitializedADL();
+		return adlIsInitializedADL();
 	else return false;
 }
 
 void UDryreLUIEssentialsBPLibrary::GPU_Shutdown_ADL()
 {
 	if(IsAMDGraphicsCard())
-	ShutdownADL();
+	adlShutdownADL();
 }
 
 int UDryreLUIEssentialsBPLibrary::GetGPU_Usage_ADL()
@@ -1102,3 +1102,255 @@ E_NV_VRAM_STATUS_NVML UDryreLUIEssentialsBPLibrary::EqualityEnum(E_VRAM_STATUS_N
 	
 }
 */
+
+void UDryreLUIEssentialsBPLibrary::GPU_Initialize_AUTO()
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		nvGPUInitializeNVML();
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		adlInitializeADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		// Empty
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		// Empty
+	}
+}
+
+bool UDryreLUIEssentialsBPLibrary::GPU_IsInitialized_AUTO()
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvIsInitializedNVML();
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlIsInitializedADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return false;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return false;
+	}
+	return false;
+}
+
+void UDryreLUIEssentialsBPLibrary::GPU_Shutdown_AUTO()
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		nvGPUShutdownNVML();
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		adlShutdownADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		// Empty
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		// Empty
+	}
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_Usage_AUTO(int Index)
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvGPUUsageNVML(Index);
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlGetGPUUsageADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return -1;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return -1;
+	}
+	return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_DeviceCount_AUTO()
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvGPUDeviceCountNVML();
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlGetGPUDeviceCountADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return -1;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return -1;
+	}
+	return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_ClockSpeed_AUTO(int Index)
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvGetGPUClockSpeedNVML(Index);
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlGetGPUClockSpeedADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return -1;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return -1;
+	}
+	return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_VRAM_ClockSpeed_Auto(int Index)
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvGetGPUVRAMClockSpeedNVML(Index);
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlGetGPUVRAMClockSpeedADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return -1;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return -1;
+	}
+	return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_Temperature_AUTO(int Index)
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvGetGPUTemperatureNVML(Index);
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlGetGPUTemperatureADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return -1;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return -1;
+	}
+	return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_Power_AUTO(int Index)
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvGetGPUPowerNVML(Index);
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlGetGPUPowerADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return -1;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return -1;
+	}
+	return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_FanSpeed_AUTO(int Index)
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvGetGPUFanSpeedNVML(Index);
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlGetGPUFanSpeedInRPMADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return -1;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return -1;
+	}
+	return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_Voltage_AUTO(int Index)
+{
+	UE_LOG(LogTemp, Log, TEXT("Using Third Party GPU libraries to get GPU Informations."));
+
+	if(IsNVIDIAGraphicsCard())
+	{
+		return nvGetGPUVoltageNVML(Index);
+	}
+	else if(IsAMDGraphicsCard())
+	{
+		return adlGetGPUVoltageADL();
+	}
+	else if(IsINTELGraphicsCard())
+	{
+		return -1;
+	}
+	else if(IsOtherGraphicsCard())
+	{
+		return -1;
+	}
+	return -1;
+}
+

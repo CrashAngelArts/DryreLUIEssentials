@@ -11,15 +11,6 @@
 // Use ADLX namespace
 using namespace adlx;
 
-// Initialize ADL
-void InitializeADL();
-
-// Function to check if ADLX is initialized
-bool IsInitializedADL();
-
-// Initialize ADL
-void ShutdownADL();
-
 // Main menu
 void MainMenuADL();
 
@@ -48,6 +39,15 @@ IADLXGPUPtr GetGPUDevice(adlx_uint index);
 
 // Function to get GPU metrics
 IADLXGPUMetricsPtr GetGPUMetricsADL(IADLXGPUPtr gpu);
+
+// Initialize ADL
+void adlInitializeADL();
+
+// Function to check if ADLX is initialized
+bool adlIsInitializedADL();
+
+// Shutdown ADL
+void adlShutdownADL();
 
 // Function to check GPU usage support status
 bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport);
@@ -89,4 +89,4 @@ int adlGetGPUVRAMADL();
 int adlGetGPUVoltageADL();
 
 // Get  GPU Count
-int adlGetGPUCountADL();
+int adlGetGPUDeviceCountADL();

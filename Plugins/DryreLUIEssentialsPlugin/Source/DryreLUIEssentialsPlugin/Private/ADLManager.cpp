@@ -69,7 +69,7 @@ int main()
 }
 */
 
-void InitializeADL()
+void adlInitializeADL()
 {
     ADLX_RESULT res = ADLX_FAIL;
 
@@ -109,7 +109,7 @@ void InitializeADL()
     }
 }
 
-bool IsInitializedADL()
+bool adlIsInitializedADL()
 {
     ADLX_RESULT res = ADLX_FAIL;
 
@@ -127,7 +127,7 @@ bool IsInitializedADL()
     return false;
 }
 
-void ShutdownADL()
+void adlShutdownADL()
 {
     ADLX_RESULT res = ADLX_FAIL;
     
@@ -323,7 +323,7 @@ IADLXGPUPtr GetGPUDevice(adlx_uint index)
     ADLX_RESULT res = ADLX_FAIL;
 
     // Call the function to see if it's initialized ADLX
-    if (!IsInitializedADL())
+    if (!adlIsInitializedADL())
     {
         // ADLX initialization failed, return a default value or handle the error
         return nullptr;
@@ -371,7 +371,7 @@ IADLXGPUPtr GetGPUDevice(adlx_uint index)
 IADLXGPUMetricsPtr GetGPUMetricsADL(IADLXGPUPtr gpu)
 {
     // Call the function to see if it's initialized ADLX
-    if (!IsInitializedADL())
+    if (!adlIsInitializedADL())
     {
         // ADLX initialization failed, return a default value or handle the error
         return nullptr;
@@ -404,7 +404,7 @@ IADLXGPUMetricsPtr GetGPUMetricsADL(IADLXGPUPtr gpu)
 bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport)
 {
     // Call the function to see if it's initialized ADLX
-    if (!IsInitializedADL())
+    if (!adlIsInitializedADL())
     {
         // ADLX initialization failed, return a default value or handle the error
         return false;
@@ -421,7 +421,7 @@ bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport)
 // Function to get GPU usage (in %)
 int adlGetGPUUsageADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -456,7 +456,7 @@ int adlGetGPUUsageADL()
 // Get GPU clock speed (in MHz)
 int adlGetGPUClockSpeedADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -487,7 +487,7 @@ int adlGetGPUClockSpeedADL()
 // Get GPU VRAM clock speed (in MHz)
 int adlGetGPUVRAMClockSpeedADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -518,7 +518,7 @@ int adlGetGPUVRAMClockSpeedADL()
 // Display the system time stamp (in ms)
 int adlGetTimeStampADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsPtr gpuMetrics;
     
@@ -540,7 +540,7 @@ int adlGetTimeStampADL()
 // Display GPU temperature(in °C)
 int adlGetGPUTemperatureADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -567,7 +567,7 @@ int adlGetGPUTemperatureADL()
 
 int adlGetGPUHotspotTemperatureADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -595,7 +595,7 @@ int adlGetGPUHotspotTemperatureADL()
 // Display GPU power(in W)
 int adlGetGPUPowerADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -623,7 +623,7 @@ int adlGetGPUPowerADL()
 // Display GPU total board power(in W)
 int adlGetGPUTotalBoardPowerADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -650,7 +650,7 @@ int adlGetGPUTotalBoardPowerADL()
 
 int adlGetGPUIntakeTemperatureADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -678,7 +678,7 @@ int adlGetGPUIntakeTemperatureADL()
 // Display GPU fan speed (in RPM)
 int adlGetGPUFanSpeedInRPMADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -705,7 +705,7 @@ int adlGetGPUFanSpeedInRPMADL()
 
 int adlGetGPUVRAMADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -732,7 +732,7 @@ int adlGetGPUVRAMADL()
 
 int adlGetGPUVoltageADL()
 {
-    if(IsInitializedADL())
+    if(adlIsInitializedADL())
     {
         IADLXGPUMetricsSupportPtr gpuMetricsSupport;
         IADLXGPUMetricsPtr gpuMetrics;
@@ -758,10 +758,10 @@ int adlGetGPUVoltageADL()
 }
 
 // Get  GPU Count
-int adlGetGPUCountADL()
+int adlGetGPUDeviceCountADL()
 {
     // Call the function to initialize ADLX
-    if (!IsInitializedADL())
+    if (!adlIsInitializedADL())
     {
         // ADLX initialization failed, return a default value or handle the error
         return -1;

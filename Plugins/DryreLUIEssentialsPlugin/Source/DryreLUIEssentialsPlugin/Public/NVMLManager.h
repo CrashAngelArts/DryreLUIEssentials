@@ -23,7 +23,7 @@ int nvGPUShutdownNVML();
 nvmlDevice_t GetGPUDevice(int Index);
 
 // Function to get GPU usage (in %)
-int nvGPUUtilizationNVML(int Index);
+int nvGPUUsageNVML(int Index);
 
 // Function to get GPU Memory usage (in %)
 int nvMemoryUtilizationNVML(int Index);

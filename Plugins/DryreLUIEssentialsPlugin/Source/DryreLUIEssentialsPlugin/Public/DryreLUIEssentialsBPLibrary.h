@@ -307,7 +307,41 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPU_Voltage_ADL();
 
+	// EqualityEnum (no more need)
 	//UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	//static E_NV_VRAM_STATUS_NVML EqualityEnum(E_VRAM_STATUS_NVML Enum);
+
+	// AUTO Library (AUTO SELECTS the used Graphics Card's function)
+	// UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void GPU_Initialize_AUTO();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static bool GPU_IsInitialized_AUTO();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void GPU_Shutdown_AUTO();
 	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPU_Usage_AUTO(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPU_DeviceCount_AUTO();
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPU_ClockSpeed_AUTO(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPU_VRAM_ClockSpeed_Auto(int Index);
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPU_Temperature_AUTO(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPU_Power_AUTO(int Index);
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPU_FanSpeed_AUTO(int Index);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static int GetGPU_Voltage_AUTO(int Index);
 };
