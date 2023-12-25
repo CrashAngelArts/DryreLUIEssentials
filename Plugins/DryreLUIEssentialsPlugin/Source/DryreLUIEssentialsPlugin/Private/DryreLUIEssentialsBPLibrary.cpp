@@ -906,42 +906,42 @@ FString UDryreLUIEssentialsBPLibrary::GetGPU_Brand_NVML(int Index)
 	else return "Unknown";
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPU_Get_Count_NVML()
+int UDryreLUIEssentialsBPLibrary::GetGPU_Count_NVML()
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetCountNVML();
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPU_GetMemoryBusWidth_NVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_MemoryBusWidth_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetMemoryBusWidthNVML(Index);
 	else return -1;
 }
 
-FString UDryreLUIEssentialsBPLibrary::GetGPU_GetName_NVML(int Index)
+FString UDryreLUIEssentialsBPLibrary::GetGPU_Name_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetNameNVML(Index);
 	else return "Unknown";
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPU_GetPCIE_Speed_NVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_PCIE_Speed_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetPcieSpeedNVML(Index);
 	else return -1;
 }
 
-FString UDryreLUIEssentialsBPLibrary::GetGPU_GetVBIOS_Version_NVML(int Index)
+FString UDryreLUIEssentialsBPLibrary::GetGPU_VBIOS_Version_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetVBIOSVersionNVML(Index);
 	else return "Unknown";
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPU_GetCUDA_ComputeCapability_NVML(int Index)
+int UDryreLUIEssentialsBPLibrary::GetGPU_CUDA_ComputeCapability_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetCudaComputeCapabilityNVML(Index);
@@ -953,7 +953,7 @@ bool UDryreLUIEssentialsBPLibrary::GetGPU_CUDA_Availability_NVML(int Index)
 	return nvGetGPUCudaAvailabilityNVML(Index);
 }
 
-FString UDryreLUIEssentialsBPLibrary::GetGPU_GetPowerState_NVML(int Index)
+FString UDryreLUIEssentialsBPLibrary::GetGPU_PowerState_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
 		return nvGetGPUGetPowerStateNVML(Index);

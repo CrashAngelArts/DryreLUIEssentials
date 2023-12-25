@@ -229,28 +229,28 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static FString GetGPU_Brand_NVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPU_Get_Count_NVML();
+	static int GetGPU_Count_NVML();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPU_GetMemoryBusWidth_NVML(int Index);
+	static int GetGPU_MemoryBusWidth_NVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static FString GetGPU_GetName_NVML(int Index);
+	static FString GetGPU_Name_NVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPU_GetPCIE_Speed_NVML(int Index);
+	static int GetGPU_PCIE_Speed_NVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static FString GetGPU_GetVBIOS_Version_NVML(int Index);
+	static FString GetGPU_VBIOS_Version_NVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPU_GetCUDA_ComputeCapability_NVML(int Index);
+	static int GetGPU_CUDA_ComputeCapability_NVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool GetGPU_CUDA_Availability_NVML(int Index);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static FString GetGPU_GetPowerState_NVML(int Index);
+	static FString GetGPU_PowerState_NVML(int Index);
 
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPU_Initialize_NVML();
