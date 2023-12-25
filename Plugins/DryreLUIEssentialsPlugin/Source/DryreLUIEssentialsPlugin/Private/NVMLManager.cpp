@@ -357,15 +357,18 @@ int nvGetGPUVRAMNVML(int Index, E_NV_VRAM_STATUS_NVML state)
 		return -1;
 	}
 
-	double byteToMB = (1024 * 1024);
+	const double byteToMB = (1024 * 1024);
 	
 	switch (state) {
 	case E_NV_VRAM_STATUS_NVML::Free:
 		return static_cast<int>(memoryInfo.free / byteToMB);
+		break;
 	case E_NV_VRAM_STATUS_NVML::Used:
 		return static_cast<int>(memoryInfo.used / byteToMB);
+		break;
 	case E_NV_VRAM_STATUS_NVML::Total:
 		return static_cast<int>(memoryInfo.total / byteToMB);
+		break;
 	default:
 		std::cerr << "Invalid state!" << std::endl;
 		return static_cast<int>(memoryInfo.free / byteToMB);
