@@ -10,7 +10,9 @@
 #include "GenericPlatform/GenericPlatformDriver.h"
 #include "Framework/Application/SlateApplication.h"
 #include "GameFramework/GameUserSettings.h"
+
 #include "GameFramework/PlayerController.h"
+#include "Engine/Engine.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -624,6 +626,11 @@ TArray<FDisplayInfo> UDryreLUIEssentialsBPLibrary::GetAllDisplays()
 		Monitor.MaxResolution, Monitor.bIsPrimary, Monitor.DPI));
 	}
 	return AllDisplays;
+}
+
+float UDryreLUIEssentialsBPLibrary::GetGamma()
+{
+	return GEngine->GetDisplayGamma();
 }
 
 void UDryreLUIEssentialsBPLibrary::SetGamma(APlayerController* playerController, float Value)

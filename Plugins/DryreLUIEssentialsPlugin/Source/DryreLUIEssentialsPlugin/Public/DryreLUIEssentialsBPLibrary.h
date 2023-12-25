@@ -160,6 +160,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static TArray<FDisplayInfo> GetAllDisplays();
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static float GetGamma();
+	
 	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void SetGamma(APlayerController* playerController, float Value = 2.2f);
 
