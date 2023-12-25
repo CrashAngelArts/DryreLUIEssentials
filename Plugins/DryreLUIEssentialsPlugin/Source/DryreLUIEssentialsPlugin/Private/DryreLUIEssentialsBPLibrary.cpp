@@ -471,6 +471,20 @@ FMonitorsInfo UDryreLUIEssentialsBPLibrary::GetMonitorInformation()
 	return MonitorInformation;
 }
 
+FString UDryreLUIEssentialsBPLibrary::GetLogin_ID()
+{
+	if (IsWindowsPlatform())
+	{
+		UE_LOG(LogTemp, Log, TEXT("Windows Platform Detected, using Windows libraries to get Login ID."));
+		return FWindowsPlatformMisc::GetLoginId();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("Using Generic libraries to get Login ID."));
+		return FGenericPlatformMisc::GetLoginId();
+	}
+}
+
 bool UDryreLUIEssentialsBPLibrary::SetActiveDisplay(int32 DisplayIndex)
 {
 	FDisplayMetrics Displays;

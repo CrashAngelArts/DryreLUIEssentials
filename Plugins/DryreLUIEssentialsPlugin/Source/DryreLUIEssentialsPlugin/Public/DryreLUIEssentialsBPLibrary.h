@@ -84,6 +84,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	// Others
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
+	static FString GetLogin_ID();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetLaptopBatteryLevel();
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
