@@ -312,7 +312,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	//static E_NV_VRAM_STATUS_NVML EqualityEnum(E_VRAM_STATUS_NVML Enum);
 
 	// AUTO Library (AUTO SELECTS the used Graphics Card's function)
-	// UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
 	static void GPU_Initialize_AUTO();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
