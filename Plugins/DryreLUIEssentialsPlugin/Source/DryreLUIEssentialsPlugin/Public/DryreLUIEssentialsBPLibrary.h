@@ -38,6 +38,10 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_UCLASS_BODY()
 
+	// Run Console Commands in C++
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void RunExec(APlayerController* PlayerController, FString Command);
+
 	// Platform Check
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static bool IsWindowsPlatform();
@@ -155,6 +159,9 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static TArray<FDisplayInfo> GetAllDisplays();
+
+	UFUNCTION(BlueprintCallable, Category = "Dryrel Design")
+	static void SetGamma(APlayerController* playerController, float Value = 2.2f);
 
 	// Check The CPU Brand (Graphics Card)
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")

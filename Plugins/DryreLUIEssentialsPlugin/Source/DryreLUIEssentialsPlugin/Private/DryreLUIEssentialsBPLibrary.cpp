@@ -10,6 +10,7 @@
 #include "GenericPlatform/GenericPlatformDriver.h"
 #include "Framework/Application/SlateApplication.h"
 #include "GameFramework/GameUserSettings.h"
+#include "GameFramework/PlayerController.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -17,6 +18,16 @@ UDryreLUIEssentialsBPLibrary::UDryreLUIEssentialsBPLibrary(const FObjectInitiali
 : Super(ObjectInitializer)
 {
 	
+}
+
+
+void UDryreLUIEssentialsBPLibrary::RunExec(APlayerController* playerController, FString Command)
+{
+	if(playerController != nullptr && Command != "")
+	{
+		playerController->ConsoleCommand(Command, true);
+	}
+
 }
 
 bool UDryreLUIEssentialsBPLibrary::IsWindowsPlatform()
@@ -613,6 +624,16 @@ TArray<FDisplayInfo> UDryreLUIEssentialsBPLibrary::GetAllDisplays()
 		Monitor.MaxResolution, Monitor.bIsPrimary, Monitor.DPI));
 	}
 	return AllDisplays;
+}
+
+void UDryreLUIEssentialsBPLibrary::SetGamma(APlayerController* playerController, float Value)
+{
+	if(playerController)
+	{
+		const FString gammaPrintf = FString(TEXT("gamma {0}"));
+		const FString gammaFormatted = FString::Format(*gammaPrintf, { Value });
+		RunExec(playerController, gammaFormatted);
+	}
 }
 
 bool UDryreLUIEssentialsBPLibrary::IsINTELProcessor()
