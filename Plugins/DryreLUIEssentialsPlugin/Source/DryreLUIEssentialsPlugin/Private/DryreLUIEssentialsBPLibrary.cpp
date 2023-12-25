@@ -906,13 +906,6 @@ FString UDryreLUIEssentialsBPLibrary::GetGPU_Brand_NVML(int Index)
 	else return "Unknown";
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPU_Count_NVML()
-{
-	if (IsNVIDIAGraphicsCard())
-		return nvGetGPUGetCountNVML();
-	else return -1;
-}
-
 int UDryreLUIEssentialsBPLibrary::GetGPU_MemoryBusWidth_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
@@ -1002,6 +995,13 @@ int UDryreLUIEssentialsBPLibrary::GetGPU_Usage_ADL()
 {
 	if(IsAMDGraphicsCard())
 	return adlGetGPUUsageADL();
+	else return -1;
+}
+
+int UDryreLUIEssentialsBPLibrary::GetGPU_DeviceCount_ADL()
+{
+	if(IsAMDGraphicsCard())
+		return adlGetGPUDeviceCountADL();
 	else return -1;
 }
 

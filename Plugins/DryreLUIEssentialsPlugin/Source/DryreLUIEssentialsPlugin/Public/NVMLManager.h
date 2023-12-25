@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "ThirdParty/NVML/include/nvml.h"
+#pragma once
 
 // Define an enum for VRAM STATUS
 enum class E_NV_VRAM_STATUS_NVML {
