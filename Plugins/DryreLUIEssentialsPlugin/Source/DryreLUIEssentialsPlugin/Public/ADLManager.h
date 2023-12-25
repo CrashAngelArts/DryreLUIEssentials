@@ -87,3 +87,6 @@ int adlGetGPUVRAMADL();
 
 // Display GPU Voltage (in mV)
 int adlGetGPUVoltageADL();
+
+// Get  GPU Count
+int adlGetGPUCountADL();

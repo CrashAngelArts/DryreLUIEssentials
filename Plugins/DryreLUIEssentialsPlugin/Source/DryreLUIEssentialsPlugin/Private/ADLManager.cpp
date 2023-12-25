@@ -295,7 +295,7 @@ void GetTimeStampADL(IADLXGPUMetricsPtr gpuMetrics)
     adlx_int64 timeStamp = 0;
     ADLX_RESULT res = gpuMetrics->TimeStamp(&timeStamp);
     if (ADLX_SUCCEEDED(res))
-        std::cout << "The GPU timp stamp is: " << timeStamp << "ms" << std::endl;
+        std::cout << "The GPU time stamp is: " << timeStamp << "ms" << std::endl;
 }
 
 // Display GPU usage (in %)
@@ -322,8 +322,12 @@ IADLXGPUPtr GetGPUDevice(adlx_uint index)
 {
     ADLX_RESULT res = ADLX_FAIL;
 
-    // Initialize ADLX
-    res = g_ADLXHelp.Initialize();
+    // Call the function to see if it's initialized ADLX
+    if (!IsInitializedADL())
+    {
+        // ADLX initialization failed, return a default value or handle the error
+        return nullptr;
+    }
 
     if (ADLX_SUCCEEDED(res))
     {
@@ -331,7 +335,7 @@ IADLXGPUPtr GetGPUDevice(adlx_uint index)
         IADLXGPUListPtr gpus;
         res = g_ADLXHelp.GetSystemServices()->GetGPUs(&gpus);
 
-        if (ADLX_SUCCEEDED(res) && index <= gpus->End())
+        if (ADLX_SUCCEEDED(res) && index != gpus->End())
         {
             // Get the GPU at the specified index
             IADLXGPUPtr gpu;
@@ -364,8 +368,15 @@ IADLXGPUPtr GetGPUDevice(adlx_uint index)
 }
 
 // Function to get GPU metrics for a specific GPU
-IADLXGPUMetricsPtr GetGPUCurrentMetricsADL(IADLXGPUPtr gpu)
+IADLXGPUMetricsPtr GetGPUMetricsADL(IADLXGPUPtr gpu)
 {
+    // Call the function to see if it's initialized ADLX
+    if (!IsInitializedADL())
+    {
+        // ADLX initialization failed, return a default value or handle the error
+        return nullptr;
+    }
+    
     ADLX_RESULT res = ADLX_FAIL;
 
     // Get Performance Monitoring services
@@ -392,6 +403,13 @@ IADLXGPUMetricsPtr GetGPUCurrentMetricsADL(IADLXGPUPtr gpu)
 // Function to check GPU usage support status
 bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport)
 {
+    // Call the function to see if it's initialized ADLX
+    if (!IsInitializedADL())
+    {
+        // ADLX initialization failed, return a default value or handle the error
+        return false;
+    }
+    
     adlx_bool supported = false;
     // Check GPU usage support status
     ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUUsage(&supported);
@@ -403,16 +421,16 @@ bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport)
 // Function to get GPU usage (in %)
 int adlGetGPUUsageADL()
 {
-    IADLXGPUMetricsSupportPtr gpuMetricsSupport;
-    IADLXGPUMetricsPtr gpuMetrics;
-    
-    adlx_bool supported = false;
-    
-    // Check GPU usage support status
-    ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUUsage(&supported);
-
     if(IsInitializedADL())
     {
+        IADLXGPUMetricsSupportPtr gpuMetricsSupport;
+        IADLXGPUMetricsPtr gpuMetrics;
+    
+        adlx_bool supported = false;
+    
+        // Check GPU usage support status
+        ADLX_RESULT res = gpuMetricsSupport->IsSupportedGPUUsage(&supported);
+    
         if (ADLX_SUCCEEDED(res))
         {
             if (supported)
@@ -737,6 +755,46 @@ int adlGetGPUVoltageADL()
         return -1;
     }
     return -1;
+}
+
+// Get  GPU Count
+int adlGetGPUCountADL()
+{
+    // Call the function to initialize ADLX
+    if (!IsInitializedADL())
+    {
+        // ADLX initialization failed, return a default value or handle the error
+        return -1;
+    }
+
+    // Get GPU list
+    IADLXGPUListPtr gpus;
+    ADLX_RESULT res = g_ADLXHelp.GetSystemServices()->GetGPUs(&gpus);
+
+    if (ADLX_SUCCEEDED(res))
+    {
+        // Iterate through the list to count GPUs
+        int gpuCount = 0;
+        for (int i = 0; i != gpus->End(); i++)
+        {
+            gpuCount++;
+        }
+
+        // Clean up ADLX before returning
+        //ShutdownADL();
+
+        return gpuCount;
+    }
+    else
+    {
+        // Handle the error, you might want to log or throw an exception
+        std::cerr << "Failed to get GPU list" << std::endl;
+
+        // Clean up ADLX before returning
+        //ShutdownADL();
+
+        return -1;
+    }
 }
 
 // Display GPU clock speed (in MHz)

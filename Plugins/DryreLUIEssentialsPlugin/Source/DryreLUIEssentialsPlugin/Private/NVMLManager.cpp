@@ -368,7 +368,7 @@ int nvGetGPUVRAMNVML(int Index, E_NV_VRAM_STATUS_NVML state)
 		return static_cast<int>(memoryInfo.total / byteToMB);
 	default:
 		std::cerr << "Invalid state!" << std::endl;
-		return -1; // Return an error code for an invalid state
+		return static_cast<int>(memoryInfo.free / byteToMB);
 	}
 }
 

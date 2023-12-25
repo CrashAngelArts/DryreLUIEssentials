@@ -281,7 +281,7 @@ class UDryreLUIEssentialsBPLibrary : public UBlueprintFunctionLibrary
 	static int GetGPU_VRAM_ClockSpeed_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
-	static int GetGPU_TimeStamps_ADL();
+	static int GetSystem_TimeStamps_ADL();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Dryrel Design")
 	static int GetGPU_Temperature_ADL();

@@ -1019,7 +1019,7 @@ int UDryreLUIEssentialsBPLibrary::GetGPU_VRAM_ClockSpeed_ADL()
 	else return -1;
 }
 
-int UDryreLUIEssentialsBPLibrary::GetGPU_TimeStamps_ADL()
+int UDryreLUIEssentialsBPLibrary::GetSystem_TimeStamps_ADL()
 {
 	if(IsAMDGraphicsCard())
 		return adlGetTimeStampADL();
