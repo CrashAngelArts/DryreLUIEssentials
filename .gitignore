@@ -90,6 +90,11 @@ DerivedDataCache/*
 **/*.tlog
 **/generate_library/.idea
 **/generate_library/*.htm
+**/ZERO_CHECK.vcxproj
+**/ZERO_CHECK.vcxproj.filters
+**/ALL_BUILD.vcxproj
+**/ALL_BUILD.vcxproj.filters
+**/*.pdb
 
 # Custom Ignore (DryreL Design)
 Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/doc/*
