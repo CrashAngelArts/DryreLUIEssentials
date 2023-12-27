@@ -928,7 +928,11 @@ int UDryreLUIEssentialsBPLibrary::GetGPU_Board_ID_NVML(int Index)
 FString UDryreLUIEssentialsBPLibrary::GetGPU_Board_Part_Number_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
-		return nvGetBoardPartNumberNVML(Index);
+	{
+		FString unrealString = (nvGetBoardPartNumberNVML(Index).c_str());
+		return unrealString;
+	}
+	
 	else return "Unknown";
 }
 
@@ -956,7 +960,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPU_MemoryBusWidth_NVML(int Index)
 FString UDryreLUIEssentialsBPLibrary::GetGPU_Name_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
-		return nvGetGPUGetNameNVML(Index);
+	{
+		FString unrealString = (nvGetGPUGetNameNVML(Index).c_str());
+		return unrealString;
+	}
 	else return "Unknown";
 }
 
@@ -970,7 +977,10 @@ int UDryreLUIEssentialsBPLibrary::GetGPU_PCIE_Speed_NVML(int Index)
 FString UDryreLUIEssentialsBPLibrary::GetGPU_VBIOS_Version_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
-		return nvGetGPUGetVBIOSVersionNVML(Index);
+	{
+		FString unrealString = (nvGetGPUGetVBIOSVersionNVML(Index).c_str());
+		return unrealString;
+	}
 	else return "Unknown";
 }
 
@@ -989,7 +999,10 @@ bool UDryreLUIEssentialsBPLibrary::GetGPU_CUDA_Availability_NVML(int Index)
 FString UDryreLUIEssentialsBPLibrary::GetGPU_PowerState_NVML(int Index)
 {
 	if (IsNVIDIAGraphicsCard())
-		return nvGetGPUGetPowerStateNVML(Index);
+	{
+		FString unrealString = (nvGetGPUGetPowerStateNVML(Index).c_str());
+		return unrealString;
+	}
 	else return "Unknown";
 }
 
@@ -1028,7 +1041,7 @@ bool UDryreLUIEssentialsBPLibrary::GPU_IsInitialized_ADL()
 void UDryreLUIEssentialsBPLibrary::GPU_Shutdown_ADL()
 {
 	if(IsAMDGraphicsCard())
-	adlShutdownADL();
+	adlGPUShutdownADL();
 }
 
 int UDryreLUIEssentialsBPLibrary::GetGPU_Usage_ADL()
@@ -1198,7 +1211,7 @@ void UDryreLUIEssentialsBPLibrary::GPU_Shutdown_AUTO()
 	}
 	else if(IsAMDGraphicsCard())
 	{
-		adlShutdownADL();
+		adlGPUShutdownADL();
 	}
 	else if(IsINTELGraphicsCard())
 	{

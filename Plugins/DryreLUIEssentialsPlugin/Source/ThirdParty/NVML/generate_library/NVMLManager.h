@@ -1,8 +1,19 @@
 ﻿// Copyright © 2024 - DryreL Design
 
 #include <iostream>
-#include "ThirdParty/NVML/include/nvml.h"
+#include <stdio.h>
+#include "../../../ThirdParty/NVML/include/nvml.h"
+#include <string>
+
 #pragma once
+
+/*
+#if defined _WIN32 || defined _WIN64
+//#define DLLIMPORT __declspec(dllimport)
+#else
+#define DLLIMPORT
+#endif
+*/
 
 // Define an enum for VRAM STATUS
 enum class E_NV_VRAM_STATUS_NVML {
@@ -40,7 +51,7 @@ int nvGetGPUVRAMClockSpeedNVML(int Index);
 
 /*
 // Display the system time stamp (in ms)
-int nvGetTimeStampNVML();
+DLLIMPORT int nvGetTimeStampNVML();
 */
 
 // Display GPU temperature (in °C)
@@ -80,17 +91,19 @@ int nvGetBAR1MemoryInfoNVML(int Index);
 int nvGetBoardIDNVML(int Index);
 
 // Board Part Number
-FString nvGetBoardPartNumberNVML(int Index);
+std::string nvGetBoardPartNumberNVML(int Index);
 
 // GPU Brand Type
 int nvGetGPUBrandTypeNVML(int Index);
 
 // GPU Brand
-FString nvGetGPUBrandNVML(int Index);
+const char* nvGetGPUBrandNVML(int Index);
 
+/*
 // Function to convert int to FString
 FString IntToFString(int Number);
-
+*/
+	
 // Function to get the count of GPU devices
 int nvGetGPUGetCountNVML();
 
@@ -98,13 +111,13 @@ int nvGetGPUGetCountNVML();
 int nvGetGPUGetMemoryBusWidthNVML(int Index);
 
 // Function to get the name of the GPU device
-FString nvGetGPUGetNameNVML(int Index);
+std::string nvGetGPUGetNameNVML(int Index);
 
 // Function to get the PCIe speed of the GPU device
 int nvGetGPUGetPcieSpeedNVML(int Index);
 
 // Function to get the VBIOS version of the GPU device
-FString nvGetGPUGetVBIOSVersionNVML(int Index);
+std::string nvGetGPUGetVBIOSVersionNVML(int Index);
 
 // Function to get the CUDA compute capability of the GPU device
 int nvGetGPUGetCudaComputeCapabilityNVML(int Index);
@@ -113,4 +126,4 @@ int nvGetGPUGetCudaComputeCapabilityNVML(int Index);
 bool nvGetGPUCudaAvailabilityNVML(int Index);
 
 // Function to get GPU power state as FString
-FString nvGetGPUGetPowerStateNVML(int Index);
+std::string nvGetGPUGetPowerStateNVML(int Index);

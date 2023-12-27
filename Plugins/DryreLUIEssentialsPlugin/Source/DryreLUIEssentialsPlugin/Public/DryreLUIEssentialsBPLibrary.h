@@ -17,8 +17,14 @@ THIRD_PARTY_INCLUDES_START
 #include <mmdeviceapi.h>
 #include <endpointvolume.h>
 #include <Shlwapi.h>
-#include "NVMLManager.h"
-#include "ADLManager.h"
+
+#include "../Source/ThirdParty/NVML/generate_library/NVMLManager.h"
+//#include "../Source/ThirdParty/NVML/generate_library/NVMLManager.cpp"
+#include "../Source/ThirdParty/ADL/generate_library/ADLManager.h"
+//#include "../Source/ThirdParty/ADL/generate_library/ADLManager.cpp"
+
+//#include "NVMLManager.h"
+//#include "ADLManager.h"
 THIRD_PARTY_INCLUDES_END
 
 #endif

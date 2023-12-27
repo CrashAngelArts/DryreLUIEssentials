@@ -2,9 +2,9 @@
 
 #include <windows.h>
 #include <iostream>
-#include "ThirdParty/ADL/include/ADLX.h"
-#include "ThirdParty/ADL/include/IPerformanceMonitoring.h"
-#include "ThirdParty/ADL/ADLXHelper/Windows/Cpp/ADLXHelper.h"
+#include "../../../ThirdParty/ADL/include/ADLX.h"
+#include "../../../ThirdParty/ADL/include/IPerformanceMonitoring.h"
+#include "../../../ThirdParty/ADL/ADLXHelper/Windows/Cpp/ADLXHelper.h"
 
 // Function declaration
 
@@ -47,7 +47,7 @@ void adlInitializeADL();
 bool adlIsInitializedADL();
 
 // Shutdown ADL
-void adlShutdownADL();
+void adlGPUShutdownADL();
 
 // Function to check GPU usage support status
 bool adlIsGPUUsageSupportedADL(IADLXGPUMetricsSupportPtr gpuMetricsSupport);
