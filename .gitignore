@@ -73,6 +73,24 @@ Plugins/*/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
+# CMake Ignore
+**/cmake-build-debug
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/install_manifest.txt
+**/CMakeFiles/
+**/CTestTestfile.cmake
+**/Makefile
+**/*.cbp
+**/CMakeScripts
+**/compile_commands.json
+**/*.ilk
+**/*.lastbuildState
+**/*.recipe
+**/*.tlog
+**/generate_library/.idea
+**/generate_library/*.htm
+
 # Custom Ignore (DryreL Design)
 Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/doc/*
 Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/example/*
