@@ -1,4 +1,4 @@
-# Visual Studio 2015 user specific files
+# Visual Studio user specific files
 .vs/
 
 # Compiled Object files
@@ -96,10 +96,13 @@ DerivedDataCache/*
 **/ALL_BUILD.vcxproj.filters
 **/*.pdb
 
+# Rider user specific files
+.idea/
+
 # Custom Ignore (DryreL Design)
 Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/doc/*
 Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/NVML/example/*
 
 # Custom Include (DryreL Design)
-!Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/*/dll/*.dll
+!Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/*/dll/Release/*.dll
 !Plugins/DryreLUIEssentialsPlugin/Source/ThirdParty/*/lib/*.lib
